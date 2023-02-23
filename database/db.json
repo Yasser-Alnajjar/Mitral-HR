@@ -1,0 +1,214 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "Tecnical"
+    },
+    {
+      "id": 2,
+      "name": "System"
+    },
+    {
+      "id": 3,
+      "name": "Suppurt"
+    },
+    {
+      "id": 4,
+      "name": "Media"
+    },
+    {
+      "name": "ssd",
+      "id": 5
+    }
+  ],
+  "branches": [
+    {
+      "id": 1,
+      "name": "STO"
+    },
+    {
+      "id": 2,
+      "name": "LTO"
+    },
+    {
+      "id": 3,
+      "name": "MTO"
+    },
+    {
+      "id": 4,
+      "name": "FTO"
+    },
+    {
+      "name": "STR",
+      "id": 5
+    },
+    {
+      "name": "ahmed",
+      "id": 6
+    }
+  ],
+  "tasks": [
+    {
+      "startDate": "2023-02-28",
+      "endDate": "2023-03-15",
+      "taskname": "E commerce",
+      "description": "this is full stack project",
+      "employee": "yasser",
+      "id": 1
+    },
+    {
+      "startDate": "2023-02-28",
+      "endDate": "2023-03-15",
+      "taskname": "HR System",
+      "description": "this is full stack project",
+      "employee": "yasser",
+      "id": 2
+    },
+    {
+      "startDate": "2023-02-23",
+      "endDate": "2023-02-28",
+      "taskname": "New Task",
+      "description": "this is task for testing",
+      "employee": "Ahmed",
+      "id": 3
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "id": 2,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "id": 3,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "id": 4,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "id": 5,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "id": 6,
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "admin",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser"
+    },
+    {
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "owner",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser",
+      "id": 8
+    },
+    {
+      "rate": 5,
+      "phone": 1121081998,
+      "salary": 2000,
+      "address": "giza",
+      "role": "owner",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@mail.com",
+      "name": "yasser",
+      "id": 9
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "name": "Yasser",
+      "image": "https://robohash.org/perferendisideveniet.png",
+      "attend": true
+    },
+    {
+      "id": 2,
+      "name": "ahmed",
+      "image": "https://robohash.org/perferendisideveniet.png",
+      "attend": false
+    },
+    {
+      "id": 3,
+      "name": "hima",
+      "image": "https://robohash.org/perferendisideveniet.png",
+      "attend": true
+    },
+    {
+      "id": 4,
+      "name": "roro",
+      "image": "https://robohash.org/perferendisideveniet.png",
+      "attend": false
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "role": "owner"
+    },
+    {
+      "id": 2,
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "role": "user"
+    }
+  ]
+}

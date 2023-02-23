@@ -1,0 +1,22 @@
+.main {
+  text-align: center;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+.main_h2 {
+  position: relative;
+}
+.main_h2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  transition: 0.3s ease-in-out;
+  height: 2px;
+}
+.main:hover .main_h2::before {
+  background-color: #42bcfa;
+  width: 100%;
+}
