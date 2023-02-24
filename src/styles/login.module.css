@@ -30,11 +30,12 @@
   margin: 1.5em auto;
   transition: all 0.5s ease;
   background-color: transparent;
+  color: black;
 }
 .form__input:focus {
   border-bottom-color: #008080;
   border-radius: 4px;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 .login_btn {
   transition: all 0.5s ease;

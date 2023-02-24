@@ -1,6 +1,7 @@
 import AddDepartment from "@/components/departments/addDepartment";
 import DepartCard from "@/components/departments/DepartCard";
 import DepartCardOver from "@/components/departments/DepartCardOver";
+import Modals from "@/components/Shared/Modals";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
@@ -19,7 +20,12 @@ export default function Departments() {
   return (
     <div className={`py-4 mvh-100 ${theme.mode}`}>
       <Container>
-        <AddDepartment setOpen={setOpen} open={open} />
+        <Modals
+          title="Add Department"
+          show={open}
+          onHide={() => setOpen(!open)}
+          forms={<AddDepartment open={open} setOpen={setOpen} />}
+        />
         <div className="d-flex align-items-center justify-content-end">
           <Button
             variant={!open ? "warning" : "danger"}
@@ -29,50 +35,14 @@ export default function Departments() {
             <AiOutlineFolderAdd size={22} />
           </Button>
         </div>
-        <Row className="py-4">
-          <Col lg="8">
-            <Row>
-              {departs?.departmentes?.map((depart) => {
-                return (
-                  <Col md="4" className="mb-4" key={depart.id}>
-                    <DepartCard name={depart.name} id={depart.id} />
-                  </Col>
-                );
-              })}
-            </Row>
-          </Col>
-          <Col lg="4">
-            <Card
-              className={` border-0 shadow  ${
-                theme.mode === "dark" ? "bg-gray-alt " : "bg-white"
-              }`}
-            >
-              <Card.Title className="text-center m-0  pt-3">
-                Over Veiw
-              </Card.Title>
-              <>
-                <Card.Body>
-                  <Row>
-                    {departs?.departmentes?.map((depart) => {
-                      return (
-                        <Col key={depart.id} sm="12">
-                          <Card
-                            className={`text-indent-10 my-3 border-0 shadow p-2 ${
-                              theme.mode === "dark"
-                                ? "bg-gray-main "
-                                : "bg-white"
-                            }`}
-                          >
-                            <DepartCardOver name={depart.name} />
-                          </Card>
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </Card.Body>
-              </>
-            </Card>
-          </Col>
+        <Row className="py-5">
+          {departs?.departmentes?.map((depart) => {
+            return (
+              <Col md="3" className="mb-4" key={depart.id}>
+                <DepartCard name={depart.name} id={depart.id} />
+              </Col>
+            );
+          })}
         </Row>
       </Container>
     </div>

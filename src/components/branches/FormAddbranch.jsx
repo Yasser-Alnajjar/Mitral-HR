@@ -8,12 +8,12 @@ import ErrorMessage from "../Forms/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { addBranch, fetchBranch } from "redux/slices/barnches-slice";
 import { toast, Toaster } from "react-hot-toast";
-export default function Addbranch({ open, setOpen }) {
+export default function FormAddbranch() {
   const dispatch = useDispatch();
   let schema = object({
     name: string().trim().required(),
   });
-  const handleClose = () => setOpen(false);
+
   const {
     register,
     handleSubmit,
@@ -23,7 +23,6 @@ export default function Addbranch({ open, setOpen }) {
 
   const onSubmit = (data) => {
     dispatch(addBranch(data));
-    data && setOpen(false);
     setTimeout(() => {
       dispatch(fetchBranch());
     }, 200);
@@ -32,26 +31,23 @@ export default function Addbranch({ open, setOpen }) {
   const onError = () => {
     errors.name && toast.error(errors.name.message);
   };
+
   return (
-    <Modal open={open} onClose={handleClose} size="sm">
-      <Modal.Body>
-        {open && (
-          <Container>
-            <Form onSubmit={handleSubmit(onSubmit, onError)}>
-              <Input
-                typeInp={"text"}
-                label={"Branch Name"}
-                register={register}
-                type="name"
-              />
-              <ErrorMessage errors={errors.name} />
-              <Button variant="warning" className="mt-2" type="submit">
-                Add
-              </Button>
-            </Form>
-          </Container>
-        )}
-      </Modal.Body>
-    </Modal>
+    <>
+      <Container>
+        <Form onSubmit={handleSubmit(onSubmit, onError)}>
+          <Input
+            typeInp={"text"}
+            label={"Branch Name"}
+            register={register}
+            type="name"
+          />
+          <ErrorMessage errors={errors.name} />
+          <Button variant="warning" className="mt-2" type="submit">
+            Add
+          </Button>
+        </Form>
+      </Container>
+    </>
   );
 }

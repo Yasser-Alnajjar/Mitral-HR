@@ -16,10 +16,10 @@ import { deleteBranch, fetchBranch } from "redux/slices/barnches-slice";
 import { AiOutlineCreditCard, AiOutlineOrderedList } from "react-icons/ai";
 import Loading from "@/components/Shared/Loading";
 import Swal from "sweetalert2";
+import Modals from "@/components/Shared/Modals";
 export default function Branches() {
   const { theme, branches } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
   const [list, setList] = useState(false);
 
   useEffect(() => {
@@ -44,11 +44,17 @@ export default function Branches() {
       }
     });
   };
+  const [open, setOpen] = useState(false);
   return (
     <div className={`py-5 ${theme.mode} `}>
       {branches.loading && <Loading />}
       <Container>
-        <FormAddbranch setOpen={setOpen} open={open} />
+        <Modals
+          title="Add Branch"
+          show={open}
+          onHide={() => setOpen(!open)}
+          forms={<FormAddbranch />}
+        />
         <div className="d-flex align-items-center justify-content-end">
           <ButtonGroup>
             <Button

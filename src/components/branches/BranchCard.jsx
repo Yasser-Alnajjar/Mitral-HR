@@ -44,7 +44,6 @@ export default function BranchCard({
         <Link
           className="text-purple cursor-p"
           href={`/dashboard/branches/${id}`}
-          onClick={() => console.log("clicked")}
         >
           More info
         </Link>

@@ -64,7 +64,6 @@ export default function BranchInfo() {
               {branches?.branch_employees ? (
                 branches?.branch_employees.map((user) => (
                   <tr key={user.id}>
-                    {console.log("branches", user)}
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.department}</td>

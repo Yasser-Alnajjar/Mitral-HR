@@ -2,32 +2,43 @@ import ErrorMessage from "@/components/Forms/ErrorMessage";
 import Input from "@/components/Forms/Input";
 import MainTitle from "@/components/Shared/MainTitle";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  FloatingLabel,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
 import { fetchDepartments } from "redux/slices/department-slice";
 import { addEmployee } from "redux/slices/employees-slice";
+import { registerUser } from "redux/slices/user-slice";
+import Swal from "sweetalert2";
 import { number, object, string } from "yup";
 
 export default function Register() {
   const { theme, departs, branches } = useSelector((state) => state);
-
+  const router = useRouter();
   const dispatch = useDispatch();
   let schema = object({
-    name: string().required(),
+    // name: string().required(),
+    password: string().required().min(6),
     email: string().email("Email must be valid").required(),
-    department: string().required(),
-    branch: string().required(),
-    role: string().required(),
-    address: string().required(),
-    salary: number("Salary must be Number")
-      .required("Salary A Required Field")
-      .positive(),
-    phone: number().required("Phone A Required Field").positive(),
-    rate: number().required("Rate A Required Field").positive().min(0).max(5),
+    // department: string().required(),
+    // branch: string().required(),
+    // role: string().required(),
+    // address: string().required(),
+    // salary: number("Salary must be Number")
+    //   .required("Salary A Required Field")
+    //   .positive(),
+    // phone: number().required("Phone A Required Field").positive(),
+    // rate: number().required("Rate A Required Field").positive().min(0).max(5),
   });
   const {
     register,
@@ -39,9 +50,20 @@ export default function Register() {
     mode: "onChange",
   });
   const onSubmit = (data) => {
-    dispatch(addEmployee(data));
-    console.log(data);
-    // reset();
+    dispatch(registerUser(data));
+    Swal.fire({
+      title: "Are you sure ?",
+      text: "If Confirmed You Navigate To Dashboard",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push("/dashboard");
+      }
+    });
+    reset();
   };
   useEffect(() => {
     dispatch(fetchDepartments());
@@ -75,6 +97,7 @@ export default function Register() {
                 register={register}
                 type={"name"}
                 typeInp="text"
+                styleInp={errors.name && "border-danger"}
               />
               <ErrorMessage errors={errors.name} />
             </Col>
@@ -84,16 +107,27 @@ export default function Register() {
                 register={register}
                 type={"email"}
                 typeInp="email"
+                styleInp={errors.email && "border-danger"}
               />
               <ErrorMessage errors={errors.email} />
             </Col>
-
+            <Col md="6">
+              <Input
+                label={"Password"}
+                register={register}
+                type={"password"}
+                typeInp="password"
+                styleInp={errors.password && "border-danger"}
+              />
+              <ErrorMessage errors={errors.password} />
+            </Col>
             <Col md="6">
               <Input
                 label={"Address"}
                 register={register}
                 type={"address"}
                 typeInp="text"
+                styleInp={errors.address && "border-danger"}
               />
               <ErrorMessage errors={errors.address} />
             </Col>
@@ -104,6 +138,7 @@ export default function Register() {
                 type={"salary"}
                 typeInp="number"
                 min={"0"}
+                styleInp={errors.salary && "border-danger"}
               />
               <ErrorMessage errors={errors.salary} />
             </Col>
@@ -114,6 +149,7 @@ export default function Register() {
                 type={"phone"}
                 typeInp="number"
                 min={0}
+                styleInp={errors.phone && "border-danger"}
               />
               <ErrorMessage errors={errors.phone} />
             </Col>
@@ -125,43 +161,62 @@ export default function Register() {
                 typeInp="number"
                 min={"0"}
                 max={"5"}
+                styleInp={errors.rate && "border-danger"}
               />
               <ErrorMessage errors={errors.rate} />
             </Col>
             <Col md="6">
-              <Form.Label>Department</Form.Label>
-              <Form.Select {...register("department")}>
-                <option></option>
-                {departs.departmentes.map((item) => (
-                  <>
-                    <option value={item.name}>{item.name}</option>
-                  </>
-                ))}
-              </Form.Select>
+              <FloatingLabel controlId={`floatingInput9`} label={"Department"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.department && "border-danger"}`}
+                  {...register("department")}
+                >
+                  <option></option>
+                  {departs.departmentes.map((item) => (
+                    <>
+                      <option value={item.name}>{item.name}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.department} />
             </Col>
             <Col md="6">
-              <Form.Label>Branch</Form.Label>
-              <Form.Select {...register("branch")}>
-                <option></option>
-                {branches.branches.map((item) => (
-                  <>
-                    <option value={item.name}>{item.name}</option>
-                  </>
-                ))}
-              </Form.Select>
+              <FloatingLabel controlId={`floatingInput10`} label={"Branch"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.branch && "border-danger"}`}
+                  {...register("branch")}
+                >
+                  <option></option>
+                  {branches.branches.map((item) => (
+                    <>
+                      <option value={item.name}>{item.name}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.branch} />
             </Col>
             <Col md="6">
-              <Form.Label>Role</Form.Label>
-              <Form.Select {...register("role")}>
-                <option></option>
-                {branches.roles.map((item) => (
-                  <>
-                    <option value={item.role}>{item.role}</option>
-                  </>
-                ))}
-              </Form.Select>
+              <FloatingLabel controlId={`floatingInput11`} label={"Role"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.role && "border-danger"}`}
+                  {...register("role")}
+                >
+                  <option></option>
+                  {branches.roles.map((item) => (
+                    <>
+                      <option value={item.role}>{item.role}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.role} />
             </Col>
           </Row>

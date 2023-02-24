@@ -14,8 +14,6 @@ export default function DepartmentDetails() {
   useEffect(() => {
     dispatch(fetchDepartment_employees(id));
   }, [dispatch, id]);
-  console.log(id);
-  console.log(departs);
   return (
     <div className={`${theme.mode} py-5`}>
       <Container>

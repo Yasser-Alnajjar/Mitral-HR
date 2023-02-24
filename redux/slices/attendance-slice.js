@@ -51,7 +51,6 @@ const attendanceSlice = createSlice({
     });
     builder.addCase(addAttendance.fulfilled, (state, action) => {
       state.loading = false;
-      console.log(action.payload);
     });
     builder.addCase(addAttendance.rejected, (state, action) => {
       state.loading = true;

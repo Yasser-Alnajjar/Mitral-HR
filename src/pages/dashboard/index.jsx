@@ -3,11 +3,18 @@ import Head from "next/head";
 
 import { useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import { AiOutlineCluster, AiOutlineUngroup } from "react-icons/ai";
+import {
+  AiOutlineCluster,
+  AiOutlineStock,
+  AiOutlineUngroup,
+  AiOutlineUsergroupAdd,
+} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+
 import { fetchBranch } from "redux/slices/barnches-slice";
 import { fetchDepartments } from "redux/slices/department-slice";
 import { fetchEmployees } from "redux/slices/employees-slice";
+import { fetchTasks } from "redux/slices/task-slice";
 
 export default function RootLayout() {
   const { theme, branches, departs, employees, tasks } = useSelector(
@@ -18,6 +25,7 @@ export default function RootLayout() {
     dispatch(fetchBranch());
     dispatch(fetchDepartments());
     dispatch(fetchEmployees());
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   return (
@@ -25,7 +33,7 @@ export default function RootLayout() {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <Container>
+      {/* <Container>
         <Row>
           <Col className="mb-3" lg="8">
             <Card
@@ -64,14 +72,14 @@ export default function RootLayout() {
                         ? employees.employees.length
                         : 0
                     }
-                    icon={<AiOutlineUngroup size={40} />}
+                    icon={<AiOutlineUsergroupAdd size={40} />}
                   />
                 </Col>
                 <Col className="mb-4">
                   <Status
                     title="Tasks"
                     length={tasks.tasks.length !== 0 ? tasks.tasks.length : 0}
-                    icon={<AiOutlineUngroup size={40} />}
+                    icon={<AiOutlineStock size={40} />}
                   />
                 </Col>
               </Row>
@@ -98,6 +106,50 @@ export default function RootLayout() {
                 </Col>
               </Row>
             </Card>
+          </Col>
+        </Row>
+      </Container> */}
+      <Container>
+        <Row>
+          <Col sm="12" md="3" className="mb-4">
+            <Status
+              title="Branches"
+              length={
+                branches.branches && branches.branches.length !== 0
+                  ? branches.branches.length
+                  : 0
+              }
+              icon={<AiOutlineCluster size={40} />}
+            />
+          </Col>
+          <Col sm="12" md="3" className="mb-4">
+            <Status
+              title="Departmentes"
+              length={
+                departs.departmentes.length !== 0
+                  ? departs.departmentes.length
+                  : 0
+              }
+              icon={<AiOutlineUngroup size={40} />}
+            />
+          </Col>
+          <Col sm="12" md="3" className="mb-4">
+            <Status
+              title="Employees"
+              length={
+                employees.employees.length !== 0
+                  ? employees.employees.length
+                  : 0
+              }
+              icon={<AiOutlineUsergroupAdd size={40} />}
+            />
+          </Col>
+          <Col sm="12" md="3" className="mb-4 transition">
+            <Status
+              title="Tasks"
+              length={tasks.tasks.length !== 0 ? tasks.tasks.length : 0}
+              icon={<AiOutlineStock size={40} />}
+            />
           </Col>
         </Row>
       </Container>

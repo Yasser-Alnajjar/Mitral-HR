@@ -14,6 +14,7 @@ body {
   max-width: 100vw;
   font-size: 16px;
   overflow-x: hidden;
+  padding-right: 0 !important;
 }
 
 body {
@@ -30,11 +31,11 @@ ul {
   margin: 0;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   background-color: #1a1a1a;
 }
 ::-webkit-scrollbar-thumb {
-  width: 10px;
+  width: 5px;
   border-radius: 15px;
   background-color: #2b3945;
 }
@@ -106,9 +107,12 @@ ul {
 }
 
 input {
-  outline: none;
+  outline: 0;
 }
-
+select:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
 .error {
   color: #bf1650;
 }
@@ -116,4 +120,22 @@ input {
 .error::before {
   display: inline;
   content: "⚠ ";
+}
+.status {
+  transition: 0.3s ease-in-out;
+}
+.status:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
+}
+.light-revers {
+  background-color: #fff !important;
+  color: #1a1a1a !important;
+}
+.dark-revers {
+  background-color: #262626 !important;
+  color: #f6f7fc !important;
+}
+.dropdown-toggle::after {
+  display: none;
 }

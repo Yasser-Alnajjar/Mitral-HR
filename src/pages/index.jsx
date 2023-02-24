@@ -11,9 +11,10 @@ import styles from "../styles/login.module.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 import Head from "next/head";
+import { user } from "@/utils/auth";
 
 export default function Login() {
-  const { theme, user } = useSelector((state) => state);
+  const { theme } = useSelector((state) => state);
   const router = useRouter();
   const dispatch = useDispatch();
   let schema = object({
@@ -28,17 +29,20 @@ export default function Login() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
   const onSubmit = (data) => {
     data && dispatch(login(data));
-    setTimeout(() => {
-      if (user.user.status === "401") {
-        toast.error(user.user.message);
-      }
-      if (user.user.status === "200") {
-        toast.success(user.user.message);
-        router.push("/dashboard");
-      }
-    }, 1000);
+
+    // router.push("/dashboard");
+    // setTimeout(() => {
+    //   if (user.user.status === "401") {
+    //     toast.error(user.user.message);
+    //   }
+    //   if (user.user.status === "200") {
+    //     toast.success(user.user.message);
+    //     router.push("/dashboard");
+    //   }
+    // }, 1000);
   };
   return (
     <div
@@ -47,7 +51,7 @@ export default function Login() {
       <Head>
         <title>Mitral HR /Login</title>
       </Head>
-      <Container fluid>
+      <Container>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Row className={`${styles.main_content} text-center shadow `}>
             <div className="pt-4">
@@ -59,7 +63,7 @@ export default function Login() {
               <h4 className="text-black">Login</h4>
             </div>
             <Col className={styles.login_form}>
-              <Container fluid>
+              <Container>
                 <Row>
                   <Form.Group>
                     <Row>

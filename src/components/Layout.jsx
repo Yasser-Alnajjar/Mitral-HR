@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Loading from "./Shared/Loading";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import { Button, IconButton } from "rsuite";
+import { Button } from "react-bootstrap";
 
 export default function Layout({ children }) {
   const { theme, branches, departs, employees, tasks } = useSelector(
@@ -46,12 +46,7 @@ export default function Layout({ children }) {
                 right: "30px",
               }}
             >
-              <Button
-                onClick={() => scrollTop()}
-                appearance="primary"
-                color="cyan"
-                circle
-              >
+              <Button variant="warning" onClick={() => scrollTop()}>
                 <AiOutlineArrowUp />
               </Button>
             </div>

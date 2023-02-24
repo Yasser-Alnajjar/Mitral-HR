@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiOutlineMore } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import styles from "../../styles/menu.module.css";
+import Dorpmenu from "./dropdwonCu";
 
 export default function MenuCard({ setAttend, attend }) {
   const { theme } = useSelector((state) => state);
@@ -9,24 +10,25 @@ export default function MenuCard({ setAttend, attend }) {
 
   return (
     <div className={`${styles.parent} ${theme.mode}`}>
-      <span
+      {/* <div
         className="d-block cursor-p position-absolute top-0 end-0"
         onClick={() => setExpand(!expand)}
       >
         <AiOutlineMore />
-      </span>
+      </div> */}
+
       <ul
         className={` shadow ${styles.menu} ${
           theme.mode === "dark" ? "bg-black " : "bg-white "
         } ${expand && styles.expandmenu}`}
       >
         <li>
-          <li className={theme.mode} onClick={() => setAttend(true)}>
+          <div className={theme.mode} onClick={() => setAttend(true)}>
             Attend
-          </li>
-          <li className={theme.mode} onClick={() => setAttend(false)}>
+          </div>
+          <div className={theme.mode} onClick={() => setAttend(false)}>
             Leave
-          </li>
+          </div>
         </li>
       </ul>
     </div>

@@ -1,4 +1,3 @@
-import { Modal } from "rsuite";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Input from "../Forms/Input";
@@ -35,25 +34,19 @@ export default function AddDepartment({ open, setOpen }) {
     errors.name && toast.error(errors.name.message);
   };
   return (
-    <Modal open={open} onClose={handleClose} size="sm">
-      <Modal.Body>
-        {open && (
-          <Container>
-            <Form onSubmit={handleSubmit(onSubmit, onError)}>
-              <Input
-                type="name"
-                register={register}
-                label={"Department Name"}
-                styleInp={errors.name && "border-danger"}
-              />
-              <ErrorMessage errors={errors.name} />
-              <Button variant="warning" className="mt-2" type="submit">
-                Add
-              </Button>
-            </Form>
-          </Container>
-        )}
-      </Modal.Body>
-    </Modal>
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <Input
+          type="name"
+          register={register}
+          label={"Department Name"}
+          styleInp={errors.name && "border-danger"}
+        />
+        <ErrorMessage errors={errors.name} />
+        <Button variant="warning" className="mt-2" type="submit">
+          Add
+        </Button>
+      </Form>
+    </Container>
   );
 }

@@ -1,8 +1,12 @@
+import { user } from "@/utils/auth";
+import { useEffect } from "react";
 import { Card, Container, Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Profile() {
-  const { theme, user } = useSelector((state) => state);
+  const { theme } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   return (
     <div className={`${theme.mode} py-5`}>
       <Container>
@@ -13,15 +17,12 @@ export default function Profile() {
             src={user.user.image}
           />
           <Card.Body>
-            <Table variant={`${theme.mode}`}>
+            <Table className={`${theme.mode}`}>
               <tbody>
                 <tr>
                   <td className="text-capitalize">Name</td>
                   <td className="text-capitalize">:</td>
-                  <td className="text-capitalize">
-                    {user.user.firstName} {user.user.maidenName}{" "}
-                    {user.user.lastName}
-                  </td>
+                  <td className="text-capitalize">{user.user.name}</td>
                 </tr>
                 <tr>
                   <td className="text-capitalize">Email</td>
@@ -34,14 +35,24 @@ export default function Profile() {
                   <td className="text-capitalize">{user.user.address}</td>
                 </tr>
                 <tr>
-                  <td className="text-capitalize">Age</td>
+                  <td className="text-capitalize">Role</td>
                   <td className="text-capitalize">:</td>
-                  <td className="text-capitalize">{user.user.age}</td>
+                  <td className="text-capitalize">{user.user.role}</td>
                 </tr>
                 <tr>
-                  <td className="text-capitalize">Gender</td>
+                  <td className="text-capitalize">Salary</td>
                   <td className="text-capitalize">:</td>
-                  <td className="text-capitalize">{user.user.gender}</td>
+                  <td className="text-capitalize">{user.user.salary}</td>
+                </tr>
+                <tr>
+                  <td className="text-capitalize">Department</td>
+                  <td className="text-capitalize">:</td>
+                  <td className="text-capitalize">{user.user.department}</td>
+                </tr>
+                <tr>
+                  <td className="text-capitalize">Branch</td>
+                  <td className="text-capitalize">:</td>
+                  <td className="text-capitalize">{user.user.branch}</td>
                 </tr>
                 <tr>
                   <td className="text-capitalize">phone</td>
@@ -49,9 +60,9 @@ export default function Profile() {
                   <td className="text-capitalize">{user.user.phone}</td>
                 </tr>
                 <tr>
-                  <td className="text-capitalize">Birth Date</td>
+                  <td className="text-capitalize">rate</td>
                   <td className="text-capitalize">:</td>
-                  <td className="text-capitalize">{user.user.birthDate}</td>
+                  <td className="text-capitalize">{user.user.rate}</td>
                 </tr>
               </tbody>
             </Table>

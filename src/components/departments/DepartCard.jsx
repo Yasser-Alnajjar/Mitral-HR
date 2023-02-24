@@ -18,7 +18,7 @@ export default function DepartCard({ cardStyle, name, icon, id }) {
     top: "4px",
     fontSize: "50px",
   };
-  console.log("name", name);
+
   const handleClick = () => {
     Swal.fire({
       title: "Are you sure !",

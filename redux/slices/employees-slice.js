@@ -1,13 +1,20 @@
 import { URL_API } from "@/utils";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 export const addEmployee = createAsyncThunk(
   "employeeSlice/addEmployee",
-  async (payload) => {
-    const res = await axios.post(`${URL_API}/employees`, payload);
-    const data = await res.data;
-    return data;
+  async (payload,thunkAPI) => {
+    try {
+      const res = await axios.post(`${URL_API}/employees`, payload);
+      const data = await res.data;
+      if (res.status === 200)
+        thunkAPI.dispatch(toast.success("Add Employee is success"));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(toast.error(error.repsonse.data));
+    }
   }
 );
 
@@ -22,10 +29,16 @@ export const fetchEmployees = createAsyncThunk(
 
 export const deleteEmployee = createAsyncThunk(
   "employeeSlice/deleteEmployee",
-  async (id) => {
-    const res = await axios.delete(`${URL_API}/employees/${id}`);
-    const data = await res.data;
-    return data;
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.delete(`${URL_API}/employees/${id}`);
+      const data = await res.data;
+      if (res.status === 200)
+        thunkAPI.dispatch(toast.success("Employee Is Deleted"));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(toast.error(error.repsonse.data));
+    }
   }
 );
 
@@ -49,16 +62,16 @@ const employeeSlice = createSlice({
       state.loading = true;
     });
     // * Fetch Employee
-    // builder.addCase(fetchEmployees.pending, (state, action) => {
-    //   state.loading = true;
-    // });
+    builder.addCase(fetchEmployees.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(fetchEmployees.fulfilled, (state, action) => {
       state.loading = false;
       state.employees = action.payload;
     });
-    // builder.addCase(fetchEmployees.rejected, (state, action) => {
-    //   state.loading = true;
-    // });
+    builder.addCase(fetchEmployees.rejected, (state, action) => {
+      state.loading = true;
+    });
     // * delete Employee
     builder.addCase(deleteEmployee.pending, (state, action) => {
       state.loading = true;

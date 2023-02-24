@@ -1,5 +1,5 @@
-import { Form } from "react-bootstrap";
-// import { useForm } from "react-hook-form";
+import { FloatingLabel, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export default function Input({
   type,
@@ -9,19 +9,27 @@ export default function Input({
   styleInp,
   min,
   max,
+  count,
+  error,
 }) {
+  const { theme } = useSelector((state) => state);
   return (
-    <Form.Group className="mb-3" controlId="formBasic2">
-      <Form.Label>{label}</Form.Label>
+    <FloatingLabel
+      controlId={`floatingInput${count}`}
+      label={label}
+      className={`mb-3 ${theme.mode}`}
+    >
       <Form.Control
         {...register(type)}
         type={typeInp}
-        className={styleInp}
+        className={`${styleInp} ${
+          theme.mode === "dark" ? "dark" : "light-revers"
+        } ${error && "border-danger"} `}
         name={type}
         min={min}
         max={max}
         placeholder={`Enter ${label}`}
       />
-    </Form.Group>
+    </FloatingLabel>
   );
 }

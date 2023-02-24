@@ -26,9 +26,7 @@ import { useSelector } from "react-redux";
 export default function Attendance() {
   const { theme, user } = useSelector((state) => state);
   const [attend, setAttend] = useState(false);
-  const [day, setDay] = useState(
-    new Date().toLocaleString("en-us", { weekday: "long" })
-  );
+  const [day, setDay] = useState("All");
   const [list, setList] = useState(false);
 
   return (
@@ -43,7 +41,7 @@ export default function Attendance() {
               className={theme.mode}
               size="sm"
             >
-              <option value="">Filter</option>
+              <option value="All">Filter</option>
               <option value="Saturday">Saturday</option>
               <option value="Sunday">Sunday</option>
               <option value="Monday">Monday</option>
@@ -73,6 +71,7 @@ export default function Attendance() {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Avatar</th>
                 <th>Name</th>
                 <th>Department</th>
                 <th>Attendance</th>
@@ -82,11 +81,22 @@ export default function Attendance() {
             <tbody>
               <tr>
                 <td>1</td>
+                <td>
+                  <Image
+                    height={50}
+                    width={50}
+                    alt="avatar"
+                    loader={() =>
+                      " https://robohash.org/perferendisideveniet.png"
+                    }
+                    src="https://robohash.org/perferendisideveniet.png"
+                  />
+                </td>
                 <td>Yasser</td>
                 <td>Sfotware</td>
                 <td>{attend ? "Attend" : "Leave"}</td>
                 <td>
-                  <Dorpmenu />
+                  <Dorpmenu attend={attend} setAttend={setAttend} />
                 </td>
               </tr>
             </tbody>
@@ -96,21 +106,35 @@ export default function Attendance() {
         <Container>
           <Row>
             <Col lg="3" className="mb-4">
-              <Card className={`${theme.mode}     text-center shadow`}>
-                <MenuCard attend={attend} setAttend={setAttend} />
-                {/* <div className=" d-flex justify-content-center ">
-                  <Image
-                    loader={() => user.user.image}
-                    src={user.user.image}
-                    height={100}
-                    alt={user.user.image}
-                    width={100}
-                    className="d-block border rounded-circle img-thumbnail"
+              <Card
+                className={`${theme.mode} position-relative     text-center shadow`}
+              >
+                {/* <MenuCard attend={attend} setAttend={setAttend} /> */}
+                <div className="position-absolute py-2 top-0 end-0">
+                  <Dorpmenu
+                    attend={attend}
+                    translate={"translate(-100%,-50%)"}
+                    setAttend={setAttend}
                   />
+                </div>
+                <div className=" d-flex justify-content-center py-3">
+                  <div style={{ height: 100, width: 100 }}>
+                    <Image
+                      loader={() =>
+                        " https://robohash.org/perferendisideveniet.png"
+                      }
+                      src="https://robohash.org/perferendisideveniet.png"
+                      height={50}
+                      alt={"avatar"}
+                      width={50}
+                      style={{ height: "100%", width: "100%" }}
+                      className="d-block border rounded-circle "
+                    />
+                  </div>
                 </div>
                 <Card.Body>
                   {user.user.firstName} {user.user.lastName}
-                </Card.Body> */}
+                </Card.Body>
                 <div className="w-50 py-3 mx-auto">
                   <Button variant={attend ? "success" : "danger"}>
                     {attend ? "Attend" : "Leave"}

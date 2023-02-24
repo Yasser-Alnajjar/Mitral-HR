@@ -1,56 +1,44 @@
+import { useState } from "react";
 import { AiOutlineMore } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttendance } from "redux/slices/attendance-slice";
-import { Whisper, IconButton, Popover, Dropdown } from "rsuite";
-const RenderMenu = ({ onClose, left, top, className }, ref) => {
-  const { theme } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const handleSelect = (eventKey) => {
-    onClose();
-    console.log(eventKey);
-  };
-  const styles = {
-    backgroundColor: `${theme.mode === "dark" ? "#1a1a1a" : "#f6f7fc"}`,
-    color: `${theme.mode === "dark" ? "#f6f7fc" : "#1a1a1a "}`,
-  };
-  return (
-    <Popover
-      ref={ref}
-      className={className}
-      style={({ left, top }, styles)}
-      full
-    >
-      <Dropdown.Menu style={styles} onSelect={handleSelect}>
-        <Dropdown.Item
-          onClick={() => dispatch(updateAttendance({ attend: true }))}
-          className={theme.mode}
-          eventKey={3}
-        >
-          Attend
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => dispatch(updateAttendance({ attend: true }))}
-          className={theme.mode}
-          eventKey={4}
-        >
-          Leave
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </Popover>
-  );
-};
+import styles from "../../styles/menu.module.css";
 
-const Dorpmenu = () => {
+const Dorpmenu = ({ attend, setAttend, translate }) => {
+  const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
   const { theme } = useSelector((state) => state);
   return (
-    <Whisper
-      appearance="subtle"
-      placement="leftStart"
-      trigger="click"
-      speaker={RenderMenu}
-    >
-      <IconButton className={theme.mode} icon={<AiOutlineMore />} />
-    </Whisper>
+    <div className={theme.mode}>
+      <button onClick={() => setShow(!show)} className={theme.mode}>
+        <AiOutlineMore />
+      </button>
+      <div className="position-relative">
+        <ul
+          style={{
+            opacity: show ? "1" : "0",
+            zIndex: show ? "1000" : "-100",
+            transform: translate,
+          }}
+          className={`${styles.dropdownMenu} ${theme.mode} p-1 rounded shadow `}
+        >
+          <li
+            onClick={() => setAttend(true)}
+            className={`mb-1 ${
+              theme.mode === "dark" ? "dark-revers" : "light-revers"
+            }`}
+          >
+            Attend
+          </li>
+          <li
+            onClick={() => setAttend(false)}
+            className={theme.mode === "dark" ? "dark-revers" : "light-revers"}
+          >
+            Leave
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };
 export default Dorpmenu;

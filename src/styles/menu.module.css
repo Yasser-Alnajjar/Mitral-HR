@@ -13,19 +13,33 @@
   transform: translateX(-20%);
   padding: 5px;
 }
-.menu li > li {
+.menu li > div {
   cursor: pointer;
   border-radius: 6px;
   margin-bottom: 3px;
   background-color: #f2f2f2;
 }
-.menu li > li:hover {
+.menu li > div:hover {
   background-color: #dddada;
 }
-.menu li > li:active {
+.menu li > div:active {
   opacity: 0.5;
 }
 .expandmenu.menu {
   opacity: 1;
   z-index: 1;
+}
+.dropdownMenu {
+  position: absolute;
+  width: 100px;
+  transform: translate(-30px, -20px);
+}
+.dropdownMenu li {
+  cursor: pointer;
+}
+.dropdownMenu li:hover {
+  background-color: #dddada;
+}
+.dropdownMenu li:active {
+  opacity: 0.5;
 }

@@ -1,10 +1,20 @@
+import AddEmployee from "@/components/employees/AddEmployee";
 import Loading from "@/components/Shared/Loading";
+import MainTitle from "@/components/Shared/MainTitle";
+import Modals from "@/components/Shared/Modals";
 import { URL_API2 } from "@/utils";
 import { header } from "@/utils/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { Card, Container, Dropdown, Form, Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  Container,
+  Dropdown,
+  Form,
+  Table,
+} from "react-bootstrap";
 import {
   AiOutlineCloseCircle,
   AiOutlineEdit,
@@ -20,17 +30,6 @@ export default function Employees() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEmployees());
-    // fetch(`${URL_API2}/employees`, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: header,
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }, [dispatch]);
 
   const handleClick = (id) => {
@@ -50,11 +49,23 @@ export default function Employees() {
       }
     });
   };
+  const [modalShow, setModalShow] = useState(false);
   return (
     <Container>
       {employees.loading && <Loading />}
-      <Card className={theme.mode + "shadow my-3"}>
-        <Table responsive className={`${theme.mode} text-center`} size="lg">
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Add Employee
+      </Button>
+      <Modals
+        title="Add Employee"
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        forms={<AddEmployee />}
+      />
+
+      <MainTitle title={"Employees"} classes="my-3" />
+      <Card className={theme.mode + " shadow my-3"}>
+        <Table responsive className={`text-center ${theme.mode}`} size="lg">
           <thead>
             <tr>
               <th>ID</th>
@@ -62,34 +73,36 @@ export default function Employees() {
               <th>Name</th>
               <th>Email</th>
               <th>Department</th>
-              <th>Age</th>
-              <th>City</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Salary</th>
+              <th>Rate</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {/* {employees.employees.map((user, index) => {
+            {employees.employees.map((user, index) => {
               return (
-                   <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>
-                      <Image
-                        loader={() =>
-                          " https://robohash.org/perferendisideveniet.png"
-                        }
-                        src="https://robohash.org/perferendisideveniet.png"
-                        height={30}
-                        alt={user.name}
-                        width={30}
-                      />
-                    </td>
-                    <td>{user.name}</td>
-                    <td>{user.department.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone}</td>
-                    <td>{user.address}</td>
-                    <td>{user.salary}</td>
-                    <td>{user.rate}</td>
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>
+                    <Image
+                      loader={() =>
+                        " https://robohash.org/perferendisideveniet.png"
+                      }
+                      src="https://robohash.org/perferendisideveniet.png"
+                      height={30}
+                      alt={user.name}
+                      width={30}
+                    />
+                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.department}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.address}</td>
+                  <td>{user.salary}</td>
+                  <td>{user.rate}</td>
                   <td>
                     <tr className="d-flex justify-content-center gap-2">
                       <Link
@@ -117,7 +130,7 @@ export default function Employees() {
                   </td>
                 </tr>
               );
-            })} */}
+            })}
           </tbody>
         </Table>
       </Card>

@@ -15,10 +15,6 @@
     {
       "id": 4,
       "name": "Media"
-    },
-    {
-      "name": "ssd",
-      "id": 5
     }
   ],
   "branches": [
@@ -43,8 +39,12 @@
       "id": 5
     },
     {
-      "name": "ahmed",
+      "name": "Yasser",
       "id": 6
+    },
+    {
+      "name": "LTR",
+      "id": 7
     }
   ],
   "tasks": [
@@ -71,6 +71,22 @@
       "description": "this is task for testing",
       "employee": "Ahmed",
       "id": 3
+    },
+    {
+      "startDate": "2023-02-23",
+      "endDate": "2023-02-25",
+      "taskname": "ff",
+      "description": "gg",
+      "employee": "jgfh",
+      "id": 4
+    },
+    {
+      "startDate": "2024-01-01",
+      "endDate": "2022-01-01",
+      "taskname": "Yasser",
+      "description": "i am yaser",
+      "employee": "yaser",
+      "id": 5
     }
   ],
   "employees": [
@@ -83,14 +99,14 @@
       "role": "admin",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser"
+      "email": "mohamed@mail.com",
+      "name": "Mohamed"
     },
     {
       "id": 2,
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 1000,
       "address": "giza",
       "role": "admin",
       "branch": "STO",
@@ -101,73 +117,73 @@
     {
       "id": 3,
       "rate": 5,
-      "phone": 1121081998,
-      "salary": 2000,
+      "phone": 121081998,
+      "salary": 5000,
       "address": "giza",
       "role": "admin",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser"
+      "email": "aya@mail.com",
+      "name": "Aya"
     },
     {
       "id": 4,
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 10000,
       "address": "giza",
       "role": "admin",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser"
+      "email": "hima@mail.com",
+      "name": "Hima"
     },
     {
       "id": 5,
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 15000,
       "address": "giza",
       "role": "admin",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser"
+      "email": "mostafa@mail.com",
+      "name": "Mostafa"
     },
     {
       "id": 6,
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 20000,
       "address": "giza",
       "role": "admin",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser"
+      "email": "ahmed@mail.com",
+      "name": "Ahmed"
     },
     {
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 12000,
       "address": "giza",
       "role": "owner",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser",
+      "email": "abdo@mail.com",
+      "name": "Abdo",
       "id": 8
     },
     {
       "rate": 5,
       "phone": 1121081998,
-      "salary": 2000,
+      "salary": 37000,
       "address": "giza",
       "role": "owner",
       "branch": "STO",
       "department": "Tecnical",
-      "email": "yasser@mail.com",
-      "name": "yasser",
+      "email": "osama@mail.com",
+      "name": "Osama",
       "id": 9
     }
   ],
@@ -209,6 +225,21 @@
     {
       "id": 3,
       "role": "user"
+    }
+  ],
+  "users": [
+    {
+      "email": "yasser@gmail.com",
+      "password": "$2a$10$xnWRoLfVzZN1ULcwDCBdJu/eDfsNF7H/RkC2w2.wYee/FRy/oUlwi",
+      "department": "Tecnical",
+      "branch": "STO",
+      "role": "owner",
+      "name": "yasser",
+      "address": "giza",
+      "salary": "30000",
+      "phone": "01129123791",
+      "rate": "5",
+      "id": 1
     }
   ]
 }

@@ -1,5 +1,7 @@
+import Modals from "@/components/Shared/Modals";
+import AddTask from "@/components/tasks/AddTask";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import {
   AiOutlineCheckCircle,
@@ -17,7 +19,7 @@ export default function Tasks() {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  console.log(tasks);
+
   const handleClick = (id) => {
     Swal.fire({
       title: "Are you sure !",
@@ -35,25 +37,26 @@ export default function Tasks() {
       }
     });
   };
+  const [open, setOpen] = useState(false);
   return (
     <div className={`mvh-100 ${theme.mode}`}>
       <Container>
-        <div className="py-4">
+        <Modals
+          onHide={() => setOpen(!open)}
+          show={open}
+          title="Add Task"
+          forms={<AddTask />}
+        />
+        <div className="py-4 d-flex align-items-center justify-content-end ">
           <Button
-            as={Link}
-            href="/dashboard/tasks/addtask"
-            variant={theme.mode}
+            onClick={() => setOpen(!open)}
+            className="d-flex align-items-center gap-2"
+            variant={"warning"}
           >
             <AiOutlineCheckCircle size={22} />
-            <span> Add Task</span>
           </Button>
         </div>
-        <Table
-          responsive
-          variant={theme.mode === "dark" ? "dark" : ""}
-          className="text-center"
-          hover
-        >
+        <Table size="lg" responsive className={`text-center ${theme.mode}`}>
           <thead>
             <tr>
               <th>#</th>

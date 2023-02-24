@@ -1,12 +1,18 @@
 import { useRouter } from "next/router";
 
 import ErrorMessage from "@/components/Forms/ErrorMessage";
-import { ErrorToast } from "@/components/Forms/ErrorToast";
-import Input from "@/components/Forms/Input";
+
 import MainTitle from "@/components/Shared/MainTitle";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  FloatingLabel,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +22,8 @@ import { fetchDepartments } from "redux/slices/department-slice";
 import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
 import axios from "axios";
 import { URL_API } from "@/utils";
+import Input from "@/components/Forms/Input";
+import { getUserData } from "redux/slices/user-slice";
 export default function Editprofile() {
   const router = useRouter();
   const { id } = router.query;
@@ -35,6 +43,7 @@ export default function Editprofile() {
     phone: number().required("Phone A Required Field").positive(),
     rate: number().required("Rate A Required Field").positive().min(0).max(5),
   });
+
   useEffect(() => {
     dispatch(fetchDepartments());
   }, [dispatch]);
@@ -51,15 +60,15 @@ export default function Editprofile() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      rate: user.user.rate,
-      phone: user.user.phone,
-      salary: user.user.salary,
-      address: user.user.address,
-      role: user.user.role,
-      branch: user.user.branch,
-      department: user.user.department,
-      email: user.user.email,
-      name: user.user.name,
+      rate: user.user.user.rate,
+      phone: user.user.user.phone,
+      salary: user.user.user.salary,
+      address: user.user.user.address,
+      role: user.user.user.role,
+      branch: user.user.user.branch,
+      department: user.user.user.department,
+      email: user.user.user.email,
+      name: user.user.user.name,
     },
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -83,6 +92,9 @@ export default function Editprofile() {
     const data = await res.data;
     return data;
   };
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
   return (
     <div className="py-5">
       <MainTitle title={"Edit Profile"} classes={"pb-4"} />
@@ -91,6 +103,7 @@ export default function Editprofile() {
           <Row>
             <Col md="6">
               <Input
+                count={"1"}
                 label={"Name"}
                 register={register}
                 type={"name"}
@@ -100,6 +113,7 @@ export default function Editprofile() {
             </Col>
             <Col md="6">
               <Input
+                count={"2"}
                 label={"Email"}
                 register={register}
                 type={"email"}
@@ -109,6 +123,7 @@ export default function Editprofile() {
             </Col>
             <Col md="6">
               <Input
+                count={"3"}
                 label={"Address"}
                 register={register}
                 type={"address"}
@@ -118,6 +133,7 @@ export default function Editprofile() {
             </Col>
             <Col md="6">
               <Input
+                count={"4"}
                 label={"Salary"}
                 register={register}
                 type={"salary"}
@@ -128,6 +144,7 @@ export default function Editprofile() {
             </Col>
             <Col md="6">
               <Input
+                count={"5"}
                 label={"Phone"}
                 register={register}
                 type={"phone"}
@@ -138,6 +155,7 @@ export default function Editprofile() {
             </Col>
             <Col md="6">
               <Input
+                count={"6"}
                 label={"Rate"}
                 register={register}
                 type={"rate"}
@@ -148,39 +166,57 @@ export default function Editprofile() {
               <ErrorMessage errors={errors.rate} />
             </Col>
             <Col md="6">
-              <Form.Label>Department</Form.Label>
-              <Form.Select {...register("department")}>
-                <option></option>
-                {departs.departmentes.map((item) => (
-                  <>
-                    <option value={item.name}>{item.name}</option>
-                  </>
-                ))}
-              </Form.Select>
+              <FloatingLabel controlId={`floatingInput9`} label={"Department"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.department && "border-danger"}`}
+                  {...register("department")}
+                >
+                  <option></option>
+                  {departs.departmentes.map((item) => (
+                    <>
+                      <option value={item.name}>{item.name}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.department} />
             </Col>
             <Col md="6">
-              <Form.Label>Branch</Form.Label>
-              <Form.Select {...register("branch")}>
-                <option></option>
-                {branches.branches.map((item) => (
-                  <>
-                    <option value={item.name}>{item.name}</option>
-                  </>
-                ))}
-              </Form.Select>
+              <FloatingLabel controlId={`floatingInput10`} label={"Branch"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.branch && "border-danger"}`}
+                  {...register("branch")}
+                >
+                  <option></option>
+                  {branches.branches.map((item) => (
+                    <>
+                      <option value={item.name}>{item.name}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.branch} />
             </Col>
-            <Col md="6" className="mt-2">
-              <Form.Label>Role</Form.Label>
-              <Form.Select {...register("role")}>
-                <option></option>
-                {branches.roles.map((item) => (
-                  <>
-                    <option value={item.role}>{item.role}</option>
-                  </>
-                ))}
-              </Form.Select>
+            <Col md="6">
+              <FloatingLabel controlId={`floatingInput11`} label={"Role"}>
+                <Form.Select
+                  className={`mb-3 ${
+                    theme.mode === "dark" ? "dark" : "light-revers"
+                  } ${errors.role && "border-danger"}`}
+                  {...register("role")}
+                >
+                  <option></option>
+                  {branches.roles.map((item) => (
+                    <>
+                      <option value={item.role}>{item.role}</option>
+                    </>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
               <ErrorMessage errors={errors.role} />
             </Col>
           </Row>

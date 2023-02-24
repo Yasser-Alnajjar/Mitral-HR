@@ -10,7 +10,7 @@
 .main_h2::before {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0;
   width: 0;
   transition: 0.3s ease-in-out;
