@@ -19,12 +19,14 @@ const Dorpmenu = ({ attendId, translate }) => {
     setTimeout(() => {
       dispatch(fetchAttendance());
     }, 200);
+    setShow(false);
   };
   const clickLeave = () => {
     dispatch(updateAttendance([attendId, { attend: false }]));
     setTimeout(() => {
       dispatch(fetchAttendance());
     }, 200);
+    setShow(false);
   };
   return (
     <div className={theme.mode}>

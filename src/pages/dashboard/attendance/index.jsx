@@ -117,7 +117,6 @@ export default function Attendance() {
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>
-                    {" "}
                     <Image
                       height={30}
                       width={30}

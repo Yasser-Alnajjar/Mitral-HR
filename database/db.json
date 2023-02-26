@@ -211,19 +211,19 @@
       "id": 2,
       "name": "ahmed",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": true
+      "attend": false
     },
     {
       "id": 3,
       "name": "hima",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": true
+      "attend": false
     },
     {
       "id": 4,
       "name": "roro",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": true
+      "attend": false
     }
   ],
   "roles": [

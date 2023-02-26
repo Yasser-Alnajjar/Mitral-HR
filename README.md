@@ -36,6 +36,12 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 
 4- [Crud] -> Tasks
 
+5- [Crud] -> Attendance
+
+6- Register
+
+7- Login
+
 ## Getting Started
 
 First, run the Project:
