@@ -1,6 +1,6 @@
 ## Mitral HR
 
-It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks], Edit your profile
+It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks , Attendance], Edit your profile
 
 ## What features will be added
 
