@@ -1,9 +1,8 @@
-import ErrorMessage from "@/components/Forms/ErrorMessage";
-import Input from "@/components/Forms/Input";
-import MainTitle from "@/components/Shared/MainTitle";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import ErrorMessage from "@/components/Forms/ErrorMessage";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useEffect } from "react";
 import {
   Button,
   Col,
@@ -15,17 +14,22 @@ import {
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
-import { fetchDepartments } from "redux/slices/department-slice";
-import { addEmployee } from "redux/slices/employees-slice";
 import { number, object, string } from "yup";
+import { fetchDepartments } from "redux/slices/department-slice";
+import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
+import axios from "axios";
+import { URL_API } from "@/utils";
+import Input from "../Forms/Input";
+import { getUserData } from "redux/slices/user-slice";
+import { header } from "@/utils/auth";
+export default function FormEditprofile() {
+  const router = useRouter();
+  const { id } = router.query;
+  const { theme, departs, branches, user } = useSelector((state) => state);
 
-export default function AddEmployee({ dispatchform }) {
-  const { theme, departs, branches } = useSelector((state) => state);
   const dispatch = useDispatch();
   let schema = object({
     name: string().required(),
-    password: string().required().min(6),
     email: string().email("Email must be valid").required(),
     department: string().required(),
     branch: string().required(),
@@ -37,22 +41,7 @@ export default function AddEmployee({ dispatchform }) {
     phone: number().required("Phone A Required Field").positive(),
     rate: number().required("Rate A Required Field").positive().min(0).max(5),
   });
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
-  const onSubmit = (data) => {
-    dispatch(addEmployee(data));
-    setTimeout(() => {
-      dispatch(dispatchform());
-    }, 200);
-    reset();
-  };
+
   useEffect(() => {
     dispatch(fetchDepartments());
   }, [dispatch]);
@@ -62,92 +51,124 @@ export default function AddEmployee({ dispatchform }) {
   useEffect(() => {
     dispatch(fetchRoles());
   }, [dispatch]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      rate: user.user?.user?.rate,
+      phone: user.user?.user?.phone,
+      salary: user.user.user?.salary,
+      address: user.user.user?.address,
+      role: user.user.user?.role,
+      branch: user.user.user?.branch,
+      department: user.user?.user?.department,
+      email: user.user.user?.email,
+      name: user.user.user?.name,
+    },
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+  const onSubmit = (data) => {
+    updateEmployee(id, data);
+  };
   const onError = (errors) => {
+    errors.rate && toast.error(errors.rate.message);
+    errors.phone && toast.error(errors.phone.message);
+    errors.salary && toast.error(errors.salary.message);
+    errors.address && toast.error(errors.address.message);
+    errors.role && toast.error(errors.role.message);
+    errors.branch && toast.error(errors.branch.message);
+    errors.department && toast.error(errors.department.message);
     errors.name && toast.error(errors.name.message);
     errors.email && toast.error(errors.email.message);
-    errors.role && toast.error(errors.role.message);
-    errors.address && toast.error(errors.address.message);
-    errors.salary && toast.error(errors.salary.message);
-    errors.phone && toast.error(errors.phone.message);
-    errors.rate && toast.error(errors.rate.message);
-    errors.department && toast.error(errors.department.message);
-    errors.branch && toast.error(errors.branch.message);
   };
+  const updateEmployee = async (id, payload) => {
+    const res = await axios.patch(`${URL_API}/employees/${id}`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
+    const data = await res.data;
+    return data;
+  };
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <Row>
           <Col md="6">
             <Input
+              count={"1"}
               label={"Name"}
               register={register}
               type={"name"}
+              error={errors.name}
               typeInp="text"
-              styleInp={errors.name && "border-danger"}
             />
             <ErrorMessage errors={errors.name} />
           </Col>
           <Col md="6">
             <Input
+              count={"2"}
               label={"Email"}
               register={register}
               type={"email"}
+              error={errors.email}
               typeInp="email"
-              styleInp={errors.email && "border-danger"}
             />
             <ErrorMessage errors={errors.email} />
           </Col>
           <Col md="6">
             <Input
-              label={"Password"}
-              register={register}
-              type={"password"}
-              typeInp="password"
-              styleInp={errors.password && "border-danger"}
-            />
-            <ErrorMessage errors={errors.password} />
-          </Col>
-          <Col md="6">
-            <Input
+              count={"3"}
               label={"Address"}
               register={register}
               type={"address"}
+              error={errors.address}
               typeInp="text"
-              styleInp={errors.address && "border-danger"}
             />
             <ErrorMessage errors={errors.address} />
           </Col>
           <Col md="6">
             <Input
+              count={"4"}
               label={"Salary"}
               register={register}
               type={"salary"}
+              error={errors.salary}
               typeInp="number"
               min={"0"}
-              styleInp={errors.salary && "border-danger"}
             />
             <ErrorMessage errors={errors.salary} />
           </Col>
           <Col md="6">
             <Input
+              count={"5"}
               label={"Phone"}
               register={register}
               type={"phone"}
+              error={errors.phone}
               typeInp="number"
               min={0}
-              styleInp={errors.phone && "border-danger"}
             />
             <ErrorMessage errors={errors.phone} />
           </Col>
           <Col md="6">
             <Input
+              count={"6"}
               label={"Rate"}
               register={register}
               type={"rate"}
+              error={errors.rate}
               typeInp="number"
               min={"0"}
               max={"5"}
-              styleInp={errors.rate && "border-danger"}
             />
             <ErrorMessage errors={errors.rate} />
           </Col>
@@ -210,9 +231,10 @@ export default function AddEmployee({ dispatchform }) {
           <Button
             variant={theme.mode === "dark" ? "light" : "dark"}
             type="submit"
+            error="submit"
             className="w-25"
           >
-            Submit
+            Save
           </Button>
         </Row>
       </Form>

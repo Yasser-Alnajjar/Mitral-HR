@@ -91,16 +91,16 @@
   ],
   "employees": [
     {
-      "id": 1,
-      "rate": 5,
-      "phone": 1121081998,
-      "salary": 2000,
-      "address": "giza",
-      "role": "admin",
+      "email": "yasser@gmail.com",
+      "department": "Suppurt",
       "branch": "STO",
-      "department": "Tecnical",
-      "email": "mohamed@mail.com",
-      "name": "Mohamed"
+      "role": "owner",
+      "name": "yasser",
+      "address": "giza",
+      "salary": 30000,
+      "phone": 1129123791,
+      "rate": 5,
+      "id": 1
     },
     {
       "id": 2,
@@ -108,9 +108,9 @@
       "phone": 1121081998,
       "salary": 1000,
       "address": "giza",
-      "role": "admin",
-      "branch": "STO",
-      "department": "Tecnical",
+      "role": "user",
+      "branch": "MTO",
+      "department": "Media",
       "email": "yasser@mail.com",
       "name": "yasser"
     },
@@ -133,7 +133,7 @@
       "salary": 10000,
       "address": "giza",
       "role": "admin",
-      "branch": "STO",
+      "branch": "LTO",
       "department": "Tecnical",
       "email": "hima@mail.com",
       "name": "Hima"
@@ -185,6 +185,19 @@
       "email": "osama@mail.com",
       "name": "Osama",
       "id": 9
+    },
+    {
+      "rate": 5,
+      "phone": 12831367123,
+      "salary": 2000,
+      "address": "giza",
+      "role": "owner",
+      "branch": "STO",
+      "department": "Tecnical",
+      "email": "yasser@gmail.com",
+      "password": "yasser123",
+      "name": "Yasser",
+      "id": 12
     }
   ],
   "attendance": [
@@ -198,7 +211,7 @@
       "id": 2,
       "name": "ahmed",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": false
+      "attend": true
     },
     {
       "id": 3,
@@ -210,7 +223,7 @@
       "id": 4,
       "name": "roro",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": false
+      "attend": true
     }
   ],
   "roles": [

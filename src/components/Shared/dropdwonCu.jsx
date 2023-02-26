@@ -1,16 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMore } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAttendance } from "redux/slices/attendance-slice";
+import {
+  fetchAttendance,
+  updateAttendance,
+} from "redux/slices/attendance-slice";
 import styles from "../../styles/menu.module.css";
 
-const Dorpmenu = ({ attend, setAttend, translate }) => {
+const Dorpmenu = ({ attendId, translate }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const { theme } = useSelector((state) => state);
+  useEffect(() => {
+    dispatch(fetchAttendance());
+  }, [dispatch]);
+  const clickAttend = () => {
+    dispatch(updateAttendance([attendId, { attend: true }]));
+    setTimeout(() => {
+      dispatch(fetchAttendance());
+    }, 200);
+  };
+  const clickLeave = () => {
+    dispatch(updateAttendance([attendId, { attend: false }]));
+    setTimeout(() => {
+      dispatch(fetchAttendance());
+    }, 200);
+  };
   return (
     <div className={theme.mode}>
-      <button onClick={() => setShow(!show)} className={theme.mode}>
+      <button
+        onClick={() => setShow(!show)}
+        className={`${theme.mode} border-0`}
+      >
         <AiOutlineMore />
       </button>
       <div className="position-relative">
@@ -23,7 +44,7 @@ const Dorpmenu = ({ attend, setAttend, translate }) => {
           className={`${styles.dropdownMenu} ${theme.mode} p-1 rounded shadow `}
         >
           <li
-            onClick={() => setAttend(true)}
+            onClick={clickAttend}
             className={`mb-1 ${
               theme.mode === "dark" ? "dark-revers" : "light-revers"
             }`}
@@ -31,7 +52,7 @@ const Dorpmenu = ({ attend, setAttend, translate }) => {
             Attend
           </li>
           <li
-            onClick={() => setAttend(false)}
+            onClick={clickLeave}
             className={theme.mode === "dark" ? "dark-revers" : "light-revers"}
           >
             Leave

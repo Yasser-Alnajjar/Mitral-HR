@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { URL_API } from "@/utils";
-import axios from "axios";
 import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";

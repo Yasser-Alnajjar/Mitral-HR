@@ -1,26 +1,40 @@
 import { URL_API } from "@/utils";
+import { header } from "@/utils/auth";
 import axios from "axios";
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 export const addTask = createAsyncThunk(
   "taskSlice/addTask",
   async (payload) => {
-    const res = await axios.post(`${URL_API}/tasks`, payload);
+    const res = await axios.post(`${URL_API}/tasks`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
 );
-export const fetchTasks = createAsyncThunk(
-  "taskSlice/fetchTasks",
-  async (payload) => {
-    const res = await axios.get(`${URL_API}/tasks`, payload);
-    const data = await res.data;
-    return data;
-  }
-);
+export const fetchTasks = createAsyncThunk("taskSlice/fetchTasks", async () => {
+  const res = await axios.get(`${URL_API}/tasks`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: header,
+    },
+  });
+  const data = await res.data;
+  return data;
+});
 export const deleteTask = createAsyncThunk(
   "taskSlice/deleteTask",
   async (id) => {
-    const res = await axios.delete(`${URL_API}/tasks/${id}`);
+    const res = await axios.delete(`${URL_API}/tasks/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -28,7 +42,12 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   "taskSlice/updateTask",
   async (payload, id) => {
-    const res = await axios.patch(`${URL_API}/tasks/${id}`, payload);
+    const res = await axios.patch(`${URL_API}/tasks/${id}`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }

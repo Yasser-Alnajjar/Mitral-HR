@@ -17,6 +17,7 @@ import { AiOutlineCreditCard, AiOutlineOrderedList } from "react-icons/ai";
 import Loading from "@/components/Shared/Loading";
 import Swal from "sweetalert2";
 import Modals from "@/components/Shared/Modals";
+import Head from "next/head";
 export default function Branches() {
   const { theme, branches } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ export default function Branches() {
   return (
     <div className={`py-5 ${theme.mode} `}>
       {branches.loading && <Loading />}
+      <Head>
+        <title>Branches</title>
+      </Head>
       <Container>
         <Modals
           title="Add Branch"

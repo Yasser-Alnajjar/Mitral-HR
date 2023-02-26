@@ -1,13 +1,18 @@
 import { URL_API } from "@/utils";
 import { header } from "@/utils/auth";
 import axios from "axios";
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 // ? Form Main Branches
 export const addBranch = createAsyncThunk(
   "branchSlice/addBranch",
   async (payload) => {
-    const res = await axios.post(`${URL_API}/branches`, payload);
+    const res = await axios.post(`${URL_API}/branches`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -24,7 +29,12 @@ export const fetchRoles = createAsyncThunk(
 export const fetchBranch = createAsyncThunk(
   "branchSlice/fetchBranch",
   async () => {
-    const res = await axios.get(`${URL_API}/branches`);
+    const res = await axios.get(`${URL_API}/branches`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     // if (data.status === 401) toast.error(data.message);
     return data;
@@ -33,7 +43,12 @@ export const fetchBranch = createAsyncThunk(
 export const deleteBranch = createAsyncThunk(
   "branchSlice/deleteBranch",
   async (id) => {
-    const res = await axios.delete(`${URL_API}/branches/${id}`);
+    const res = await axios.delete(`${URL_API}/branches/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     // if (data.status === 401) toast.error(data.message);
     const data = await res.data;
     return data;
@@ -43,7 +58,12 @@ export const deleteBranch = createAsyncThunk(
 export const fetchBranch_employees = createAsyncThunk(
   "branchSlice/fetchBranch_employees",
   async (id) => {
-    const res = await axios.get(`${URL_API}/employees`);
+    const res = await axios.get(`${URL_API}/employees`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }

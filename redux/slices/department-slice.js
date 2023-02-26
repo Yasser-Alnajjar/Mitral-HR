@@ -1,11 +1,17 @@
 import { URL_API } from "@/utils";
+import { header } from "@/utils/auth";
 import axios from "axios";
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addDepartment = createAsyncThunk(
   "departmentSlice/addDepartment",
   async (payload) => {
-    const res = await axios.post(`${URL_API}/departments`, payload);
+    const res = await axios.post(`${URL_API}/departments`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -13,7 +19,12 @@ export const addDepartment = createAsyncThunk(
 export const fetchDepartments = createAsyncThunk(
   "departmentSlice/fetchDepartments",
   async () => {
-    const res = await axios.get(`${URL_API}/departments`);
+    const res = await axios.get(`${URL_API}/departments`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -22,7 +33,12 @@ export const fetchDepartments = createAsyncThunk(
 export const deleteDepartment = createAsyncThunk(
   "departmentSlice/deleteDepartment",
   async (id) => {
-    const res = await axios.delete(`${URL_API}/departments/${id}`);
+    const res = await axios.delete(`${URL_API}/departments/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -31,7 +47,12 @@ export const deleteDepartment = createAsyncThunk(
 export const fetchDepartment_employees = createAsyncThunk(
   "branchSlice/fetchBranch_employees",
   async (id) => {
-    const res = await axios.get(`${URL_API}/employees`);
+    const res = await axios.get(`${URL_API}/employees`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }

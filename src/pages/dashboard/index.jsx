@@ -17,7 +17,7 @@ import { fetchEmployees } from "redux/slices/employees-slice";
 import { fetchTasks } from "redux/slices/task-slice";
 
 export default function RootLayout() {
-  const { theme, branches, departs, employees, tasks } = useSelector(
+  const { theme, branches, departs, employees, tasks, user } = useSelector(
     (state) => state
   );
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function RootLayout() {
     dispatch(fetchEmployees());
     dispatch(fetchTasks());
   }, [dispatch]);
-
+  console.log(user);
   return (
     <div className={`py-5 mvh-100 ${theme.mode} `}>
       <Head>

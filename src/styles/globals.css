@@ -1,6 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap"); */
 @import url("https://fonts.cdnfonts.com/css/avenir");
-@import "rsuite/dist/rsuite.min.css";
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 * {
@@ -18,7 +16,6 @@ body {
 }
 
 body {
-  /* font-family: "Open Sans", sans-serif; */
   font-family: "Avenir", sans-serif;
 }
 a {
@@ -29,6 +26,9 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+img {
+  max-width: 100%;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -138,4 +138,7 @@ select:focus {
 }
 .dropdown-toggle::after {
   display: none;
+}
+.dropdown-toggle::before {
+  display: none !important;
 }

@@ -26,7 +26,12 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
   "user-slice/logout",
   async (payload, thunkAPI) => {
-    const res = await axios.post(`${URL_API}/logout`, payload);
+    const res = await axios.post(`${URL_API}/logout`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     thunkAPI.dispatch(toast.success("Logout successfully"));
     localStorage.removeItem("user");
@@ -51,9 +56,7 @@ const userSlice = createSlice({
   name: "user-slice",
   initialState: {
     loading: false,
-    logedin: false,
     user: {},
-    info: {},
   },
   reducers: {
     getUserData: (state, action) => {
@@ -64,17 +67,14 @@ const userSlice = createSlice({
     // * Login
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload;
-      state.logedin = true;
       state.loading = false;
     });
     builder.addCase(login.pending, (state, action) => {
       state.user = action.payload;
-      state.logedin = false;
       state.loading = true;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.user = action.payload;
-      state.logedin = false;
       state.loading = true;
     });
     // * Logout
@@ -84,10 +84,14 @@ const userSlice = createSlice({
     builder.addCase(logout.rejected, (state, action) => {
       state.loading = true;
     });
+
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.user = {};
+      state.loading = false;
+    });
     // * Register
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.user = action.payload;
-      state.logedin = true;
       state.loading = false;
     });
     builder.addCase(registerUser.pending, (state, action) => {

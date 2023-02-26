@@ -4,6 +4,7 @@ import MainTitle from "@/components/Shared/MainTitle";
 import Modals from "@/components/Shared/Modals";
 import { URL_API2 } from "@/utils";
 import { header } from "@/utils/auth";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -19,13 +20,17 @@ import {
   AiOutlineCloseCircle,
   AiOutlineEdit,
   AiOutlineEye,
+  AiOutlineUserAdd,
   AiOutlineUserDelete,
 } from "react-icons/ai";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { FaEdit, FaRegWindowClose } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEmployees } from "redux/slices/employees-slice";
+import { deleteEmployee, fetchEmployees } from "redux/slices/employees-slice";
 import Swal from "sweetalert2";
 
 export default function Employees() {
+  const [modalShow, setModalShow] = useState(false);
   const { theme, employees } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,6 +45,8 @@ export default function Employees() {
       showDenyButton: true,
       confirmButtonText: "Delete",
       denyButtonText: `Cancel`,
+      background: theme.mode === "dark" ? "#1a1a1a" : "#f6f7fc",
+      color: theme.mode === "dark" ? "#f6f7fc" : "#1a1a1a",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteEmployee(id));
@@ -49,21 +56,28 @@ export default function Employees() {
       }
     });
   };
-  const [modalShow, setModalShow] = useState(false);
+
   return (
     <Container>
       {employees.loading && <Loading />}
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Add Employee
-      </Button>
+      <Head>
+        <title>Employee</title>
+      </Head>
+      <MainTitle title={"Employees"} classes="my-3" />
+      <div className="d-flex justify-content-end ">
+        <Button
+          variant={modalShow ? "danger" : "warning"}
+          onClick={() => setModalShow(true)}
+        >
+          <AiOutlineUserAdd />
+        </Button>
+      </div>
       <Modals
         title="Add Employee"
         show={modalShow}
         onHide={() => setModalShow(false)}
-        forms={<AddEmployee />}
+        forms={<AddEmployee dispatchform={fetchEmployees} />}
       />
-
-      <MainTitle title={"Employees"} classes="my-3" />
       <Card className={theme.mode + " shadow my-3"}>
         <Table responsive className={`text-center ${theme.mode}`} size="lg">
           <thead>
@@ -84,7 +98,7 @@ export default function Employees() {
             {employees.employees.map((user, index) => {
               return (
                 <tr key={user.id}>
-                  <td>{user.id}</td>
+                  <td>{index + 1}</td>
                   <td>
                     <Image
                       loader={() =>
@@ -105,26 +119,19 @@ export default function Employees() {
                   <td>{user.rate}</td>
                   <td>
                     <tr className="d-flex justify-content-center gap-2">
-                      <Link
-                        className="cursor-p"
-                        href={`profile/editprofile/${user.id}`}
-                      >
-                        <AiOutlineEdit size={20} className="text-success" />
-                      </Link>
-                      <Link
-                        className="cursor-p"
-                        href={`profile/editprofile/${user.id}`}
-                      >
-                        <AiOutlineEye size={20} className="text-info" />
-                      </Link>
+                      {/* <td>
+                        <Link
+                          className="cursor-p"
+                          href={`/dashboard/employees/${user.id}`}
+                        >
+                          <FaEdit size={20} />
+                        </Link>
+                      </td> */}
                       <td
                         className="cursor-p"
                         onClick={() => handleClick(user.id)}
                       >
-                        <AiOutlineCloseCircle
-                          size={20}
-                          className="text-danger"
-                        />
+                        <RiDeleteBin7Line size={20} />
                       </td>
                     </tr>
                   </td>

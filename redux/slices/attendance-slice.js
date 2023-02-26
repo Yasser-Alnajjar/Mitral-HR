@@ -1,11 +1,17 @@
 import { URL_API } from "@/utils";
+import { header } from "@/utils/auth";
 import axios from "axios";
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
-
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 export const addAttendance = createAsyncThunk(
   "attendanceSlice/addAttendance",
   async (payload) => {
-    const res = await axios.post(`${URL_API}/attendance`, payload);
+    const res = await axios.post(`${URL_API}/attendance`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -13,36 +19,44 @@ export const addAttendance = createAsyncThunk(
 
 export const fetchAttendance = createAsyncThunk(
   "attendanceSlice/fetchAttendance",
-  async (payload) => {
-    const res = await axios.get(`${URL_API}/attendance`, payload);
+  async () => {
+    const res = await axios.get(`${URL_API}/attendance`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
+    // if (data.status === 401) toast.error(data.message);
     return data;
   }
 );
 export const updateAttendance = createAsyncThunk(
   "attendanceSlice/updateAttendance",
-  async (payload) => {
-    const res = await axios.patch(`${URL_API}/attendance`, payload);
-    const data = await res.data;
-    return data;
-  }
-);
-export const deleteAttendance = createAsyncThunk(
-  "attendanceSlice/deleteAttendance",
-  async (id) => {
-    const res = await axios.delete(`${URL_API}/attendance/${id}`);
-    const data = await res.data;
-    return data;
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.patch(
+        `${URL_API}/attendance/${payload[0]}`,
+        payload[1],
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: header,
+          },
+        }
+      );
+      const data = await res.data;
+      console.log(data);
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(toast.error(error.response.data));
+    }
   }
 );
 
-const initialState = {
-  loading: false,
-  attendance: [],
-};
 const attendanceSlice = createSlice({
   name: "attendanceSlice",
-  initialState,
+  initialState: { loading: false, attendance: [] },
   reducers: {},
   extraReducers: (builder) => {
     // * Add attendance
@@ -66,17 +80,7 @@ const attendanceSlice = createSlice({
     builder.addCase(fetchAttendance.rejected, (state, action) => {
       state.loading = true;
     });
-    // * delete attendance
-    builder.addCase(deleteAttendance.pending, (state, action) => {
-      state.loading = true;
-    });
-    builder.addCase(deleteAttendance.fulfilled, (state, action) => {
-      state.loading = false;
-    });
-    builder.addCase(deleteAttendance.rejected, (state, action) => {
-      state.loading = true;
-    });
-    // ? update profile
+    // ? update Attendance
     builder.addCase(updateAttendance.pending, (state, action) => {
       state.loading = true;
     });

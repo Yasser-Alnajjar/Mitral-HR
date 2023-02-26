@@ -1,12 +1,7 @@
 import Link from "next/link";
-import { URL_API } from "@/utils";
-import axios from "axios";
 import { Card } from "react-bootstrap";
 import { FaCodeBranch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { deleteBranch, fetchBranch } from "redux/slices/barnches-slice";
-import { useEffect } from "react";
 export default function BranchCard({
   cardStyle,
   handleDelete,

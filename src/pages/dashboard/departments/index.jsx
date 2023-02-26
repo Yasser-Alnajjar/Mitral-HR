@@ -1,7 +1,9 @@
 import AddDepartment from "@/components/departments/addDepartment";
 import DepartCard from "@/components/departments/DepartCard";
 import DepartCardOver from "@/components/departments/DepartCardOver";
+import Loading from "@/components/Shared/Loading";
 import Modals from "@/components/Shared/Modals";
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
@@ -19,6 +21,10 @@ export default function Departments() {
 
   return (
     <div className={`py-4 mvh-100 ${theme.mode}`}>
+      {departs.loading && <Loading />}
+      <Head>
+        <title>Departments</title>
+      </Head>
       <Container>
         <Modals
           title="Add Department"

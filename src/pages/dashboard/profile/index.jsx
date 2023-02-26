@@ -1,4 +1,5 @@
 import { user } from "@/utils/auth";
+import Head from "next/head";
 import { useEffect } from "react";
 import { Card, Container, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,9 @@ export default function Profile() {
 
   return (
     <div className={`${theme.mode} py-5`}>
+      <Head>
+        <title>Profile</title>
+      </Head>
       <Container>
         <Card className={`shadow ${theme.mode}`}>
           <Card.Img

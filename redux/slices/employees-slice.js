@@ -1,13 +1,19 @@
 import { URL_API } from "@/utils";
+import { header } from "@/utils/auth";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addEmployee = createAsyncThunk(
   "employeeSlice/addEmployee",
-  async (payload,thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const res = await axios.post(`${URL_API}/employees`, payload);
+      const res = await axios.post(`${URL_API}/employees`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: header,
+        },
+      });
       const data = await res.data;
       if (res.status === 200)
         thunkAPI.dispatch(toast.success("Add Employee is success"));
@@ -21,7 +27,12 @@ export const addEmployee = createAsyncThunk(
 export const fetchEmployees = createAsyncThunk(
   "employeeSlice/fetchEmployees",
   async () => {
-    const res = await axios.get(`${URL_API}/employees`);
+    const res = await axios.get(`${URL_API}/employees`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: header,
+      },
+    });
     const data = await res.data;
     return data;
   }
@@ -31,7 +42,12 @@ export const deleteEmployee = createAsyncThunk(
   "employeeSlice/deleteEmployee",
   async (id, thunkAPI) => {
     try {
-      const res = await axios.delete(`${URL_API}/employees/${id}`);
+      const res = await axios.delete(`${URL_API}/employees/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: header,
+        },
+      });
       const data = await res.data;
       if (res.status === 200)
         thunkAPI.dispatch(toast.success("Employee Is Deleted"));
@@ -45,6 +61,7 @@ export const deleteEmployee = createAsyncThunk(
 const initialState = {
   loading: false,
   employees: [],
+  singleEmployee: [],
 };
 const employeeSlice = createSlice({
   name: "employeeSlice",

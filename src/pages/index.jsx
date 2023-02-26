@@ -11,10 +11,9 @@ import styles from "../styles/login.module.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 import Head from "next/head";
-import { user } from "@/utils/auth";
 
 export default function Login() {
-  const { theme } = useSelector((state) => state);
+  const { theme, user } = useSelector((state) => state);
   const router = useRouter();
   const dispatch = useDispatch();
   let schema = object({
@@ -33,7 +32,6 @@ export default function Login() {
   const onSubmit = (data) => {
     data && dispatch(login(data));
 
-    // router.push("/dashboard");
     // setTimeout(() => {
     //   if (user.user.status === "401") {
     //     toast.error(user.user.message);
@@ -44,6 +42,7 @@ export default function Login() {
     //   }
     // }, 1000);
   };
+
   return (
     <div
       className={`${theme.mode} login position-fixed w-100 h-100 d-flex align-items-center justify-content-center`}

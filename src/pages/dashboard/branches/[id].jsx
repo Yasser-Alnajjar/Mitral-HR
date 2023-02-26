@@ -1,16 +1,8 @@
-import { URL_API2 } from "@/utils";
-import { header } from "@/utils/auth";
-import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Card, Col, Container, Row, Table } from "react-bootstrap";
-import {
-  AiOutlineCloseCircle,
-  AiOutlineEdit,
-  AiOutlineEye,
-} from "react-icons/ai";
+import { useEffect } from "react";
+import { Card, Container, Table } from "react-bootstrap";
+import { AiOutlineCloseCircle, AiOutlineEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBranch_employees } from "redux/slices/barnches-slice";
 import { deleteEmployee } from "redux/slices/employees-slice";

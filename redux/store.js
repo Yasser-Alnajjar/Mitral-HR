@@ -6,7 +6,6 @@ import departmentSlice from "./slices/department-slice";
 import employeesSlice from "./slices/employees-slice";
 import taskSlice from "./slices/task-slice";
 import attendanceSlice from "./slices/attendance-slice";
-
 export const store = configureStore({
   reducer: {
     theme: themeSlice,
@@ -17,4 +16,5 @@ export const store = configureStore({
     tasks: taskSlice,
     attend: attendanceSlice,
   },
+  devTools: true,
 });
