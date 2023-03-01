@@ -1,11 +1,14 @@
+import { getRoute } from "@/pages";
 import { URL_API } from "@/utils";
 import { authHeader } from "@/utils/auth";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 // * Login
+
 export const login = createAsyncThunk(
   "user-slice/login",
   async (payload, thunkAPI) => {
@@ -15,6 +18,7 @@ export const login = createAsyncThunk(
       localStorage.setItem("user", JSON.stringify(data));
       if (res.status === 200) {
         thunkAPI.dispatch(toast.success("Login successfully"));
+        thunkAPI.dispatch(getRoute("/dashboard"));
       }
       return data;
     } catch (error) {

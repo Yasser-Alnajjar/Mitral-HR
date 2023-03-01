@@ -18,20 +18,6 @@ import SideBarLink from "./SideBarLink";
 export default function Sidebar() {
   const { theme } = useSelector((state) => state);
   const dispatch = useDispatch();
-  // let side = {
-  // marginRight: "20px",
-  // position: "absolute",
-  // left: "20px",
-  // top: "15px",
-  // lineHeight: "1.25",
-  // height: "20px",
-  // width: "20px",
-  // };
-  // let OffcanvasStyle = {
-  //   right: "0",
-  //   top: "15px",
-  //   transform: "translateX(120%)",
-  // };
   return (
     <div>
       <Offcanvas

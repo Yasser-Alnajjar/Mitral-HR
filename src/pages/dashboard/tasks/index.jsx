@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import Modals from "@/components/Shared/Modals";
 import AddTask from "@/components/tasks/AddTask";
 import Link from "next/link";
@@ -39,65 +40,73 @@ export default function Tasks() {
   };
   const [open, setOpen] = useState(false);
   return (
-    <div className={`mvh-100 ${theme.mode}`}>
-      <Container>
-        <Modals
-          onHide={() => setOpen(!open)}
-          show={open}
-          title="Add Task"
-          forms={<AddTask />}
-        />
-        <div className="py-4 d-flex align-items-center justify-content-end ">
-          <Button
-            onClick={() => setOpen(!open)}
-            className="d-flex align-items-center gap-2"
-            variant={"warning"}
-          >
-            <AiOutlineCheckCircle size={22} />
-          </Button>
-        </div>
-        <Table size="lg" responsive className={`text-center ${theme.mode}`}>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>desc</th>
-              <th>Employee</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tasks.tasks.map((task, index) => (
-              <tr key={task.id}>
-                <td>{index + 1}</td>
-                <td className="text-capitalize">{task.taskname}</td>
-                <td className="text-capitalize">{task.description}</td>
-                <td className="text-capitalize">{task.employee}</td>
-                <td>{task.startDate}</td>
-                <td>{task.endDate}</td>
-                <td>
-                  <tr className="d-flex justify-content-center gap-2">
-                    <Link className="cursor-p" href={`tasks/update/${task.id}`}>
-                      <AiOutlineEdit size={20} className="text-success" />
-                    </Link>
-                    <Link className="cursor-p" href={`tasks/view/${task.id}`}>
-                      <AiOutlineEye size={20} className="text-info" />
-                    </Link>
-                    <td
-                      className="cursor-p"
-                      onClick={() => handleClick(task.id)}
-                    >
-                      <AiOutlineCloseCircle size={20} className="text-danger" />
-                    </td>
-                  </tr>
-                </td>
+    <Layout>
+      <div className={`mvh-100 ${theme.mode}`}>
+        <Container>
+          <Modals
+            onHide={() => setOpen(!open)}
+            show={open}
+            title="Add Task"
+            forms={<AddTask />}
+          />
+          <div className="py-4 d-flex align-items-center justify-content-end ">
+            <Button
+              onClick={() => setOpen(!open)}
+              className="d-flex align-items-center gap-2"
+              variant={"warning"}
+            >
+              <AiOutlineCheckCircle size={22} />
+            </Button>
+          </div>
+          <Table size="lg" responsive className={`text-center ${theme.mode}`}>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>desc</th>
+                <th>Employee</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container>
-    </div>
+            </thead>
+            <tbody>
+              {tasks.tasks.map((task, index) => (
+                <tr key={task.id}>
+                  <td>{index + 1}</td>
+                  <td className="text-capitalize">{task.taskname}</td>
+                  <td className="text-capitalize">{task.description}</td>
+                  <td className="text-capitalize">{task.employee}</td>
+                  <td>{task.startDate}</td>
+                  <td>{task.endDate}</td>
+                  <td>
+                    <tr className="d-flex justify-content-center gap-2">
+                      <Link
+                        className="cursor-p"
+                        href={`tasks/update/${task.id}`}
+                      >
+                        <AiOutlineEdit size={20} className="text-success" />
+                      </Link>
+                      <Link className="cursor-p" href={`tasks/view/${task.id}`}>
+                        <AiOutlineEye size={20} className="text-info" />
+                      </Link>
+                      <td
+                        className="cursor-p"
+                        onClick={() => handleClick(task.id)}
+                      >
+                        <AiOutlineCloseCircle
+                          size={20}
+                          className="text-danger"
+                        />
+                      </td>
+                    </tr>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
+      </div>
+    </Layout>
   );
 }

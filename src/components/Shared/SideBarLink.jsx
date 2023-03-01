@@ -7,7 +7,7 @@ export default function SideBarLink({ icon, title, path }) {
   return (
     <Nav.Item
       as={Link}
-      className={theme.mode + " w-100 mb-3  fs-small"}
+      className={theme.mode + " navItem w-100 mb-3  fs-small"}
       href={path}
     >
       <div className="d-flex gap-3 mb-2">

@@ -1,5 +1,5 @@
 import Input from "@/components/Forms/Input";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
@@ -9,8 +9,10 @@ import { login } from "redux/slices/user-slice";
 import { useRouter } from "next/navigation";
 import styles from "../styles/login.module.css";
 import { AiOutlineUser } from "react-icons/ai";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import Head from "next/head";
+import { FaRegMoon, FaRegSun } from "react-icons/fa";
+import { setDarkTheme, setDefaultTheme } from "redux/slices/theme-slice";
 
 export default function Login() {
   const { theme, user } = useSelector((state) => state);
@@ -42,62 +44,114 @@ export default function Login() {
     //   }
     // }, 1000);
   };
-
+  const handleTheme = () => {
+    if (theme.mode === "dark") {
+      dispatch(setDefaultTheme());
+    } else {
+      dispatch(setDarkTheme());
+    }
+  };
+  let backgrpundImg = {
+    backgroundImage:
+      theme.mode === "dark" ? "url(/darklogin.jpg)" : "url(/lightlogin.jpg)",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  };
   return (
     <div
-      className={`${theme.mode} login position-fixed w-100 h-100 d-flex align-items-center justify-content-center`}
+      className={`${theme.mode} mvh-100  d-flex align-items-center flex-column`}
+      // style={backgrpundImg}
     >
       <Head>
-        <title>Mitral HR /Login</title>
+        <title>Login</title>
       </Head>
+      <Toaster
+        toastOptions={{
+          duration: 4000,
+          position: "right-top",
+          style: {},
+          className: `${
+            theme.mode === "dark"
+              ? "bg-gray-alt text-white"
+              : "bg-white text-dark"
+          } shadow`,
+        }}
+      />
+      <div className="d-flex w-100">
+        <Button
+          className="ms-2 mt-3 "
+          variant={theme.mode === "dark" ? "light" : "dark"}
+          onClick={handleTheme}
+        >
+          {theme.mode === "dark" ? <FaRegSun /> : <FaRegMoon />}
+        </Button>
+      </div>
       <Container>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Row className={`${styles.main_content} text-center shadow `}>
-            <div className="pt-4">
-              <span>
-                <h2 className="text-black">
-                  <AiOutlineUser />
-                </h2>
-              </span>
-              <h4 className="text-black">Login</h4>
-            </div>
-            <Col className={styles.login_form}>
-              <Container>
-                <Row>
-                  <Form.Group>
-                    <Row>
-                      <Form.Control
-                        {...register("email")}
-                        type="email"
-                        name="email"
-                        className={styles.form__input}
-                        placeholder="Email"
-                      />
-                      <ErrorMessage errors={errors.email} />
-                    </Row>
-                    <Row>
-                      <input
-                        type="password"
-                        {...register("password")}
-                        name="password"
-                        className={styles.form__input}
-                        placeholder="Password"
-                      />
-                      <ErrorMessage errors={errors.password} />
-                    </Row>
-                    <Row>
-                      <input
-                        type="submit"
-                        value="Login"
-                        className={styles.login_btn}
-                      />
-                    </Row>
-                  </Form.Group>
-                </Row>
-              </Container>
+        <Row className="align-items-center">
+          <Row className="justify-content-center pb-4">
+            <Col md="6">
+              <div
+                className={`pt-4 text-center ${
+                  theme.mode === "dark" ? "text-light" : "text-black"
+                }`}
+              >
+                <span>
+                  <h2>
+                    <AiOutlineUser />
+                  </h2>
+                </span>
+                <h4>Login</h4>
+              </div>
             </Col>
           </Row>
-        </Form>
+          <Row className="justify-content-center">
+            <Col md="6">
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Row>
+                  <Col>
+                    <Input
+                      label={"Email"}
+                      register={register}
+                      type={"email"}
+                      typeInp="email"
+                      styleInp={`${errors.email && "border-danger"} ${
+                        theme.mode
+                      }`}
+                    />
+                    <ErrorMessage errors={errors.email} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Input
+                      label={"Password"}
+                      register={register}
+                      type={"password"}
+                      typeInp="password"
+                      styleInp={errors.password && "border-danger"}
+                    />
+                    <ErrorMessage errors={errors.password} />
+                  </Col>
+                </Row>
+                <Row className="justify-content-center">
+                  <Col className="text-center mt-2">
+                    <Button
+                      type="submit"
+                      disabled={
+                        errors.email ? true : errors.password ? true : false
+                      }
+                      variant={
+                        theme.mode === "dark" ? "outline-light" : "outline-dark"
+                      }
+                    >
+                      Submit
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
+        </Row>
       </Container>
     </div>
   );

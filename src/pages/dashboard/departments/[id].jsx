@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -15,7 +16,7 @@ export default function DepartmentDetails() {
     dispatch(fetchDepartment_employees(id));
   }, [dispatch, id]);
   return (
-    <div className={`${theme.mode} py-5`}>
+    <Layout py>
       <Container>
         <Card className={`shadow ${theme.mode}`}>
           <Card.Body>
@@ -67,6 +68,6 @@ export default function DepartmentDetails() {
           </Card.Body>
         </Card>
       </Container>
-    </div>
+    </Layout>
   );
 }

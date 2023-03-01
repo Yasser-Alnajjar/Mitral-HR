@@ -17,12 +17,12 @@ export default function Input({
     <FloatingLabel
       controlId={`floatingInput${count}`}
       label={label}
-      className={`mb-3 ${theme.mode}`}
+      className={`${theme.mode}`}
     >
       <Form.Control
         {...register(type)}
         type={typeInp}
-        className={`${styleInp} ${
+        className={`mb-2 ${styleInp} ${
           theme.mode === "dark" ? "dark" : "light-revers"
         } ${error && "border-danger"} `}
         name={type}

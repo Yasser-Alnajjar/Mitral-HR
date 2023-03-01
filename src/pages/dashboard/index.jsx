@@ -1,7 +1,12 @@
 import Status from "@/components/dashboard/Status";
+import Layout from "@/components/Layout";
+import SidebarFC, { Header, Nav } from "@/components/profile/sidebar";
+import Sidebar from "@/components/profile/sidebar";
+import Sidebarfc from "@/components/profile/sidebar";
+
 import Head from "next/head";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import {
   AiOutlineCluster,
@@ -9,6 +14,7 @@ import {
   AiOutlineUngroup,
   AiOutlineUsergroupAdd,
 } from "react-icons/ai";
+import { FaAirFreshener, FaMoon, FaSun, FaToggleOff } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchBranch } from "redux/slices/barnches-slice";
@@ -27,13 +33,13 @@ export default function RootLayout() {
     dispatch(fetchEmployees());
     dispatch(fetchTasks());
   }, [dispatch]);
-  console.log(user);
   return (
-    <div className={`py-5 mvh-100 ${theme.mode} `}>
-      <Head>
-        <title>Dashboard</title>
-      </Head>
-      {/* <Container>
+    <Layout>
+      <div className={`py-5 mvh-100 ${theme.mode} `}>
+        <Head>
+          <title>Dashboard</title>
+        </Head>
+        {/* <Container>
         <Row>
           <Col className="mb-3" lg="8">
             <Card
@@ -109,50 +115,51 @@ export default function RootLayout() {
           </Col>
         </Row>
       </Container> */}
-      <Container>
-        <Row>
-          <Col sm="12" md="3" className="mb-4">
-            <Status
-              title="Branches"
-              length={
-                branches.branches && branches.branches.length !== 0
-                  ? branches.branches.length
-                  : 0
-              }
-              icon={<AiOutlineCluster size={40} />}
-            />
-          </Col>
-          <Col sm="12" md="3" className="mb-4">
-            <Status
-              title="Departmentes"
-              length={
-                departs.departmentes.length !== 0
-                  ? departs.departmentes.length
-                  : 0
-              }
-              icon={<AiOutlineUngroup size={40} />}
-            />
-          </Col>
-          <Col sm="12" md="3" className="mb-4">
-            <Status
-              title="Employees"
-              length={
-                employees.employees.length !== 0
-                  ? employees.employees.length
-                  : 0
-              }
-              icon={<AiOutlineUsergroupAdd size={40} />}
-            />
-          </Col>
-          <Col sm="12" md="3" className="mb-4 transition">
-            <Status
-              title="Tasks"
-              length={tasks.tasks.length !== 0 ? tasks.tasks.length : 0}
-              icon={<AiOutlineStock size={40} />}
-            />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+        <Container>
+          <Row>
+            <Col sm="12" md="3" className="mb-4">
+              <Status
+                title="Branches"
+                length={
+                  branches.branches && branches.branches.length !== 0
+                    ? branches.branches.length
+                    : 0
+                }
+                icon={<AiOutlineCluster size={40} />}
+              />
+            </Col>
+            <Col sm="12" md="3" className="mb-4">
+              <Status
+                title="Departmentes"
+                length={
+                  departs.departmentes.length !== 0
+                    ? departs.departmentes.length
+                    : 0
+                }
+                icon={<AiOutlineUngroup size={40} />}
+              />
+            </Col>
+            <Col sm="12" md="3" className="mb-4">
+              <Status
+                title="Employees"
+                length={
+                  employees.employees.length !== 0
+                    ? employees.employees.length
+                    : 0
+                }
+                icon={<AiOutlineUsergroupAdd size={40} />}
+              />
+            </Col>
+            <Col sm="12" md="3" className="mb-4 transition">
+              <Status
+                title="Tasks"
+                length={tasks.tasks.length !== 0 ? tasks.tasks.length : 0}
+                icon={<AiOutlineStock size={40} />}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Layout>
   );
 }

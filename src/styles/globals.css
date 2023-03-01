@@ -1,5 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/avenir");
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "./Sidebar.css";
 
 * {
   box-sizing: border-box;
@@ -17,6 +18,7 @@ body {
 
 body {
   font-family: "Avenir", sans-serif;
+  transition: 0.2s ease;
 }
 a {
   color: inherit;
@@ -141,4 +143,12 @@ select:focus {
 }
 .dropdown-toggle::before {
   display: none !important;
+}
+.navItem {
+  padding: 8px 0px 0px 7px;
+  border-radius: 6px;
+}
+.navItem:hover {
+  background-color: #262626 !important;
+  color: #f6f7fc !important;
 }

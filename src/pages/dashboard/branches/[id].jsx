@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -35,8 +36,8 @@ export default function BranchInfo() {
     });
   };
   return (
-    <>
-      <Container className="py-5">
+    <Layout py>
+      <Container>
         <Card className={theme.mode + " shadow"}>
           <Table className={theme.mode + " "}>
             <thead>
@@ -89,6 +90,6 @@ export default function BranchInfo() {
           </Table>
         </Card>
       </Container>
-    </>
+    </Layout>
   );
 }

@@ -1,5 +1,6 @@
 import ErrorMessage from "@/components/Forms/ErrorMessage";
 import Input from "@/components/Forms/Input";
+import Layout from "@/components/Layout";
 import MainTitle from "@/components/Shared/MainTitle";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
@@ -86,7 +87,7 @@ export default function Register() {
     errors.branch && toast.error(errors.branch.message);
   };
   return (
-    <div className="py-5">
+    <Layout>
       <MainTitle title={"Register"} classes={"pb-4"} />
       <Container>
         <Form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -231,6 +232,6 @@ export default function Register() {
           </Row>
         </Form>
       </Container>
-    </div>
+    </Layout>
   );
 }

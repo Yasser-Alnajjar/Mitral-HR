@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { Button } from "react-bootstrap";
 
-export default function Layout({ children }) {
+export default function Layout({ children, py }) {
   const { theme, branches, departs, employees, tasks } = useSelector(
     (state) => state
   );
@@ -38,7 +38,7 @@ export default function Layout({ children }) {
                 } shadow`,
               }}
             />
-            <div>{children}</div>
+            <div className={py && "py-5"}>{children}</div>
             <div
               className="position-fixed"
               style={{

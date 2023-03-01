@@ -3,7 +3,7 @@ export default function ErrorMessage({ errors }) {
     <>
       {errors && (
         <span
-          className={`text-capitalize error  d-block ${
+          className={`mb-3 text-capitalize error  d-block ${
             errors ? "text-danger" : "text-success"
           }`}
         >
