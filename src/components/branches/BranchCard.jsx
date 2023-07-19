@@ -22,7 +22,7 @@ export default function BranchCard({
   return (
     <Card
       className={` border-0 shadow  ${
-        theme.mode === "dark" ? "bg-gray-alt " : "bg-white"
+        theme.mode === "dark" ? "bg-gray-alt text-white" : "bg-white"
       }`}
       style={cardStyle}
     >

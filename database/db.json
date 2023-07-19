@@ -19,10 +19,6 @@
   ],
   "branches": [
     {
-      "id": 1,
-      "name": "STO"
-    },
-    {
       "id": 2,
       "name": "LTO"
     },
@@ -45,6 +41,10 @@
     {
       "name": "shimaa",
       "id": 8
+    },
+    {
+      "name": "mostafa",
+      "id": 9
     }
   ],
   "tasks": [
@@ -84,8 +84,8 @@
   "employees": [
     {
       "email": "yasser@gmail.com",
-      "department": "Suppurt",
-      "branch": "STO",
+      "department": "Tecnical",
+      "branch": "LTR",
       "role": "owner",
       "name": "yasser",
       "address": "giza",
@@ -197,13 +197,13 @@
       "id": 1,
       "name": "Yasser",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": true
+      "attend": false
     },
     {
       "id": 2,
       "name": "ahmed",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": false
+      "attend": true
     },
     {
       "id": 3,
@@ -245,6 +245,19 @@
       "phone": "01129123791",
       "rate": "5",
       "id": 1
+    },
+    {
+      "email": "abod@gmail.com",
+      "password": "$2a$10$yLgl7iidx59K9TzWVOEQ8ezrYTj5vbeViaK4VVIAljndy17CKg7Bm",
+      "department": "Media",
+      "branch": "MTO",
+      "role": "admin",
+      "name": "ahmed",
+      "address": "giza",
+      "salary": "50000",
+      "phone": "01121081998",
+      "rate": "5",
+      "id": 2
     }
   ]
 }

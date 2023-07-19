@@ -1,6 +1,5 @@
-import ErrorMessage from "@/components/Forms/ErrorMessage";
-import Input from "@/components/Forms/Input";
-import MainTitle from "@/components/Shared/MainTitle";
+import ErrorMessage from "../../components/Forms/ErrorMessage";
+import Input from "../../components/Forms/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -15,9 +14,9 @@ import {
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
-import { fetchDepartments } from "redux/slices/department-slice";
-import { addEmployee } from "redux/slices/employees-slice";
+import { fetchBranch, fetchRoles } from "../../redux/slices/barnches-slice";
+import { fetchDepartments } from "../../redux/slices/department-slice";
+import { addEmployee } from "../../redux/slices/employees-slice";
 import { number, object, string } from "yup";
 
 export default function AddEmployee({ dispatchform }) {

@@ -1,12 +1,12 @@
-import ErrorMessage from "@/components/Forms/ErrorMessage";
-import Input from "@/components/Forms/Input";
-import MainTitle from "@/components/Shared/MainTitle";
-import { parseDateString } from "@/utils/auth";
+import ErrorMessage from "../../components/Forms/ErrorMessage";
+import Input from "../../components/Forms/Input";
+import MainTitle from "../../components/Shared/MainTitle";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "redux/slices/task-slice";
+import { addTask } from "../../redux/slices/task-slice";
 import { date, object, string } from "yup";
 
 export default function AddTask() {

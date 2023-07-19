@@ -6,7 +6,7 @@ import { AiOutlineUngroup } from "react-icons/ai";
 import {
   deleteDepartment,
   fetchDepartments,
-} from "redux/slices/department-slice";
+} from "../../redux/slices/department-slice";
 export default function DepartCard({ cardStyle, name, icon, id }) {
   const { theme } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export default function DepartCard({ cardStyle, name, icon, id }) {
   return (
     <Card
       className={` border-0 shadow  ${
-        theme.mode === "dark" ? "bg-gray-alt " : "bg-white"
+        theme.mode === "dark" ? "bg-gray-alt text-white" : "bg-white"
       }`}
       style={cardStyle}
     >

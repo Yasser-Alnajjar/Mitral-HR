@@ -1,6 +1,5 @@
-import { useRouter } from "next/router";
-import ErrorMessage from "@/components/Forms/ErrorMessage";
-
+"use client";
+import ErrorMessage from "../../components/Forms/ErrorMessage";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect } from "react";
 import {
@@ -15,17 +14,15 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { number, object, string } from "yup";
-import { fetchDepartments } from "redux/slices/department-slice";
-import { fetchBranch, fetchRoles } from "redux/slices/barnches-slice";
+import { fetchDepartments } from "../../redux/slices/department-slice";
+import { fetchBranch, fetchRoles } from "../../redux/slices/barnches-slice";
 import axios from "axios";
-import { URL_API } from "@/utils";
 import Input from "../Forms/Input";
-import { getUserData } from "redux/slices/user-slice";
-import { header } from "@/utils/auth";
-export default function FormEditprofile() {
-  const router = useRouter();
-  const { id } = router.query;
-  const { theme, departs, branches, user } = useSelector((state) => state);
+import { getUserData } from "../../redux/slices/user-slice";
+import { header, user } from "../../utils/auth";
+import { URL_API } from "../../utils";
+export default function FormEditprofile({ id }) {
+  const { theme, departs, branches } = useSelector((state) => state);
 
   const dispatch = useDispatch();
   let schema = object({
@@ -58,15 +55,15 @@ export default function FormEditprofile() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      rate: user.user?.user?.rate,
-      phone: user.user?.user?.phone,
-      salary: user.user.user?.salary,
-      address: user.user.user?.address,
-      role: user.user.user?.role,
-      branch: user.user.user?.branch,
-      department: user.user?.user?.department,
-      email: user.user.user?.email,
-      name: user.user.user?.name,
+      rate: user.user?.rate,
+      phone: user.user?.phone,
+      salary: user.user?.salary,
+      address: user.user?.address,
+      role: user.user?.role,
+      branch: user.user?.branch,
+      department: user.user?.department,
+      email: user.user?.email,
+      name: user.user?.name,
     },
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -86,14 +83,12 @@ export default function FormEditprofile() {
     errors.email && toast.error(errors.email.message);
   };
   const updateEmployee = async (id, payload) => {
-    const res = await axios.patch(`${URL_API}/employees/${id}`, payload, {
+    await axios.patch(`${URL_API}/employees/${id}`, payload, {
       headers: {
         "Content-Type": "application/json",
         Authorization: header,
       },
     });
-    const data = await res.data;
-    return data;
   };
   useEffect(() => {
     dispatch(getUserData());

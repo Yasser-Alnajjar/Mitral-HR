@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   AiOutlineBranches,
@@ -13,7 +14,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Dropdown, Nav, Offcanvas, Row } from "react-bootstrap";
-import { showSidbar } from "redux/slices/theme-slice";
+import { showSidbar } from "../../redux/slices/theme-slice";
 import SideBarLink from "./SideBarLink";
 export default function Sidebar() {
   const { theme } = useSelector((state) => state);
@@ -34,10 +35,10 @@ export default function Sidebar() {
               alt="logo"
               width={30}
               height={30}
-              src="/favicon.ico"
+              src="/images/logo512x512.png"
               className="mb-2"
             />
-            <span className="me-2">Mitral HR</span>
+            <span className="me-2">Tenor</span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>

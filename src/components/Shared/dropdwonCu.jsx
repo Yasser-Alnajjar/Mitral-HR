@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAttendance,
   updateAttendance,
-} from "redux/slices/attendance-slice";
+} from "../../redux/slices/attendance-slice";
 import styles from "../../styles/menu.module.css";
 
 const Dorpmenu = ({ attendId, translate }) => {
@@ -29,10 +29,10 @@ const Dorpmenu = ({ attendId, translate }) => {
     setShow(false);
   };
   return (
-    <div className={theme.mode}>
+    <div className={theme.mode === "dark" ? "text-white" : "text-black"}>
       <button
         onClick={() => setShow(!show)}
-        className={`${theme.mode} border-0`}
+        className={`${theme.mode} border-0 p-1 rounded`}
       >
         <AiOutlineMore />
       </button>

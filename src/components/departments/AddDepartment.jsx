@@ -6,8 +6,12 @@ import { object, string } from "yup";
 
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
-import { addDepartment, fetchDepartments } from "redux/slices/department-slice";
+
 import ErrorMessage from "../Forms/ErrorMessage";
+import {
+  addDepartment,
+  fetchDepartments,
+} from "../../redux/slices/department-slice";
 export default function AddDepartment({ open, setOpen }) {
   const dispatch = useDispatch();
   let schema = object({

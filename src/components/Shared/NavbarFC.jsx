@@ -1,3 +1,4 @@
+"use client";
 import { Container, Navbar, Nav, Button, Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegMoon, FaRegSun } from "react-icons/fa";
@@ -5,7 +6,7 @@ import {
   setDarkTheme,
   setDefaultTheme,
   showSidbar,
-} from "redux/slices/theme-slice";
+} from "../../redux/slices/theme-slice";
 import {
   AiOutlineLogout,
   AiOutlineMenu,
@@ -18,10 +19,11 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { logout } from "redux/slices/user-slice";
+import { logout } from "../../redux/slices/user-slice";
+import { user } from "../../utils/auth";
 
 export default function NavbarFC() {
-  const { theme, user } = useSelector((state) => state);
+  const { theme } = useSelector((state) => state);
   const dispatch = useDispatch();
   const router = useRouter();
   const handleTheme = () => {
@@ -35,7 +37,7 @@ export default function NavbarFC() {
   return (
     <Navbar className={theme.mode + " align-items-center border-bottom"}>
       <Container>
-        <Nav className="me-auto me-2">
+        <Nav className="me-2">
           <Nav.Item
             className={`cursor-p ${
               theme.mode === "dark" ? "text-light" : "text-dark"
@@ -66,7 +68,7 @@ export default function NavbarFC() {
               className="rounded-circle"
             />
           </Dropdown.Toggle>
-          <Dropdown.Menu drop={"start"}>
+          <Dropdown.Menu drop={"start"} variant={theme.mode}>
             <Dropdown.Item
               as={Link}
               className="d-flex align-items-center gap-2"
@@ -77,7 +79,7 @@ export default function NavbarFC() {
             </Dropdown.Item>
             <Dropdown.Item
               as={Link}
-              href={`/dashboard/profile/editprofile/${user?.user?.user?.id}`}
+              href={`/dashboard/profile/${user.user?.id}`}
               className="d-flex align-items-center gap-2"
             >
               <AiOutlineUserSwitch size={20} />

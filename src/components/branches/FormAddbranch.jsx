@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
 import ErrorMessage from "../Forms/ErrorMessage";
 import { useDispatch } from "react-redux";
-import { addBranch, fetchBranch } from "redux/slices/barnches-slice";
+import { addBranch, fetchBranch } from "../../redux/slices/barnches-slice";
 import { toast, Toaster } from "react-hot-toast";
 export default function FormAddbranch() {
   const dispatch = useDispatch();
