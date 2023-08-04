@@ -18,7 +18,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const userData = await login({ email: user, password }).unwrap();
       localStorage.setItem("token", password);
       dispatch(setCredentials({ ...userData }));
@@ -30,7 +29,7 @@ const Login = () => {
       toast.error(err.data);
     }
   };
-  console.log(document.cookie);
+
   const handleUser = ({ target }) => setUser(target.value);
   const handlePassword = ({ target }) => setPassword(target.value);
   let content = isLoading ? (
