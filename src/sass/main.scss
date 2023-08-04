@@ -1,0 +1,16 @@
+@import "./apstract/variables";
+@import "./apstract/mixins";
+@import "./apstract/palce-holders";
+
+// Pages
+@import "./pages/loginPage";
+@import "./pages/dashboardPage";
+@import "./pages/departmentPage";
+@import "./pages/branchesPage";
+@import "./pages/tasksPage";
+
+// Components
+@import "./components/container";
+@import "./components/navbar";
+@import "./components/loading";
+@import "./components/sidebar";

@@ -1,14 +1,12 @@
-import NavbarFC from "../../components/Shared/NavbarFC";
-
+import Sidebar from "../../components/Sidebar";
 export const metadata = {
   title: "Dashboard",
 };
-
 export default function DashboardLayout({ children }) {
   return (
-    <section>
-      <NavbarFC />
-      {children}
+    <section className="dashboardLayout">
+      <Sidebar />
+      <main>{children}</main>
     </section>
   );
 }

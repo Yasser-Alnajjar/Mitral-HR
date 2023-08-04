@@ -1,20 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import themeSlice from "./slices/theme-slice";
-import branchSlice from "./slices/barnches-slice";
-import userSlice from "./slices/user-slice";
-import departmentSlice from "./slices/department-slice";
-import employeesSlice from "./slices/employees-slice";
-import taskSlice from "./slices/task-slice";
-import attendanceSlice from "./slices/attendance-slice";
+import { apiSlice } from "./apiSlice";
+import authSlice from "./auth/authSlice";
+import themeSlice from "./theme/themeSlice";
+
 export const store = configureStore({
   reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authSlice,
     theme: themeSlice,
-    branches: branchSlice,
-    user: userSlice,
-    departs: departmentSlice,
-    employees: employeesSlice,
-    tasks: taskSlice,
-    attend: attendanceSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,
 });
