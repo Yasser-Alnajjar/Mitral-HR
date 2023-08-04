@@ -16,7 +16,20 @@
 // ! Dummy
 function isLoggedIn() {
   if (typeof window !== "undefined") {
-    let currentUser = JSON.parse(localStorage.getItem("user"));
+    let currentUser = JSON.parse(localStorage.getItem("user")) || {
+      user: {
+        email: "Gest@gmail.com",
+        department: "Gest",
+        branch: "Gest",
+        role: "Gest",
+        name: "Gest",
+        address: "Gest",
+        salary: "Gest",
+        phone: "Gest",
+        rate: "Gest",
+        id: 0,
+      },
+    };
     return currentUser;
   }
 }

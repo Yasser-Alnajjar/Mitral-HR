@@ -1,0 +1,16 @@
+.department {
+  margin-top: $margin-lg;
+  &__items {
+    @include grid("center", 4, 10);
+    &__item {
+      padding: $padding-lg;
+      border-radius: $radius;
+      @include transtion("all", 0.3);
+      border: 1px solid #eceaea;
+      &:hover {
+        box-shadow: 2px 2px 4px rgba($color: #b7b4b4, $alpha: 0.5);
+        border-color: transparent;
+      }
+    }
+  }
+}

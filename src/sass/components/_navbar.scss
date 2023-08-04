@@ -1,0 +1,28 @@
+.navbar {
+  padding: $padding-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  border-bottom-color: $main-color;
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style-type: none;
+  }
+  &__logo {
+    display: flex;
+    justify-content: space-between;
+    width: 75px;
+    @include transtion("width", 0.3);
+  }
+  &.open &__logo {
+    width: 200px;
+    &__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

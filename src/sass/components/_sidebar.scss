@@ -1,0 +1,47 @@
+.sidebar {
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: sticky;
+  inset: 0;
+  height: 100%;
+  z-index: 2;
+  background-color: $main-color;
+  color: $white-color;
+  @include transtion("width", 0.3);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: $padding-lg;
+    justify-content: center;
+    &__item {
+      &__link {
+        display: flex;
+        gap: 5px;
+        &__title {
+          display: none;
+        }
+        &__icon {
+          width: 40px;
+          height: 40px;
+          @include transtion("width", 0.3);
+        }
+      }
+    }
+  }
+  &.open {
+    width: 200px;
+    & .sidebar__list {
+      &__item {
+        &__link {
+          &__title {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

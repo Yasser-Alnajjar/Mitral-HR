@@ -15,6 +15,22 @@
     {
       "id": 4,
       "name": "Media"
+    },
+    {
+      "id": 5,
+      "name": "Tecnical"
+    },
+    {
+      "id": 6,
+      "name": "System"
+    },
+    {
+      "id": 7,
+      "name": "Suppurt"
+    },
+    {
+      "id": 8,
+      "name": "Media"
     }
   ],
   "branches": [
@@ -37,14 +53,6 @@
     {
       "name": "LTR",
       "id": 7
-    },
-    {
-      "name": "shimaa",
-      "id": 8
-    },
-    {
-      "name": "mostafa",
-      "id": 9
     }
   ],
   "tasks": [
@@ -55,14 +63,6 @@
       "description": "this is full stack project",
       "employee": "yasser",
       "id": 1
-    },
-    {
-      "startDate": "2023-02-28",
-      "endDate": "2023-03-15",
-      "taskname": "HR System",
-      "description": "this is full stack project",
-      "employee": "yasser",
-      "id": 2
     },
     {
       "startDate": "2023-02-23",
@@ -82,18 +82,6 @@
     }
   ],
   "employees": [
-    {
-      "email": "yasser@gmail.com",
-      "department": "Tecnical",
-      "branch": "LTR",
-      "role": "owner",
-      "name": "yasser",
-      "address": "giza",
-      "salary": 30000,
-      "phone": 1129123791,
-      "rate": 5,
-      "id": 1
-    },
     {
       "id": 2,
       "rate": 5,
@@ -177,19 +165,6 @@
       "email": "osama@mail.com",
       "name": "Osama",
       "id": 9
-    },
-    {
-      "rate": 5,
-      "phone": 12831367123,
-      "salary": 2000,
-      "address": "giza",
-      "role": "owner",
-      "branch": "STO",
-      "department": "Tecnical",
-      "email": "yasser@gmail.com",
-      "password": "yasser123",
-      "name": "Yasser",
-      "id": 12
     }
   ],
   "attendance": [
@@ -197,7 +172,7 @@
       "id": 1,
       "name": "Yasser",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": false
+      "attend": true
     },
     {
       "id": 2,
@@ -209,7 +184,7 @@
       "id": 3,
       "name": "hima",
       "image": "https://robohash.org/perferendisideveniet.png",
-      "attend": false
+      "attend": true
     },
     {
       "id": 4,
@@ -234,30 +209,17 @@
   ],
   "users": [
     {
-      "email": "yasser@gmail.com",
-      "password": "$2a$10$xnWRoLfVzZN1ULcwDCBdJu/eDfsNF7H/RkC2w2.wYee/FRy/oUlwi",
-      "department": "Tecnical",
-      "branch": "STO",
+      "email": "yasser@mail.com",
+      "password": "$2a$10$jR8rmNrg96GWNJY1FUiS8ew/qZxXzruUW/lU/O0D9jJmPEQwLAq1S",
+      "departmentId": 1,
+      "branchId": 2,
       "role": "owner",
       "name": "yasser",
       "address": "giza",
       "salary": "30000",
       "phone": "01129123791",
       "rate": "5",
-      "id": 1
-    },
-    {
-      "email": "abod@gmail.com",
-      "password": "$2a$10$yLgl7iidx59K9TzWVOEQ8ezrYTj5vbeViaK4VVIAljndy17CKg7Bm",
-      "department": "Media",
-      "branch": "MTO",
-      "role": "admin",
-      "name": "ahmed",
-      "address": "giza",
-      "salary": "50000",
-      "phone": "01121081998",
-      "rate": "5",
-      "id": 2
+      "id": 3
     }
   ]
 }
