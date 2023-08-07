@@ -10,9 +10,7 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 
 |  Login | Register  |  Branches |  Departments |   |
 |---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| done |   |   |   |   |
 
 ## What is done
 
