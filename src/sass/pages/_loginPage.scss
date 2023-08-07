@@ -33,7 +33,7 @@
     }
   }
   .errorMsg {
-    background-color: $error-color;
+    background-color: $danger;
     color: $white-color;
     padding: $padding-lg;
     border-radius: $radius;
@@ -44,13 +44,4 @@
   .hide {
     display: none;
   }
-}
-%input {
-  border: 1px solid #ccc;
-  background-color: transparent;
-  border-radius: $radius;
-  padding: $padding-lg;
-  width: 100%;
-  margin-bottom: 1rem;
-  outline: none;
 }

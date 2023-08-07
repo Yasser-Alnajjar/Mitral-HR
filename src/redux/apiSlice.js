@@ -19,8 +19,9 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     console.log("sending refresh token");
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
+    console.log(user);
     let obj = {
-      email: user,
+      email: user.email,
       password: token,
     };
     const refreshToken = await baseQuery(
@@ -44,6 +45,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 };
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["Departments", "User", "Branches"],
+  tagTypes: ["Departments", "User", "Branches", "Tasks"],
   endpoints: (builder) => ({}),
 });

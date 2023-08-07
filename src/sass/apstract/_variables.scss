@@ -1,10 +1,17 @@
 // Colors
 $main-color: #079f9f;
-$secondary-color: #4aa2ee;
+$secondary-color: #18446a;
 $white-color: #f7f7f7;
 $black-color: #333;
-$error-color: #971212;
-$success-color: #033f03;
+
+// Buttons
+$danger: #dc3545;
+$danger-hover: #bb2d3b;
+$success: #198754;
+$success-hover: #157347;
+$primary: #079f9f;
+$primary-hover: #097474;
+
 // Sizes
 $radius: 6px;
 $padding-lg: 1rem;
@@ -18,3 +25,4 @@ $font-bold: 800;
 
 // Transitions
 $transition: 0.3s ease-in-out;
+$dark-mode: false;

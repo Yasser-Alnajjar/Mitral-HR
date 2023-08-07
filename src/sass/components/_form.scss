@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  &-control {
+    @extend %input;
+  }
+  &-label {
+    font-size: $fontSize - 0.1;
+    margin-bottom: 5px;
+  }
+  &-submit {
+    width: fit-content;
+    margin-left: auto;
+  }
+}

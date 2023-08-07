@@ -2,7 +2,14 @@
 import {
   AiOutlineDashboard,
   AiOutlineAppstore,
-  AiOutlineUngroup,
+  AiOutlineTeam,
+  AiOutlineCheckSquare,
+  AiOutlineFieldTime,
+  AiOutlineDollar,
+  AiOutlineBarChart,
+  AiOutlineClockCircle,
+  AiOutlineBranches,
+  AiOutlineCoffee,
 } from "react-icons/ai";
 import Sidebar__list from "./Sidebar__Item";
 import { selectOpen } from "../redux/theme/themeSlice";
@@ -25,6 +32,16 @@ export default function Sidebar() {
         />
         <Sidebar__list
           icon={
+            <AiOutlineBranches
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/branches"
+          title={"Branches"}
+        />
+        <Sidebar__list
+          icon={
             <AiOutlineAppstore
               size={size}
               style={{ transition: ".3s ease-in-out" }}
@@ -35,17 +52,7 @@ export default function Sidebar() {
         />
         <Sidebar__list
           icon={
-            <AiOutlineUngroup
-              size={size}
-              style={{ transition: ".3s ease-in-out" }}
-            />
-          }
-          link="/dashboard/branches"
-          title={"Branches"}
-        />
-        <Sidebar__list
-          icon={
-            <AiOutlineDashboard
+            <AiOutlineCheckSquare
               size={size}
               style={{ transition: ".3s ease-in-out" }}
             />
@@ -55,7 +62,7 @@ export default function Sidebar() {
         />
         <Sidebar__list
           icon={
-            <AiOutlineDashboard
+            <AiOutlineTeam
               size={size}
               style={{ transition: ".3s ease-in-out" }}
             />
@@ -65,13 +72,53 @@ export default function Sidebar() {
         />
         <Sidebar__list
           icon={
-            <AiOutlineDashboard
+            <AiOutlineClockCircle
               size={size}
               style={{ transition: ".3s ease-in-out" }}
             />
           }
           link="/dashboard/attendance"
           title={"Attendance"}
+        />
+        <Sidebar__list
+          icon={
+            <AiOutlineDollar
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/salary"
+          title={"Salary"}
+        />
+        <Sidebar__list
+          icon={
+            <AiOutlineCoffee
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/vacations"
+          title={"Vacations"}
+        />
+        <Sidebar__list
+          icon={
+            <AiOutlineBarChart
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/Finance"
+          title={"Finance"}
+        />
+        <Sidebar__list
+          icon={
+            <AiOutlineFieldTime
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/Overtime"
+          title={"Overtime"}
         />
       </ul>
     </aside>

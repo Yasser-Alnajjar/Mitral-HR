@@ -4,3 +4,16 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
+%input {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  border-radius: $radius;
+  padding: $padding-md;
+  width: 100%;
+  margin-bottom: 1rem;
+  @include transition("all", 0.3);
+  outline: none;
+  &:focus {
+    border-color: $main-color;
+  }
+}

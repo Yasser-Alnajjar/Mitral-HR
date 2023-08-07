@@ -4,30 +4,37 @@
   flex-direction: column;
   overflow: hidden;
   position: sticky;
-  inset: 0;
-  height: 100%;
+  top: 50px;
+  left: 0;
+  height: 100vh;
   z-index: 2;
   background-color: $main-color;
   color: $white-color;
-  @include transtion("width", 0.3);
-
+  @include transition("width", 0.3);
   &__list {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: $padding-lg;
+    margin-top: $margin-lg;
+    padding: 0 $padding-md;
     justify-content: center;
     &__item {
       &__link {
+        border-radius: $radius;
+        padding: 5px;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
         display: flex;
-        gap: 5px;
+        gap: 10px;
         &__title {
           display: none;
         }
         &__icon {
-          width: 40px;
-          height: 40px;
-          @include transtion("width", 0.3);
+          @include transition("width", 0.3);
         }
       }
     }
@@ -37,6 +44,7 @@
     & .sidebar__list {
       &__item {
         &__link {
+          justify-content: start;
           &__title {
             display: block;
           }

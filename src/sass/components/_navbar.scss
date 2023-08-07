@@ -5,6 +5,9 @@
   justify-content: space-between;
   border: 1px solid transparent;
   border-bottom-color: $main-color;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
   &__list {
     display: flex;
     align-items: center;
@@ -14,11 +17,11 @@
   &__logo {
     display: flex;
     justify-content: space-between;
-    width: 75px;
-    @include transtion("width", 0.3);
+    width: 80px;
+    @include transition("width", 0.3);
   }
   &.open &__logo {
-    width: 200px;
+    width: 230px;
     &__toggle {
       display: flex;
       align-items: center;
