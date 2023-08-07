@@ -6,9 +6,7 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 | Login | Register | Branches | Departments |
 |---|---|---|---|---|
 | Employees | Tasks | Attendance | Vacations |
-|---|---|---|---|---|
 |Salary | Finance | Overtime |
-|---|---|---|---|---|
 
 ## What is done
 
