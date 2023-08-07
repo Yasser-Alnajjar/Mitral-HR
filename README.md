@@ -2,36 +2,16 @@
 
 It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks , Attendance], Edit your profile
 
-## What features will be added
-| Login | Register | Branches | Departments |
-|---|---|---|---|---|
-| Employees | Tasks | Attendance | Vacations |
-|Salary | Finance | Overtime |
+## features
 
 |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
 |---|---|---|---|---|---|---|
 | auth |  auth |  Crud |  Crud | Crud  | Crud  | Crud  |
 | done |  done |  done |  done | done  | done  | done  |
 
-## What is done
-
-1- [Crud] -> Branches
-
-2- [Crud] -> Departments
-
-3- [Crud] -> Employees
-
-4- [Crud] -> Tasks
-
-5- [Crud] -> Attendance
-
-6- Register
-
-7- Login
-
 ## Getting Started
 
-First, run the Project:
+First clone the project, run the Project:
 
 ```
 npm run dev
