@@ -10,8 +10,8 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 
 |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
 |---|---|---|---|---|---|---|
-| Crud |  Crud |  Crud |  Crud | Crud  | Crud  |
-| done |  done |  done |  done | done  |done  |
+| Crud |  Crud |  Crud |  Crud | Crud  | Crud  | Crud  |
+| done |  done |  done |  done | done  | done  | done  |
 
 ## What is done
 
