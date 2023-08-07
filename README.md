@@ -8,7 +8,7 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 | Employees | Tasks | Attendance | Vacations |
 |Salary | Finance | Overtime |
 
-|   |   |   |   |   |
+|  Login | Register  |  Branches |  Departments |   |
 |---|---|---|---|---|
 |   |   |   |   |   |
 |   |   |   |   |   |
