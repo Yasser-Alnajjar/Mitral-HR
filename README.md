@@ -3,28 +3,12 @@
 It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks , Attendance], Edit your profile
 
 ## What features will be added
-
-1- Branches
-
-2- Departments
-
-3- Employees
-
-4- Tasks
-
-5- Attendance
-
-6- Vacations
-
-7- Salary
-
-8- Overtime
-
-9- Finance
-
-10- Login
-
-11- Register
+| Login | Register | Branches | Departments |
+|---|---|---|---|---|
+| Employees | Tasks | Attendance | Vacations |
+|---|---|---|---|---|
+|Salary | Finance | Overtime |
+|---|---|---|---|---|
 
 ## What is done
 
