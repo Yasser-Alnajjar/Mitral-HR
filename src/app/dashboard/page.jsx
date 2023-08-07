@@ -1,33 +1,47 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useGetUsersQuery } from "../../redux/users/usersSlice";
-
+import Loading from "../../components/Loading";
+import { toast } from "react-hot-toast";
+import {
+  selectAllData,
+  useGetAllBranchesQuery,
+  useGetAllDepartmentsQuery,
+  useGetAllTasksQuery,
+  useGetAllUsersQuery,
+} from "../../redux/dashboard/dashboardSlice";
+import Card from "../../components/Card";
 const Dashboard = () => {
-  const router = useRouter();
   const {
     data: users,
     isLoading,
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetAllUsersQuery();
+  const { data: branches } = useGetAllBranchesQuery();
+  const { data: departments } = useGetAllDepartmentsQuery();
+  const { data: tasks } = useGetAllTasksQuery();
   let content;
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <Loading />;
   } else if (isSuccess) {
     content = (
-      <code>
-        <pre>{JSON.stringify(users, null, 2)}</pre>
-      </code>
+      <div className="container">
+        <div className="card-container">
+          <Card title={"Tasks"} text={tasks?.length} />
+          <Card title={"Departments"} text={departments?.length} />
+          <Card title={"Branches"} text={branches?.length} />
+          <Card title={"Users"} text={users?.length} />
+        </div>
+      </div>
     );
   } else if (isError) {
-    content = <p>{error.message}</p>;
+    toast.error(error.message);
+    content = "";
   }
   return (
     <section>
-      <h2>Hello</h2>
+      <h2 style={{ textAlign: "center", marginTop: 20 }}>Hello</h2>
       {content}
-      <button onClick={() => router.push("/")}>Go to Home</button>
     </section>
   );
 };

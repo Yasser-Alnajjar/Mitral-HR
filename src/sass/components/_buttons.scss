@@ -1,0 +1,42 @@
+.btn {
+  border: none;
+  padding: $padding-md;
+  border-radius: $radius;
+  font-size: $fontSize;
+  color: $white-color;
+  font-weight: 400;
+  @include transition("background", 0.3);
+  cursor: pointer;
+  margin: 0;
+  &-danger {
+    background-color: $danger;
+    &:hover {
+      background-color: $danger-hover;
+    }
+  }
+  &-success {
+    background-color: $success;
+    &:hover {
+      background-color: $success-hover;
+    }
+  }
+  &-primary {
+    background-color: $primary;
+    &:hover {
+      background-color: $primary-hover;
+    }
+  }
+}
+.btns-group {
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  grid-auto-flow: column;
+  margin: $margin-lg 0;
+  &.place-start {
+    place-content: start;
+  }
+  &.place-end {
+    place-content: end;
+  }
+}

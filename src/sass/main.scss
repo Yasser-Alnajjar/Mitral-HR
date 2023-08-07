@@ -1,12 +1,12 @@
-@import "./apstract/variables";
 @import "./apstract/mixins";
+@import "./apstract/variables";
 @import "./apstract/palce-holders";
 
 // Pages
 @import "./pages/loginPage";
 @import "./pages/dashboardPage";
 @import "./pages/departmentPage";
-@import "./pages/branchesPage";
+// @import "./pages/branchesPage";
 @import "./pages/tasksPage";
 
 // Components
@@ -14,3 +14,7 @@
 @import "./components/navbar";
 @import "./components/loading";
 @import "./components/sidebar";
+@import "./components/card";
+@import "./components/buttons";
+@import "./components/modal";
+@import "./components/form";

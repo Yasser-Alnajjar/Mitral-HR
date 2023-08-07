@@ -1,4 +1,4 @@
-@mixin transtion($prop, $time) {
+@mixin transition($prop, $time) {
   transition: #{$prop} #{$time}s ease-in-out;
 }
 
@@ -7,4 +7,12 @@
   place-content: #{$place};
   grid-template-columns: repeat(#{$cols}, 1fr);
   gap: #{$gap}px;
+}
+@mixin mediaQuery($minmax, $size) {
+  @media (#{$minmax}-width:#{$size}px) {
+    @content;
+  }
+}
+@mixin box-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $color: $black-color) {
+  box-shadow: #{$x-axis}px #{$y-axis}px #{$blur}px rgba($color, $alpha: 0.5);
 }
