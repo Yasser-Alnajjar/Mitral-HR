@@ -5,29 +5,14 @@ import Loading from "../../../components/Loading";
 import {
   useDeleteDepartmentMutation,
   useGetDepartmentsQuery,
-  useUpdateDepartmentMutation,
 } from "../../../redux/deparments/departmentSlice";
 import EditDepartmentFrom from "../../../components/forms/EditDepartmentFrom";
+import AddDepartmentFrom from "../../../components/forms/AddDepartmentFrom";
 import { useState } from "react";
 import Modal from "../../../components/apstracts/Modal";
 import Link from "next/link";
 import Swal from "sweetalert2";
-const handleDelete = (id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#dc3545",
-    cancelButtonColor: "#198754",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      deleteDepartment(id).unwrap();
-    }
-  });
-};
+
 export default function Departments() {
   const [open, setOpen] = useState(false);
   const [departmentId, setDepartmentId] = useState(false);
@@ -40,6 +25,22 @@ export default function Departments() {
     error,
   } = useGetDepartmentsQuery();
   const [deleteDepartment] = useDeleteDepartmentMutation();
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc3545",
+      cancelButtonColor: "#198754",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        deleteDepartment(id).unwrap();
+      }
+    });
+  };
   let content;
   if (isLoading) {
     content = <Loading />;
@@ -47,9 +48,7 @@ export default function Departments() {
     content = (
       <section className="department">
         <div className="container">
-          <div className="btns-group place-end">
-            <button className="btn btn-primary">Add</button>
-          </div>
+          <AddDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
           <Modal open={open} setOpen={setOpen} title="Edit Branch">
             <EditDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
           </Modal>
@@ -70,12 +69,6 @@ export default function Departments() {
                   >
                     Edit
                   </button>
-                  <Link
-                    href={`/dashboard/departments/${item.id}`}
-                    className="btn btn-success"
-                  >
-                    Details
-                  </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleDelete(item.id)}

@@ -13,13 +13,9 @@ const Login = () => {
   const [password, setPassword] = useState("yasser123");
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
-  const getUser = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     userRef.current.focus();
-    if (getUser !== null) {
-      router.push("/dashboard");
-    }
-  }, [getUser, router]);
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

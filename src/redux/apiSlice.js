@@ -19,7 +19,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     console.log("sending refresh token");
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
-    console.log(user);
     let obj = {
       email: user.email,
       password: token,
