@@ -10,12 +10,13 @@ export default function Employees() {
     isSuccess,
     isError,
     error,
+    refetch,
   } = useGetUsersQuery();
   let content;
   if (isLoading) {
     content = <Loading />;
   } else if (isSuccess) {
-    content = <Table users={users} />;
+    content = <Table users={users} refetch={refetch} />;
   } else if (isError) {
     toast.error(error.message);
   }

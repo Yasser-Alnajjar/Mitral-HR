@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { toast } from "react-hot-toast";
 import Input from "../forms/input";
 import {
@@ -8,10 +8,10 @@ import {
 } from "../../redux/users/usersSlice";
 import { useGetDepartmentsQuery } from "../../redux/departments/departmentSlice";
 import { useForm } from "react-hook-form";
-export default function EditEmployees({ userId, setOpen, refetch }) {
+export default function EditDepartmentEmployee({ userId, setOpen, refetch }) {
   const { data: user } = useGetSlingleUserQuery(userId);
   const [updateUser] = useUpdateUserMutation();
-  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
+  const { data: departments, isSuccess } = useGetDepartmentsQuery();
 
   // React hook from
   const userObj = useMemo(
@@ -57,27 +57,20 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
   }, [reset, userObj]);
 
   const onSubmit = (data) => {
-    try {
-      updateUser({
-        id: userId,
-        ...data,
+    updateUser({
+      id: userId,
+      ...data,
+    })
+      .unwrap()
+      .catch((err) => {
+        toast.error(err.data);
       })
-        .unwrap()
-        .catch((err) => {
-          console.log(err);
-          toast.error(err.data);
-        })
-        .finally(() => {
-          refetch();
-        });
-      toast.success("Success");
-    } catch (err) {
-      toast.error(err.data);
-    }
-    reset();
-    setOpen(false);
+      .finally(() => {
+        refetch();
+        reset();
+        setOpen(false);
+      });
   };
-
   let selectBox;
   if (isSuccess) {
     selectBox = (
@@ -96,7 +89,7 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
       </select>
     );
   }
-  let inputs = [
+  const inputs = [
     { name: "first_name", type: "text" },
     { name: "last_name", type: "text" },
     { name: "email", type: "email" },
@@ -108,7 +101,6 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
     { name: "role", type: "text" },
     { name: "salary", type: "text" },
   ];
-
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">

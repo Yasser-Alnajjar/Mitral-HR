@@ -4,14 +4,19 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => "/users",
+      // providesTags: ["Users"],
+      providesTags: (result, error, arg) =>
+        result
+          ? [...result.map(({ id }) => ({ type: "Users", id })), "Users"]
+          : ["Users"],
     }),
     getSlingleUser: builder.query({
       query: (id) => `/users/${id}`,
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Users"],
     }),
     getUsersOfDepartment: builder.query({
-      query: (id) => `/users?departmentId=${id}`,
-      invalidatesTags: ["User"],
+      query: (departmentName) => `/users?department=${departmentName}`,
+      invalidatesTags: ["Users"],
     }),
     updateUser: builder.mutation({
       query: (initialUser) => ({
@@ -19,14 +24,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: { ...initialUser },
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Users"],
     }),
     deleteUser: builder.mutation({
       query: ({ id }) => ({
         url: `/users/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Users"],
     }),
   }),
 });

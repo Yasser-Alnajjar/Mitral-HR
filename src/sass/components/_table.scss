@@ -7,11 +7,12 @@
   margin-bottom: 1rem;
   caption-side: bottom;
   border-collapse: collapse;
-  text-transform: capitalize;
   th {
     background-color: $secondary-color;
     color: white;
     padding: $padding-md;
+    text-transform: capitalize;
+    cursor: pointer;
   }
   td {
     border-bottom: 1px solid $secondary-color;

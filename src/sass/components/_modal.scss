@@ -27,16 +27,14 @@
     background-color: $white-color;
     min-width: 700px;
     position: absolute;
-    top: -100%;
+    top: -500%;
     left: 50%;
-    height: 400px;
-    overflow-y: auto;
-    transform: translate(-50%, -20%);
+    transform: translateX(-50%);
     padding: $padding-lg;
     @include box-shadow(3, 3, 5, $black-color);
     @include transition("all", 0.5);
     &.show {
-      top: 20%;
+      top: 20px;
     }
     @include box-shadow(3, 3, 5, $black-color);
     border-radius: $radius;

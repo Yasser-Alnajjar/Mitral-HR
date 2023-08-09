@@ -3,18 +3,19 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Modal from "../apstracts/Modal";
 import EditEmployees from "../forms/EditEmployees";
 import { useState } from "react";
-
-export default function Table({ users }) {
+export default function Table({ users, refetch }) {
   const [open, setOpen] = useState(false);
+
   const [id, setId] = useState("");
   const handleUpdateUser = async (id) => {
     setOpen(true);
     setId(id);
   };
+
   let content = (
     <section>
       <Modal open={open} setOpen={setOpen} title="Edit Branch">
-        <EditEmployees setOpen={setOpen} userId={id} />
+        <EditEmployees setOpen={setOpen} userId={id} refetch={refetch} />
       </Modal>
       <div className="table-container">
         <table className="table">
@@ -23,7 +24,7 @@ export default function Table({ users }) {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Job_title</th>
+              <th>Job title</th>
               <th>Gender</th>
               <th>Phone</th>
               <th>Address</th>

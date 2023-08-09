@@ -52,16 +52,6 @@ export default function Sidebar() {
         />
         <Sidebar__list
           icon={
-            <AiOutlineCheckSquare
-              size={size}
-              style={{ transition: ".3s ease-in-out" }}
-            />
-          }
-          link="/dashboard/tasks"
-          title={"Tasks"}
-        />
-        <Sidebar__list
-          icon={
             <AiOutlineTeam
               size={size}
               style={{ transition: ".3s ease-in-out" }}
@@ -69,6 +59,16 @@ export default function Sidebar() {
           }
           link="/dashboard/employees"
           title={"Employees"}
+        />
+        <Sidebar__list
+          icon={
+            <AiOutlineCheckSquare
+              size={size}
+              style={{ transition: ".3s ease-in-out" }}
+            />
+          }
+          link="/dashboard/tasks"
+          title={"Tasks"}
         />
         <Sidebar__list
           icon={
