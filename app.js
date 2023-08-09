@@ -110,3 +110,18 @@ let newdepartments = departments.map((item, index) => ({
   leader: "Yasser",
 }));
 console.log(newdepartments);
+
+// {
+//   "/users": "/660/*",
+//   "/users/:id": "/660/users/:id",
+//   "/departments": "/660/departments",
+//   "/departments/:id": "/660/departments/:id",
+//   "/branches": "/660/branches",
+//   "/branches/:id": "/660/branches/:id",
+//   "/tasks": "/660/tasks",
+//   "/tasks/:id": "/660/tasks/:id",
+//   "/employees": "/660/employees",
+//   "/employees/:id": "/660/employees/:id",
+//   "/attendance": "/660/attendance",
+//   "/attendance/:id": "/660/attendance/:id"
+// }

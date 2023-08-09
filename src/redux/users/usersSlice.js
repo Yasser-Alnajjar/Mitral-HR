@@ -7,6 +7,11 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     getSlingleUser: builder.query({
       query: (id) => `/users/${id}`,
+      invalidatesTags: ["User"],
+    }),
+    getUsersOfDepartment: builder.query({
+      query: (id) => `/users?departmentId=${id}`,
+      invalidatesTags: ["User"],
     }),
     updateUser: builder.mutation({
       query: (initialUser) => ({
@@ -31,4 +36,5 @@ export const {
   useGetSlingleUserQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useGetUsersOfDepartmentQuery,
 } = usersApiSlice;

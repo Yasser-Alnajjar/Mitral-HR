@@ -25,10 +25,12 @@
   &__container {
     display: flex;
     background-color: $white-color;
-    min-width: 500px;
+    min-width: 700px;
     position: absolute;
     top: -100%;
     left: 50%;
+    height: 400px;
+    overflow-y: auto;
     transform: translate(-50%, -20%);
     padding: $padding-lg;
     @include box-shadow(3, 3, 5, $black-color);

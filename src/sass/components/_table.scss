@@ -1,0 +1,30 @@
+.table-container {
+  padding: $padding-lg;
+}
+.table {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+  caption-side: bottom;
+  border-collapse: collapse;
+  text-transform: capitalize;
+  th {
+    background-color: $secondary-color;
+    color: white;
+    padding: $padding-md;
+  }
+  td {
+    border-bottom: 1px solid $secondary-color;
+    padding: 0 $padding-md;
+  }
+  tr {
+    @include transition("background", 0.2);
+  }
+  tr:nth-child(odd) {
+    background-color: $white-color;
+  }
+  tr:hover {
+    background-color: $secondary-color;
+    color: white;
+  }
+}

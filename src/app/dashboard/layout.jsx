@@ -8,7 +8,9 @@ export default function DashboardLayout({ children }) {
     <>
       <Navbar />
       <section className="dashboardLayout">
-        <Sidebar />
+        <div>
+          <Sidebar />
+        </div>
         <main>{children}</main>
       </section>
     </>

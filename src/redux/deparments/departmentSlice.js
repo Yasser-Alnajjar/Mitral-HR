@@ -9,7 +9,9 @@ const departmentSlice = apiSlice.injectEndpoints({
     }),
     getSlingleDepartment: builder.query({
       query: (id) => `/departments/${id}`,
+      invalidatesTags: ["Departments"],
     }),
+
     addDepartment: builder.mutation({
       query: (payload) => ({
         url: "/departments",

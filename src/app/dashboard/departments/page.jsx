@@ -69,6 +69,12 @@ export default function Departments() {
                   >
                     Edit
                   </button>
+                  <Link
+                    href={`/dashboard/departments/${item.id}`}
+                    className="btn btn-success"
+                  >
+                    Details
+                  </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleDelete(item.id)}
