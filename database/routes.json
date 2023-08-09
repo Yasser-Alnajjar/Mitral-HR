@@ -1,6 +1,7 @@
 {
   "/users": "/660/users",
   "/users/:id": "/660/users/:id",
+  "/users?departmentId=:id": "/660/users?departmentId=:id",
   "/departments": "/660/departments",
   "/departments/:id": "/660/departments/:id",
   "/branches": "/660/branches",

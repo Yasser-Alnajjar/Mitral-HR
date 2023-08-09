@@ -6,7 +6,7 @@ import {
   useAddDepartmentMutation,
   useGetSlingleDepartmentQuery,
   useUpdateDepartmentMutation,
-} from "../../redux/deparments/departmentSlice";
+} from "../../redux/departments/departmentSlice";
 import Modal from "../apstracts/Modal";
 export default function EditDepartmentFrom({ departmentId }) {
   const [open, setOpen] = useState(false);

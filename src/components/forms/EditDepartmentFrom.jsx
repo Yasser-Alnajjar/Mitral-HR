@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import {
   useGetSlingleDepartmentQuery,
   useUpdateDepartmentMutation,
-} from "../../redux/deparments/departmentSlice";
+} from "../../redux/departments/departmentSlice";
 export default function EditDepartmentFrom({ departmentId, setOpen }) {
   const { data: department } = useGetSlingleDepartmentQuery(departmentId);
   const [departmentName, setDepartmentName] = useState(

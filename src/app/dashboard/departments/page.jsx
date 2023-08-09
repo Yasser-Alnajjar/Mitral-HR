@@ -5,7 +5,7 @@ import Loading from "../../../components/Loading";
 import {
   useDeleteDepartmentMutation,
   useGetDepartmentsQuery,
-} from "../../../redux/deparments/departmentSlice";
+} from "../../../redux/departments/departmentSlice";
 import EditDepartmentFrom from "../../../components/forms/EditDepartmentFrom";
 import AddDepartmentFrom from "../../../components/forms/AddDepartmentFrom";
 import { useState } from "react";
@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 
 export default function Departments() {
   const [open, setOpen] = useState(false);
-  const [departmentId, setDepartmentId] = useState(false);
+  const [departmentId, setDepartmentId] = useState("");
 
   const {
     data: departments,
@@ -69,6 +69,12 @@ export default function Departments() {
                   >
                     Edit
                   </button>
+                  <Link
+                    href={`/dashboard/departments/${item.name}`}
+                    className="btn btn-success"
+                  >
+                    Details
+                  </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleDelete(item.id)}

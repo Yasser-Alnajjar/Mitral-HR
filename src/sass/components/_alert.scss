@@ -1,0 +1,42 @@
+.alert-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 20px;
+}
+.alert {
+  color: $white-color;
+  &__content {
+    padding: $padding-lg;
+    border-radius: $radius;
+    &.success {
+      background-color: $success;
+    }
+    &.danger {
+      background-color: $danger;
+    }
+    &.primary {
+      background-color: $primary;
+    }
+  }
+}
+.text-danger {
+  color: $danger;
+}
+.text-primary {
+  color: $primary;
+}
+.text-success {
+  color: $success;
+}
+.border-danger {
+  border-color: $danger;
+}
+.border-primary {
+  border-color: $primary;
+}
+.border-success {
+  border-color: $success;
+}

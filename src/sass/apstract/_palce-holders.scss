@@ -16,4 +16,7 @@
   &:focus {
     border-color: $main-color;
   }
+  &.border-danger:focus {
+    border-color: $danger;
+  }
 }
