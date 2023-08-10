@@ -20,6 +20,7 @@ const Dashboard = () => {
   const { data: branches } = useGetAllBranchesQuery();
   const { data: departments } = useGetAllDepartmentsQuery();
   const { data: tasks } = useGetAllTasksQuery();
+
   let content;
   if (isLoading) {
     content = <Loading />;
