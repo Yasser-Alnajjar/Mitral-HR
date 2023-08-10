@@ -4,11 +4,11 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => "/users",
-      // providesTags: ["Users"],
       providesTags: (result, error, arg) =>
         result
           ? [...result.map(({ id }) => ({ type: "Users", id })), "Users"]
           : ["Users"],
+      transformResponse: (res) => res.sort((a, b) => a.id - b.id).reverse(),
     }),
     getSlingleUser: builder.query({
       query: (id) => `/users/${id}`,
@@ -17,6 +17,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     getUsersOfDepartment: builder.query({
       query: (departmentName) => `/users?department=${departmentName}`,
       invalidatesTags: ["Users"],
+    }),
+    addUser: builder.mutation({
+      query: (initialUser) => ({
+        url: `/users/`,
+        method: "POST",
+        body: { ...initialUser },
+      }),
     }),
     updateUser: builder.mutation({
       query: (initialUser) => ({
@@ -27,7 +34,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["Users"],
     }),
     deleteUser: builder.mutation({
-      query: ({ id }) => ({
+      query: (id) => ({
         url: `/users/${id}`,
         method: "DELETE",
       }),
@@ -42,4 +49,5 @@ export const {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useGetUsersOfDepartmentQuery,
+  useAddUserMutation,
 } = usersApiSlice;
