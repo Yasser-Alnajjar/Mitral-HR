@@ -18,14 +18,14 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   if (result?.error?.status === 401) {
     console.log("sending refresh token");
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("token");
-    let obj = {
-      email: user.email,
-      password: token,
+    const password = JSON.parse(localStorage.getItem("password"));
+    const obj = {
+      email: user,
+      password,
     };
     const refreshToken = await baseQuery(
       {
-        url: `${URL_API}/login`,
+        url: `${process.env.NEXT_PUBLIC_Server_Url}/login`,
         method: "POST",
         body: obj,
       },
