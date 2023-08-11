@@ -29,7 +29,7 @@ const Login = () => {
       setPassword("");
     } catch (err) {
       toast.error(err.data);
-    }
+    } 
   };
 
   const handleUser = ({ target }) => setUser(target.value);

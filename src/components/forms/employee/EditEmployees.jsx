@@ -1,17 +1,17 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
-import Input from "../forms/input";
+import Input from "../input";
 import {
   useGetSlingleUserQuery,
   useUpdateUserMutation,
-} from "../../redux/users/usersSlice";
-import { useGetDepartmentsQuery } from "../../redux/departments/departmentSlice";
+} from "../../../redux/users/usersSlice";
+import { useGetDepartmentsQuery } from "../../../redux/departments/departmentSlice";
 import { useForm } from "react-hook-form";
-export default function EditDepartmentEmployee({ userId, setOpen, refetch }) {
+export default function EditEmployees({ userId, setOpen, refetch }) {
   const { data: user } = useGetSlingleUserQuery(userId);
-  const [updateUser] = useUpdateUserMutation();
-  const { data: departments, isSuccess } = useGetDepartmentsQuery();
+  const [updateUser, error] = useUpdateUserMutation();
+  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
 
   // React hook from
   const userObj = useMemo(
@@ -56,21 +56,27 @@ export default function EditDepartmentEmployee({ userId, setOpen, refetch }) {
     reset(userObj);
   }, [reset, userObj]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     updateUser({
       id: userId,
       ...data,
     })
       .unwrap()
+      .then(() => {
+        toast.success(`${data.first_name} ${data.last_name} has been updated!`);
+      })
       .catch((err) => {
+        console.log(err);
         toast.error(err.data);
       })
       .finally(() => {
         refetch();
-        reset();
-        setOpen(false);
       });
+
+    reset();
+    setOpen(false);
   };
+
   let selectBox;
   if (isSuccess) {
     selectBox = (
@@ -89,7 +95,7 @@ export default function EditDepartmentEmployee({ userId, setOpen, refetch }) {
       </select>
     );
   }
-  const inputs = [
+  let inputs = [
     { name: "first_name", type: "text" },
     { name: "last_name", type: "text" },
     { name: "email", type: "email" },
@@ -101,6 +107,7 @@ export default function EditDepartmentEmployee({ userId, setOpen, refetch }) {
     { name: "role", type: "text" },
     { name: "salary", type: "text" },
   ];
+
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">

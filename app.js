@@ -110,3 +110,35 @@
 //   leader: "Yasser",
 // }));
 // console.log(newdepartments);
+const isValidDate = (value) => {
+  // Check if the value is a string.
+  if (!typeof value === "string") {
+    return false;
+  }
+
+  // Split the value into its components.
+  const [year, month, day] = value.split("-");
+
+  // Check if the year is a four-digit number.
+  if (year.length !== 4) {
+    return false;
+  }
+
+  // Check if the month is a number between 1 and 12.
+  if (month < 1 || month > 12) {
+    return false;
+  }
+
+  // Check if the day is a number between 1 and 31.
+  if (day < 1 || day > 31) {
+    return false;
+  }
+
+  return true;
+};
+
+// Check if the specified value conforms to the required format.
+const value = "2023-08-11";
+const isDateValid = isValidDate(value);
+
+console.log(isDateValid);

@@ -1,81 +1,38 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
-import Input from "../forms/input";
-import {
-  useGetSlingleUserQuery,
-  useUpdateUserMutation,
-} from "../../redux/users/usersSlice";
-import { useGetDepartmentsQuery } from "../../redux/departments/departmentSlice";
+import Input from "../input";
 import { useForm } from "react-hook-form";
-export default function EditEmployees({ userId, setOpen, refetch }) {
-  const { data: user } = useGetSlingleUserQuery(userId);
-  const [updateUser] = useUpdateUserMutation();
-  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
+import { useAddUserMutation } from "../../../redux/users/usersSlice";
+import { useGetDepartmentsQuery } from "../../../redux/departments/departmentSlice";
+export default function AddEmployee({ setOpen, refetch }) {
+  const { data: departments, isSuccess } = useGetDepartmentsQuery();
+  const [addUser] = useAddUserMutation();
 
   // React hook from
-  const userObj = useMemo(
-    () => ({
-      first_name: user?.first_name,
-      last_name: user?.last_name,
-      email: user?.email,
-      password: user?.password,
-      address: user?.address,
-      job_title: user?.job_title,
-      phone: user?.phone,
-      country: user?.country,
-      gender: user?.gender,
-      role: user?.role,
-      salary: user?.salary,
-      department: user?.department,
-    }),
-    [
-      user?.first_name,
-      user?.last_name,
-      user?.email,
-      user?.password,
-      user?.address,
-      user?.job_title,
-      user?.phone,
-      user?.country,
-      user?.gender,
-      user?.role,
-      user?.salary,
-      user?.department,
-    ]
-  );
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: userObj,
-  });
-  useEffect(() => {
-    reset(userObj);
-  }, [reset, userObj]);
+  } = useForm();
 
-  const onSubmit = (data) => {
-    try {
-      updateUser({
-        id: userId,
-        ...data,
+  const onSubmit = async (data) => {
+    addUser({
+      ...data,
+    })
+      .unwrap()
+      .then(() => {
+        toast.success(`${data.first_name} ${data.last_name} has been added!`);
+        reset();
+        setOpen(false);
       })
-        .unwrap()
-        .catch((err) => {
-          console.log(err);
-          toast.error(err.data);
-        })
-        .finally(() => {
-          refetch();
-        });
-      toast.success("Success");
-    } catch (err) {
-      toast.error(err.data);
-    }
-    reset();
-    setOpen(false);
+      .catch((err) => {
+        toast.error(err.data);
+      })
+      .finally(() => {
+        refetch();
+      });
   };
 
   let selectBox;

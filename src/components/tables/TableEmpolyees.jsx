@@ -1,7 +1,7 @@
 "use client";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Modal from "../apstracts/Modal";
-import EditEmployees from "../forms/EditEmployees";
+import EditEmployees from "../forms/employee/EditEmployees";
 import { useState } from "react";
 import { useDeleteUserMutation } from "../../redux/users/usersSlice";
 import Loading from "../Loading";
@@ -15,7 +15,7 @@ export default function Table({ users, refetch }) {
     setOpen(true);
     setId(id);
   };
-  const handleDeleteUser = async (id) => {
+  const handleDeleteUser = async (id, name) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -26,11 +26,10 @@ export default function Table({ users, refetch }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
         deleteUser(id)
           .unwrap()
           .then(() => {
-            toast.success("Deleted!, User has been deleted");
+            toast.success(`${name}, has been deleted!`);
             refetch();
           })
           .catch((err) => {
@@ -90,7 +89,7 @@ export default function Table({ users, refetch }) {
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteUser(user.id)}
+                      onClick={() => handleDeleteUser(user.id, user.first_name)}
                     >
                       <AiOutlineDelete />
                     </button>

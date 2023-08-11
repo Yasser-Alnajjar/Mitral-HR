@@ -6,6 +6,8 @@ export default function Input({
   pattern,
   error,
   type,
+  format,
+  value,
 }) {
   return (
     <input
@@ -15,6 +17,8 @@ export default function Input({
       type={type}
       defaultValue={defaultValue}
       pattern={pattern}
+      format={format}
+      value={value}
     />
   );
 }
