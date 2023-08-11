@@ -1,18 +1,48 @@
 "use client";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Modal from "../apstracts/Modal";
-import EditEmployees from "../forms/EditEmployees";
+import EditEmployees from "../forms/employee/EditEmployees";
 import { useState } from "react";
+import { useDeleteUserMutation } from "../../redux/users/usersSlice";
+import Loading from "../Loading";
+import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 export default function Table({ users, refetch }) {
   const [open, setOpen] = useState(false);
-
   const [id, setId] = useState("");
+  const [deleteUser, { isLoading }] = useDeleteUserMutation(id);
   const handleUpdateUser = async (id) => {
     setOpen(true);
     setId(id);
   };
-
-  let content = (
+  const handleDeleteUser = async (id, name) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc3545",
+      cancelButtonColor: "#198754",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(id)
+          .unwrap()
+          .then(() => {
+            toast.success(`${name}, has been deleted!`);
+            refetch();
+          })
+          .catch((err) => {
+            toast.error(err.data);
+          });
+      }
+    });
+  };
+  let content;
+  if (isLoading) {
+    content = <Loading />;
+  }
+  content = (
     <section>
       <Modal open={open} setOpen={setOpen} title="Edit Branch">
         <EditEmployees setOpen={setOpen} userId={id} refetch={refetch} />
@@ -37,7 +67,7 @@ export default function Table({ users, refetch }) {
           <tbody className="table__body">
             {users.map((user, index) => (
               <tr key={user.id}>
-                <td>{index + 1}</td>
+                <td>{user.id}</td>
                 <td>
                   {user.first_name} {user.last_name}
                 </td>
@@ -57,7 +87,10 @@ export default function Table({ users, refetch }) {
                     >
                       <AiOutlineEdit />
                     </button>
-                    <button className="btn btn-danger">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteUser(user.id, user.first_name)}
+                    >
                       <AiOutlineDelete />
                     </button>
                   </div>

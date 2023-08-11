@@ -6,8 +6,8 @@ import {
   useDeleteDepartmentMutation,
   useGetDepartmentsQuery,
 } from "../../../redux/departments/departmentSlice";
-import EditDepartmentFrom from "../../../components/forms/EditDepartmentFrom";
-import AddDepartmentFrom from "../../../components/forms/AddDepartmentFrom";
+import EditDepartmentFrom from "../../../components/forms/department/EditDepartmentFrom";
+import AddDepartmentFrom from "../../../components/forms/department/AddDepartmentFrom";
 import { useState } from "react";
 import Modal from "../../../components/apstracts/Modal";
 import Link from "next/link";

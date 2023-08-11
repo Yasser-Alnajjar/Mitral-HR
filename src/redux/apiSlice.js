@@ -2,10 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "./auth/authSlice";
 import { URL_API } from "../utils";
 const baseQuery = fetchBaseQuery({
-  baseUrl:
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_Server_Url
-      : process.env.NEXT_PUBLIC_Server_Url_Local,
+  baseUrl: process.env.NEXT_PUBLIC_Server_Url_Local,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
@@ -47,15 +44,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 };
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["Departments", "Users", "Branches", "Tasks"],
+  tagTypes: ["Departments", "Users", "Branches", "Tasks", "Holidays"],
   endpoints: (builder) => ({}),
 });
-
-const url =
-  process.env.NODE_ENV === "Production"
-    ? process.env.SERVER_URL
-    : process.env.SERVER_URL_LOCAL;
-
-console.log(url);
-console.log(process.env.SERVER_URL);
-console.log(process.env.SERVER_URL_LOCAL);

@@ -11,15 +11,83 @@ import {
   AiOutlineBranches,
   AiOutlineCoffee,
 } from "react-icons/ai";
+import { PiUmbrellaSimpleThin } from "react-icons/pi";
 import Sidebar__list from "./Sidebar__Item";
 import { selectOpen } from "../redux/theme/themeSlice";
 import { useSelector } from "react-redux";
 export default function Sidebar() {
   const open = useSelector(selectOpen);
   let size = open ? 20 : 25;
+  const list_Item = [
+    {
+      icon: <AiOutlineDashboard size={size} />,
+      title: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      icon: <AiOutlineBranches size={size} />,
+      path: "/dashboard/branches",
+      title: "Branches",
+    },
+    {
+      icon: <AiOutlineAppstore size={size} />,
+      path: "/dashboard/departments",
+      title: "Departments",
+    },
+    {
+      icon: <AiOutlineTeam size={size} />,
+      path: "/dashboard/employees",
+      title: "Employees",
+    },
+    {
+      icon: <PiUmbrellaSimpleThin size={size} />,
+      path: "/dashboard/holidays",
+      title: "Holidays",
+    },
+    {
+      icon: <AiOutlineCheckSquare size={size} />,
+      path: "/dashboard/tasks",
+      title: "Tasks",
+    },
+    {
+      icon: <AiOutlineClockCircle size={size} />,
+      path: "/dashboard/attendance",
+      title: "Attendance",
+    },
+    {
+      icon: <AiOutlineDollar size={size} />,
+      path: "/dashboard/salary",
+      title: "Salary",
+    },
+    {
+      icon: <AiOutlineCoffee size={size} />,
+      path: "/dashboard/vacations",
+      title: "Vacations",
+    },
+    {
+      icon: <AiOutlineBarChart size={size} />,
+      path: "/dashboard/Finance",
+      title: "Finance",
+    },
+    {
+      icon: <AiOutlineFieldTime size={size} />,
+      path: "/dashboard/Overtime",
+      title: "Overtime",
+    },
+  ];
   return (
     <aside className={`sidebar ${open ? "open" : ""}`}>
       <ul className="sidebar__list">
+        {list_Item.map((item, index) => (
+          <Sidebar__list
+            key={index}
+            icon={item.icon}
+            link={item.path}
+            title={item.title}
+          />
+        ))}
+      </ul>
+      {/* <ul className="sidebar__list">
         <Sidebar__list
           icon={
             <AiOutlineDashboard
@@ -120,7 +188,7 @@ export default function Sidebar() {
           link="/dashboard/Overtime"
           title={"Overtime"}
         />
-      </ul>
+      </ul> */}
     </aside>
   );
 }
