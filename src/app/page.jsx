@@ -18,21 +18,21 @@ const Login = () => {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const userData = await login({ email: user, password })
-      .unwrap()
-      .then(() => {
-        localStorage.setItem("password", JSON.stringify(password));
-        localStorage.setItem("user", JSON.stringify(user));
-        dispatch(setCredentials({ ...userData }));
-        toast.success("Login successfuly");
-        router.push("/dashboard");
-        setUser("");
-        setPassword("");
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    try {
+      const userData = await login({ email: user, password })
+        .unwrap()
+        .then(() => {
+          localStorage.setItem("password", JSON.stringify(password));
+          localStorage.setItem("user", JSON.stringify(user));
+          toast.success("Login successfuly");
+          router.push("/dashboard");
+        });
+      dispatch(setCredentials({ ...userData }));
+      setUser("");
+      setPassword("");
+    } catch (err) {
+      toast.error(err.data);
+    }
   };
 
   const handleUser = ({ target }) => setUser(target.value);
