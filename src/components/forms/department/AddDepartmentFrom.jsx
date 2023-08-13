@@ -2,12 +2,9 @@
 import { useState } from "react";
 import Loading from "../../Loading";
 import { toast } from "react-hot-toast";
-import {
-  useAddDepartmentMutation,
-  useGetSlingleDepartmentQuery,
-  useUpdateDepartmentMutation,
-} from "../../../redux/departments/departmentSlice";
+import { useAddDepartmentMutation } from "../../../redux/departments/departmentSlice";
 import Modal from "../../apstracts/Modal";
+
 export default function EditDepartmentFrom({ departmentId }) {
   const [open, setOpen] = useState(false);
   const [departmentName, setDepartmentName] = useState("");

@@ -13,7 +13,7 @@ const departmentSlice = apiSlice.injectEndpoints({
       transformResponse: (departments) =>
         departments.sort((a, z) => z.id - a.id),
     }),
-    getSlingleDepartment: builder.query({
+    getSingleDepartment: builder.query({
       query: (id) => `/departments/${id}`,
       invalidatesTags: ["Departments"],
     }),
@@ -44,7 +44,7 @@ const departmentSlice = apiSlice.injectEndpoints({
 });
 export const {
   useGetDepartmentsQuery,
-  useGetSlingleDepartmentQuery,
+  useGetSingleDepartmentQuery,
   useAddDepartmentMutation,
   useUpdateDepartmentMutation,
   useDeleteDepartmentMutation,

@@ -65,7 +65,7 @@ export default function TableHolidays({ holidays }) {
                 <td>
                   <div className="btns-group">
                     <button
-                      className="btn btn-success"
+                      className="btn btn-primary"
                       onClick={() => handleUpdateHoliday(item.id)}
                     >
                       <AiOutlineEdit />

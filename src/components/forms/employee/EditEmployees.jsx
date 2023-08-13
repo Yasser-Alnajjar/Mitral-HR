@@ -3,13 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import Input from "../input";
 import {
-  useGetSlingleUserQuery,
+  useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "../../../redux/users/usersSlice";
 import { useGetDepartmentsQuery } from "../../../redux/departments/departmentSlice";
 import { useForm } from "react-hook-form";
 export default function EditEmployees({ userId, setOpen, refetch }) {
-  const { data: user } = useGetSlingleUserQuery(userId);
+  const { data: user } = useGetSingleUserQuery(userId);
   const [updateUser, error] = useUpdateUserMutation();
   const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
 
@@ -113,14 +113,16 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
       <div className="form-container">
         {inputs.map((inp) => {
           return (
-            <Input
-              key={inp.name}
-              register={register}
-              label={inp.name}
-              type={inp.type}
-              required={true}
-              error={errors.hasOwnProperty(inp.name)}
-            />
+            <div key={inp.name}>
+              <Input
+                key={inp.name}
+                register={register}
+                label={inp.name}
+                type={inp.type}
+                required={true}
+                error={errors.hasOwnProperty(inp.name)}
+              />
+            </div>
           );
         })}
         <select

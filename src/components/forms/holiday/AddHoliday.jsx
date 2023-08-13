@@ -51,14 +51,16 @@ export default function AddHoliday({ setOpen }) {
       <div className="form-container">
         {inputs.map((inp) => {
           return (
-            <Input
-              key={inp.name}
-              register={register}
-              label={inp.name}
-              type={inp.type}
-              required={`${inp.name} is required`}
-              error={errors.hasOwnProperty(inp.name)}
-            />
+            <div key={inp.name}>
+              <Input
+                key={inp.name}
+                register={register}
+                label={inp.name}
+                type={inp.type}
+                required={`${inp.name} is required`}
+                error={errors.hasOwnProperty(inp.name)}
+              />
+            </div>
           );
         })}
         <select

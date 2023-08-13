@@ -1,0 +1,13 @@
+.chart {
+  min-height: 50vh;
+  @extend %media_chart;
+  & div {
+    display: flex;
+    justify-content: center;
+  }
+  & svg,
+  & canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

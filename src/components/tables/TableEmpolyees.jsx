@@ -82,7 +82,7 @@ export default function Table({ users, refetch }) {
                 <td>
                   <div className="btns-group">
                     <button
-                      className="btn btn-success"
+                      className="btn btn-primary"
                       onClick={() => handleUpdateUser(user.id)}
                     >
                       <AiOutlineEdit />

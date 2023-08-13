@@ -5,4 +5,7 @@
     width: 100%;
     overflow-x: auto;
   }
+  .card-container {
+    @extend %custom_media;
+  }
 }

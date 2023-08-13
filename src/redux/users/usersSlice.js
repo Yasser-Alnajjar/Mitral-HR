@@ -10,7 +10,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           : ["Users"],
       transformResponse: (res) => res.sort((a, b) => a.id - b.id).reverse(),
     }),
-    getSlingleUser: builder.query({
+    getSingleUser: builder.query({
       query: (id) => `/users/${id}`,
       invalidatesTags: ["Users"],
     }),
@@ -45,7 +45,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetUsersQuery,
-  useGetSlingleUserQuery,
+  useGetSingleUserQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
   useGetUsersOfDepartmentQuery,
