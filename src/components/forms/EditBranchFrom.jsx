@@ -1,13 +1,13 @@
 "use client";
 import {
-  useGetSlingleBranchQuery,
+  useGetSingleBranchQuery,
   useUpdateBranchMutation,
 } from "../../redux/branches/branchesSlice";
 import { useState } from "react";
 import Loading from "../Loading";
 import { toast } from "react-hot-toast";
 export default function EditBranchFrom({ branchId, setOpen }) {
-  const { data: branch } = useGetSlingleBranchQuery(branchId);
+  const { data: branch } = useGetSingleBranchQuery(branchId);
   const [branchName, setBranchName] = useState(branch && branch?.name);
   const [updateBranch, { isLoading }] = useUpdateBranchMutation();
   if (isLoading) {

@@ -7,41 +7,7 @@
     font-size: $fontSize * 2;
     font-weight: $font-bold;
   }
-
-  &_form {
-    width: 300px;
-    margin-top: 2rem;
-    & input {
-      @extend %input;
-      &:focus {
-        border-color: $black-color;
-      }
-    }
-    &_btn {
-      background-color: $black-color;
-      border: none;
-      padding: $padding-lg;
-      border-radius: $radius;
-      display: block;
-      margin: 0 auto;
-      cursor: pointer;
-      transition: $transition;
-      &:hover {
-        background-color: $black-color;
-        color: $white-color;
-      }
-    }
-  }
-  .errorMsg {
-    background-color: $danger;
-    color: $white-color;
-    padding: $padding-lg;
-    border-radius: $radius;
-    margin-bottom: 1rem;
-    font-size: $fontSize + 0.5;
-    text-align: center;
-  }
-  .hide {
-    display: none;
+  & * {
+    width: 400px;
   }
 }

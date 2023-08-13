@@ -5,7 +5,7 @@ const branchesSlice = apiSlice.injectEndpoints({
       query: () => "/branches",
       providesTags: ["Branches"],
     }),
-    getSlingleBranch: builder.query({
+    getSingleBranch: builder.query({
       query: (id) => `/branches/${id}`,
     }),
     updateBranch: builder.mutation({
@@ -27,7 +27,7 @@ const branchesSlice = apiSlice.injectEndpoints({
 });
 export const {
   useGetBranchesQuery,
-  useGetSlingleBranchQuery,
+  useGetSingleBranchQuery,
   useUpdateBranchMutation,
   useDeleteBranchMutation,
 } = branchesSlice;

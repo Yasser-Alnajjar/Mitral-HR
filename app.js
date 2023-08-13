@@ -110,35 +110,43 @@
 //   leader: "Yasser",
 // }));
 // console.log(newdepartments);
-const isValidDate = (value) => {
-  // Check if the value is a string.
-  if (!typeof value === "string") {
-    return false;
-  }
 
-  // Split the value into its components.
-  const [year, month, day] = value.split("-");
-
-  // Check if the year is a four-digit number.
-  if (year.length !== 4) {
-    return false;
-  }
-
-  // Check if the month is a number between 1 and 12.
-  if (month < 1 || month > 12) {
-    return false;
-  }
-
-  // Check if the day is a number between 1 and 31.
-  if (day < 1 || day > 31) {
-    return false;
-  }
-
-  return true;
-};
-
-// Check if the specified value conforms to the required format.
-const value = "2023-08-11";
-const isDateValid = isValidDate(value);
-
-console.log(isDateValid);
+// for (let i = 1; i <= 250; i++) {
+//   let o = {
+//     userId: Math.floor(Math.random() * 250),
+//     id: i,
+// days: [
+//   { id: 1, day: "2023-08-1", attend: true, icon: "✔" },
+//   { id: 2, day: "2023-08-2", attend: true, icon: "✔" },
+//   { id: 3, day: "2023-08-3", attend: true, icon: "✔" },
+//   { id: 4, day: "2023-08-4", attend: true, icon: "✔" },
+//   { id: 5, day: "2023-08-5", attend: false, icon: "❌" },
+//   { id: 6, day: "2023-08-6", attend: true, icon: "✔" },
+//   { id: 7, day: "2023-08-7", attend: true, icon: "✔" },
+//   { id: 8, day: "2023-08-8", attend: true, icon: "✔" },
+//   { id: 9, day: "2023-08-9", attend: true, icon: "✔" },
+//   { id: 10, day: "2023-08-10", attend: true, icon: "✔" },
+//   { id: 11, day: "2023-08-11", attend: true, icon: "✔" },
+//   { id: 12, day: "2023-08-12", attend: false, icon: "❌" },
+//   { id: 13, day: "2023-08-13", attend: true, icon: "✔" },
+//   { id: 14, day: "2023-08-14", attend: true, icon: "✔" },
+//   { id: 15, day: "2023-08-15", attend: true, icon: "✔" },
+//   { id: 16, day: "2023-08-16", attend: true, icon: "✔" },
+//   { id: 17, day: "2023-08-17", attend: false, icon: "❌" },
+//   { id: 18, day: "2023-08-18", attend: true, icon: "✔" },
+//   { id: 19, day: "2023-08-19", attend: true, icon: "✔" },
+//   { id: 20, day: "2023-08-20", attend: false, icon: "❌" },
+//   { id: 21, day: "2023-08-21", attend: true, icon: "✔" },
+//   { id: 22, day: "2023-08-22", attend: true, icon: "✔" },
+//   { id: 23, day: "2023-08-23", attend: false, icon: "❌" },
+//   { id: 24, day: "2023-08-24", attend: true, icon: "✔" },
+//   { id: 25, day: "2023-08-25", attend: false, icon: "❌" },
+//   { id: 26, day: "2023-08-26", attend: false, icon: "❌" },
+//   { id: 27, day: "2023-08-27", attend: true, icon: "✔" },
+//   { id: 28, day: "2023-08-28", attend: false, icon: "❌" },
+//   { id: 29, day: "2023-08-29", attend: true, icon: "✔" },
+//   { id: 30, day: "2023-08-30", attend: true, icon: "✔" },
+// ],
+//   };
+//   console.log(o);
+// }

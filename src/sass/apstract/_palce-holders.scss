@@ -20,3 +20,23 @@
     border-color: $danger;
   }
 }
+
+%custom_media {
+  @include grid("center", 1, 10);
+  @include mediaQuery("min", 767) {
+    @include grid("center", 2, 10);
+  }
+  @include mediaQuery("min", 991) {
+    @include grid("center", 3, 10);
+  }
+  @include mediaQuery("min", 1024) {
+    @include grid("center", 4, 10);
+  }
+}
+%media_chart {
+  @include grid("center", 1, 10);
+
+  @include mediaQuery("min", 911) {
+    @include grid("center", 2, 10);
+  }
+}

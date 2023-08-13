@@ -6,7 +6,7 @@
 @import "./pages/loginPage";
 @import "./pages/dashboardPage";
 @import "./pages/departmentPage";
-// @import "./pages/branchesPage";
+@import "./pages/branchesPage";
 @import "./pages/tasksPage";
 
 // Components
@@ -18,8 +18,10 @@
 @import "./components/buttons";
 @import "./components/modal";
 @import "./components/form";
+@import "./components/input";
 @import "./components/table";
 @import "./components/alert";
+@import "./components/chart";
 
 // Utils
 @import "./apstract/utils";

@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 export default function Sidebar() {
   const open = useSelector(selectOpen);
   let size = open ? 20 : 25;
+
   const list_Item = [
     {
       icon: <AiOutlineDashboard size={size} />,
@@ -40,9 +41,14 @@ export default function Sidebar() {
       title: "Employees",
     },
     {
-      icon: <PiUmbrellaSimpleThin size={size} />,
-      path: "/dashboard/holidays",
-      title: "Holidays",
+      icon: <AiOutlineClockCircle size={size} />,
+      path: "/dashboard/attendance",
+      title: "Attendance",
+    },
+    {
+      icon: <AiOutlineFieldTime size={size} />,
+      path: "/dashboard/overtime",
+      title: "Overtime",
     },
     {
       icon: <AiOutlineCheckSquare size={size} />,
@@ -50,15 +56,16 @@ export default function Sidebar() {
       title: "Tasks",
     },
     {
-      icon: <AiOutlineClockCircle size={size} />,
-      path: "/dashboard/attendance",
-      title: "Attendance",
-    },
-    {
       icon: <AiOutlineDollar size={size} />,
       path: "/dashboard/salary",
       title: "Salary",
     },
+    {
+      icon: <PiUmbrellaSimpleThin size={size} />,
+      path: "/dashboard/holidays",
+      title: "Holidays",
+    },
+
     {
       icon: <AiOutlineCoffee size={size} />,
       path: "/dashboard/vacations",
@@ -66,13 +73,8 @@ export default function Sidebar() {
     },
     {
       icon: <AiOutlineBarChart size={size} />,
-      path: "/dashboard/Finance",
+      path: "/dashboard/finance",
       title: "Finance",
-    },
-    {
-      icon: <AiOutlineFieldTime size={size} />,
-      path: "/dashboard/Overtime",
-      title: "Overtime",
     },
   ];
   return (

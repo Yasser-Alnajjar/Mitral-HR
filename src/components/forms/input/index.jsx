@@ -1,3 +1,4 @@
+import { useState } from "react";
 export default function Input({
   label,
   register,
@@ -6,19 +7,20 @@ export default function Input({
   pattern,
   error,
   type,
-  format,
-  value,
 }) {
   return (
-    <input
-      className={`form-control ${error && "text-danger border-danger"}`}
-      {...register(label, { required })}
-      placeholder={label}
-      type={type}
-      defaultValue={defaultValue}
-      pattern={pattern}
-      format={format}
-      value={value}
-    />
+    <>
+      <label className={`form-label `} htmlFor={label}>
+        {label}
+      </label>
+      <input
+        className={`form-control  ${error ? "text-danger border-danger" : ""}`}
+        id={label}
+        {...register(label, { required })}
+        type={type}
+        defaultValue={defaultValue}
+        pattern={pattern}
+      />
+    </>
   );
 }

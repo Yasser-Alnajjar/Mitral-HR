@@ -3,11 +3,11 @@ import { useState } from "react";
 import Loading from "../../Loading";
 import { toast } from "react-hot-toast";
 import {
-  useGetSlingleDepartmentQuery,
+  useGetSingleDepartmentQuery,
   useUpdateDepartmentMutation,
 } from "../../../redux/departments/departmentSlice";
 export default function EditDepartmentFrom({ departmentId, setOpen }) {
-  const { data: department } = useGetSlingleDepartmentQuery(departmentId);
+  const { data: department } = useGetSingleDepartmentQuery(departmentId);
   const [departmentName, setDepartmentName] = useState(
     department && department?.name
   );

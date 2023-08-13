@@ -1,0 +1,26 @@
+.form-label {
+  @include transition("all", 0.3);
+  border-bottom: 2px solid transparent;
+  cursor: text;
+  &.show {
+    transform: translate(0, 0);
+    border-color: $main-color;
+  }
+}
+.form-control {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  border-radius: $radius;
+  padding: $padding-md;
+  width: 100%;
+  margin-bottom: 1rem;
+  @include transition("all", 0.3);
+  outline: none;
+  &:focus {
+    border-color: $main-color;
+  }
+
+  &.border-danger:focus {
+    border-color: $danger;
+  }
+}

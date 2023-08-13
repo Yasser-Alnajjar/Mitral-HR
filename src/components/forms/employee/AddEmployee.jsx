@@ -71,14 +71,15 @@ export default function AddEmployee({ setOpen, refetch }) {
       <div className="form-container">
         {inputs.map((inp) => {
           return (
-            <Input
-              key={inp.name}
-              register={register}
-              label={inp.name}
-              type={inp.type}
-              required={true}
-              error={errors.hasOwnProperty(inp.name)}
-            />
+            <div key={inp.name}>
+              <Input
+                register={register}
+                label={inp.name}
+                type={inp.type}
+                required={true}
+                error={errors.hasOwnProperty(inp.name)}
+              />
+            </div>
           );
         })}
         <select

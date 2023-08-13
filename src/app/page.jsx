@@ -1,67 +1,77 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setCredentials } from "../redux/auth/authSlice";
 import { useLoginMutation } from "../redux/auth/authApiSlice";
 import { toast } from "react-hot-toast";
 import Loading from "../components/Loading";
+import { useForm } from "react-hook-form";
+import Input from "../components/forms/input";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 const Login = () => {
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({
+    email: "yasser@mail.com",
+    password: "yasser123",
+  });
+
   const router = useRouter();
-  const userRef = useRef();
-  const [user, setUser] = useState("yasser@mail.com");
-  const [password, setPassword] = useState("yasser123");
-  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
   useEffect(() => {
-    userRef.current.focus();
-  }, []);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    reset({
+      email: "yasser@mail.com",
+      password: "yasser123",
+    });
+  }, [reset]);
+  const onSubmit = async (data) => {
     try {
-      const userData = await login({ email: user, password })
+      login({ ...data })
         .unwrap()
-        .then(() => {
-          localStorage.setItem("password", JSON.stringify(password));
-          localStorage.setItem("user", JSON.stringify(user));
+        .then((userdata) => {
           toast.success("Login successfuly");
+          localStorage.setItem("password", JSON.stringify(data.password));
+          localStorage.setItem("user", JSON.stringify(data.email));
+          dispatch(setCredentials(userdata));
           router.push("/dashboard");
+          reset();
+        })
+        .catch((err) => {
+          toast.error(err.data);
         });
-      dispatch(setCredentials({ ...userData }));
-      setUser("");
-      setPassword("");
     } catch (err) {
-      toast.error(err.data);
+      toast.error(err.message);
     }
   };
 
-  const handleUser = ({ target }) => setUser(target.value);
-  const handlePassword = ({ target }) => setPassword(target.value);
   let content = (
     <section className="login">
       <h2 className="login_title">Login</h2>
-      <form className="login_form" onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          className="login_form_input-email"
-          value={user}
-          onChange={handleUser}
-          ref={userRef}
-          required
-        />
-        <input
-          type="password"
-          placeholder="password"
-          className="login_form_input-password"
-          value={password}
-          onChange={handlePassword}
-          required
-        />
-        <button type="submit" className="login_form_btn">
-          Submit
-        </button>
-      </form>
+      <div className="card p-lg mt-lg">
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label={"email"}
+            register={register}
+            error={errors.email}
+            required={`Email is required`}
+            type={"email"}
+          />
+          <Input
+            label={"password"}
+            register={register}
+            error={errors.password}
+            required={`Password is required`}
+            type={"password"}
+          />
+          <button type="submit" className="btn btn-primary form-submit">
+            Submit
+          </button>
+        </form>
+      </div>
     </section>
   );
 
