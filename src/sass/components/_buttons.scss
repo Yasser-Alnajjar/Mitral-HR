@@ -26,6 +26,12 @@
       background-color: $primary-hover;
     }
   }
+  &-warning {
+    background-color: $warning;
+    &:hover {
+      background-color: $warning-hover;
+    }
+  }
 }
 .btns-group {
   display: grid;

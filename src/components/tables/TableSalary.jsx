@@ -1,19 +1,21 @@
-import { useState } from "react";
+"use client";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Modal from "../apstracts/Modal";
-import EditHoliday from "../forms/holiday/EditHoliday";
-import { useDeleteHolidayMutation } from "../../redux/holidays/holidaysSlice";
+import EditSalary from "../forms/salary/EditSalary";
+import { useState } from "react";
+import { useDeleteUserMutation } from "../../redux/users/usersSlice";
+import Loading from "../Loading";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
-export default function TableHolidays({ holidays }) {
+export default function TableSalary({ users, refetch }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-  const [deleteHoliday, { isError, error }] = useDeleteHolidayMutation();
-  const handleUpdateHoliday = async (id) => {
+  const [deleteUser, { isLoading }] = useDeleteUserMutation(id);
+  const handleUpdateUser = async (id) => {
     setOpen(true);
     setId(id);
   };
-  const handleDeleteHoliday = async (id, holidayName) => {
+  const handleDeleteUser = async (id, name) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -24,55 +26,60 @@ export default function TableHolidays({ holidays }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
-        deleteHoliday(id)
+        deleteUser(id)
           .unwrap()
           .then(() => {
-            toast.success(`(${holidayName}) Holiday has been deleted!`);
+            toast.success(`${name}, has been deleted!`);
+            refetch();
           })
           .catch((err) => {
-            console.log(err.message);
+            toast.error(err.data);
           });
       }
     });
   };
-  if (isError) {
-    toast.error(error.data);
+  let content;
+  if (isLoading) {
+    content = <Loading />;
   }
-  return (
+  content = (
     <section>
-      <Modal open={open} setOpen={setOpen} title="Edit Holiday">
-        <EditHoliday setOpen={setOpen} holidayId={id} />
+      <Modal open={open} setOpen={setOpen} title="Edit Branch">
+        <EditSalary setOpen={setOpen} userId={id} refetch={refetch} />
       </Modal>
       <div className="table-container">
-        <table className="table text-center">
+        <table className="table">
           <thead className="table__head">
             <tr>
               <th>#</th>
-              <th>Title</th>
-              <th>Holiday Date</th>
-              <th>Day</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Job title</th>
+              <th>Salary</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
-            {holidays.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.date}</td>
-                <td>{item.day}</td>
+            {users.map((user, index) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>
+                  {user.first_name} {user.last_name}
+                </td>
+                <td>{user.email}</td>
+                <td>{user.job_title}</td>
+                <td>${user.salary}</td>
                 <td>
                   <div className="btns-group">
                     <button
                       className="btn btn-warning"
-                      onClick={() => handleUpdateHoliday(item.id)}
+                      onClick={() => handleUpdateUser(user.id)}
                     >
                       <AiOutlineEdit />
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteHoliday(item.id, item.name)}
+                      onClick={() => handleDeleteUser(user.id, user.first_name)}
                     >
                       <AiOutlineDelete />
                     </button>
@@ -85,4 +92,5 @@ export default function TableHolidays({ holidays }) {
       </div>
     </section>
   );
+  return content;
 }

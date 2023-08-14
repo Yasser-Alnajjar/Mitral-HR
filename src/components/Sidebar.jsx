@@ -46,6 +46,11 @@ export default function Sidebar() {
       title: "Attendance",
     },
     {
+      icon: <AiOutlineDollar size={size} />,
+      path: "/dashboard/salary",
+      title: "Salary",
+    },
+    {
       icon: <AiOutlineFieldTime size={size} />,
       path: "/dashboard/overtime",
       title: "Overtime",
@@ -56,25 +61,14 @@ export default function Sidebar() {
       title: "Tasks",
     },
     {
-      icon: <AiOutlineDollar size={size} />,
-      path: "/dashboard/salary",
-      title: "Salary",
-    },
-    {
       icon: <PiUmbrellaSimpleThin size={size} />,
       path: "/dashboard/holidays",
       title: "Holidays",
     },
-
     {
       icon: <AiOutlineCoffee size={size} />,
       path: "/dashboard/vacations",
       title: "Vacations",
-    },
-    {
-      icon: <AiOutlineBarChart size={size} />,
-      path: "/dashboard/finance",
-      title: "Finance",
     },
   ];
   return (

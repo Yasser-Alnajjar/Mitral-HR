@@ -24,6 +24,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       email: user,
       password,
     };
+
     const refreshToken = await baseQuery(
       {
         url: `${process.env.NEXT_PUBLIC_Server_Url}/login`,
@@ -38,6 +39,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     );
     if (refreshToken.data) {
       const { accessToken, user } = refreshToken.data;
+
       api.dispatch(
         setCredentials({
           accessToken,
@@ -60,6 +62,8 @@ export const apiSlice = createApi({
     "Tasks",
     "Holidays",
     "Attendance",
+    "Overtime",
+    "Salary",
   ],
   endpoints: (builder) => ({}),
 });
