@@ -9,6 +9,32 @@ import Image from "next/image";
 export default function Navbar() {
   const open = useSelector(selectOpen);
   const dispatch = useDispatch();
+  const list_Item = [
+    {
+      title: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      path: "/dashboard/attendance",
+      title: "Attendance",
+    },
+    {
+      path: "/dashboard/overtime",
+      title: "Overtime",
+    },
+    {
+      path: "/dashboard/tasks",
+      title: "Tasks",
+    },
+    {
+      path: "/dashboard/holidays",
+      title: "Holidays",
+    },
+    {
+      path: "/dashboard/vacations",
+      title: "Vacations",
+    },
+  ];
   return (
     <nav className={`navbar ${open ? "open" : ""}`}>
       <div className="navbar__logo">
@@ -21,23 +47,14 @@ export default function Navbar() {
             <AiOutlineAlignRight size={25} />
           </span>
         </div>
+        <h3>Mitral Hr</h3>
       </div>
       <ul className="navbar__list">
-        <li>
-          <Link href="/">test</Link>
-        </li>
-        <li>
-          <Link href="/">test</Link>
-        </li>
-        <li>
-          <Link href="/">test</Link>
-        </li>
-        <li>
-          <Link href="/">test</Link>
-        </li>
-        <li>
-          <Link href="/">test</Link>
-        </li>
+        {list_Item.map((item, index) => (
+          <li key={index}>
+            <Link href={item.path}>{item.title}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

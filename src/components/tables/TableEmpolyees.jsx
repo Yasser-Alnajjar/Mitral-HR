@@ -60,7 +60,6 @@ export default function Table({ users, refetch }) {
               <th>Address</th>
               <th>Country</th>
               <th>Role</th>
-              <th>Salary</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -78,11 +77,10 @@ export default function Table({ users, refetch }) {
                 <td>{user.address}</td>
                 <td>{user.country}</td>
                 <td>{user.role}</td>
-                <td>{user.salary}</td>
                 <td>
                   <div className="btns-group">
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-warning"
                       onClick={() => handleUpdateUser(user.id)}
                     >
                       <AiOutlineEdit />

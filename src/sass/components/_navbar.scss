@@ -17,8 +17,9 @@
   &__logo {
     display: flex;
     justify-content: space-between;
-    width: 80px;
+    width: 190px;
     @include transition("width", 0.3);
+    gap: 20px;
   }
   &.open &__logo {
     width: 230px;

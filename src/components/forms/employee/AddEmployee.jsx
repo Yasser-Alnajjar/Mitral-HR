@@ -44,7 +44,7 @@ export default function AddEmployee({ setOpen, refetch }) {
         }`}
         {...register("department", { required: true })}
       >
-        <option>Select Please</option>
+        <option value={""}>Select Please</option>
         {departments.map((item) => (
           <option key={item.id} value={item.name}>
             {item.name}

@@ -2,7 +2,7 @@
 import { toast } from "react-hot-toast";
 import Loading from "../../../components/Loading";
 import { useGetUsersQuery } from "../../../redux/users/usersSlice";
-import Table from "../../../components/tables/TableEmpolyees";
+import TableEmpolyees from "../../../components/tables/TableEmpolyees";
 import AddEmployee from "../../../components/forms/employee/AddEmployee";
 import Modal from "../../../components/apstracts/Modal";
 import { useState } from "react";
@@ -32,7 +32,7 @@ export default function Employees() {
         <Modal setOpen={setOpen} open={open}>
           <AddEmployee setOpen={setOpen} refetch={refetch} />
         </Modal>
-        <Table users={users} refetch={refetch} />
+        <TableEmpolyees users={users} refetch={refetch} />
       </section>
     );
   } else if (isError) {

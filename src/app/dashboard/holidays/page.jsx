@@ -8,7 +8,6 @@ import AddHoliday from "../../../components/forms/holiday/AddHoliday";
 import { useState } from "react";
 export default function Holidays() {
   const [open, setOpen] = useState(false);
-
   const {
     data: holidays,
     isLoading,
