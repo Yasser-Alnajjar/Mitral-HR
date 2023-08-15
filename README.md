@@ -4,10 +4,10 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 
 ## features
 
-| status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
-|---|---|---|---|---|---|---|---|
-| Auth | done |  done |  done |  done | done  | done  | done  |
-| Crud | done |  done |  done |  done | done  | done  | done  |
+| status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance | Salary | Overtime |
+|---|---|---|---|---|---|---|---|---|---|
+| Auth | done |  done |  done |  done | done  | done  | done  | done | done |
+| Crud | done |  done |  done |  done | done  | done  | done  | done | in progress |
 
 ## Getting Started
 
