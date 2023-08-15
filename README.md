@@ -19,7 +19,7 @@ It's a simple Mitral HR system you can handle this project by {CRUD} in [Branche
 First clone the project, run the Project:
 on your pc open cmd :
 ```
-git clone 
+git clone https://github.com/Yasser-Alnajjar/Mitral-HR.git
 ```
 ```
 npm run dev
