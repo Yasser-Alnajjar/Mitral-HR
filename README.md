@@ -1,6 +1,6 @@
 ## Mitral HR
 
-It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks , Attendance], Edit your profile
+The human resources management system manages all the operations of the company's employees, which means that you can control the branches and departments and all the operations of modifications, additions and deletions (curd) setting salaries for employees dealing with deductions and taxes imposed on employees all this and more.
 
 ## features
 
