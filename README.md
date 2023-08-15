@@ -28,7 +28,6 @@ npm run dev
 ```
 
 clone the mitral-server
-Then run the local server
 ```
 git clone https://github.com/Yasser-Alnajjar/mitral_server
 cd mitral_server
