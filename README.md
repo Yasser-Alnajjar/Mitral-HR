@@ -20,13 +20,20 @@ First clone the project, run the Project:
 on your pc open cmd :
 ```
 git clone https://github.com/Yasser-Alnajjar/Mitral-HR.git
+cd Mitral-HR
+npm install
 ```
 ```
 npm run dev
 ```
 
+clone the mitral-server
 Then run the local server
-
+```
+git clone https://github.com/Yasser-Alnajjar/mitral_server
+cd mitral_server
+npm install
+```
 ```
 npm run serve
 ```
