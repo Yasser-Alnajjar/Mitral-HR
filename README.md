@@ -16,7 +16,7 @@ The human resources management system manages all the operations of the company'
 
 ## Getting Started
 
-First clone the project, run the Project:
+First clone the project :
 on your pc open cmd :
 ```
 git clone https://github.com/Yasser-Alnajjar/Mitral-HR.git
@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-clone the mitral-server
+Second clone the mitral-server
 ```
 git clone https://github.com/Yasser-Alnajjar/mitral_server
 cd mitral_server
