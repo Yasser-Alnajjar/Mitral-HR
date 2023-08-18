@@ -1,6 +1,6 @@
 "use client";
 import { toast } from "react-hot-toast";
-import Loading from "../../../components/Loading";
+import LoadingComponent from "../../../components/LoadingComponent";
 import { useGetUsersQuery } from "../../../redux/users/usersSlice";
 import TableEmpolyees from "../../../components/tables/TableEmpolyees";
 import AddEmployee from "../../../components/forms/employee/AddEmployee";
@@ -10,15 +10,15 @@ export default function Employees() {
   const [open, setOpen] = useState(false);
   const {
     data: users,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
     refetch,
   } = useGetUsersQuery();
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section>

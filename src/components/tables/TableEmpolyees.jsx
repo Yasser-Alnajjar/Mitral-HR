@@ -4,13 +4,13 @@ import Modal from "../apstracts/Modal";
 import EditEmployees from "../forms/employee/EditEmployees";
 import { useState } from "react";
 import { useDeleteUserMutation } from "../../redux/users/usersSlice";
-import Loading from "../Loading";
+import LoadingComponent from "../LoadingComponent";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
 export default function Table({ users, refetch }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-  const [deleteUser, { isLoading }] = useDeleteUserMutation(id);
+  const [deleteUser, { isLoadingComponent }] = useDeleteUserMutation(id);
   const handleUpdateUser = async (id) => {
     setOpen(true);
     setId(id);
@@ -39,8 +39,8 @@ export default function Table({ users, refetch }) {
     });
   };
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   }
   content = (
     <section>
@@ -67,16 +67,16 @@ export default function Table({ users, refetch }) {
             {users.map((user, index) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                <td>
+                <td className="capitalize">
                   {user.first_name} {user.last_name}
                 </td>
                 <td>{user.email}</td>
-                <td>{user.job_title}</td>
-                <td>{user.gender}</td>
-                <td>{user.phone}</td>
-                <td>{user.address}</td>
-                <td>{user.country}</td>
-                <td>{user.role}</td>
+                <td className="capitalize">{user.job_title}</td>
+                <td className="capitalize">{user.gender}</td>
+                <td className="capitalize">{user.phone}</td>
+                <td className="capitalize">{user.address}</td>
+                <td className="capitalize">{user.country}</td>
+                <td className="capitalize">{user.role}</td>
                 <td>
                   <div className="btns-group">
                     <button

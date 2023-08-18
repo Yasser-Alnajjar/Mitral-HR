@@ -14,6 +14,10 @@ const authSlice = createSlice({
     logOut: (state, action) => {
       state.user = null;
       state.token = null;
+      if (typeof window !== "undefined") {
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
+      }
     },
   },
 });

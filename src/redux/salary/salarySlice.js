@@ -3,7 +3,7 @@ import { apiSlice } from "../apiSlice";
 export const salarySlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSalaries: builder.query({
-      query: () => `/api/salaries`,
+      query: () => `/salary`,
       providesTags: ["Salary"],
     }),
 

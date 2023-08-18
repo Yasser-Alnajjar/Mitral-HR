@@ -4,14 +4,14 @@ import {
   useUpdateBranchMutation,
 } from "../../redux/branches/branchesSlice";
 import { useState } from "react";
-import Loading from "../Loading";
+import LoadingComponent from "../LoadingComponent";
 import { toast } from "react-hot-toast";
 export default function EditBranchFrom({ branchId, setOpen }) {
   const { data: branch } = useGetSingleBranchQuery(branchId);
   const [branchName, setBranchName] = useState(branch && branch?.name);
-  const [updateBranch, { isLoading }] = useUpdateBranchMutation();
-  if (isLoading) {
-    return <Loading />;
+  const [updateBranch, { isLoadingComponent }] = useUpdateBranchMutation();
+  if (isLoadingComponent) {
+    return <LoadingComponent />;
   }
   const onSubmit = async (e) => {
     e.preventDefault();

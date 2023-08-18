@@ -9,3 +9,10 @@
     @extend %custom_media;
   }
 }
+.total {
+  display: flex;
+  flex-direction: column;
+  padding: $padding-md;
+  align-items: center;
+  user-select: none;
+}

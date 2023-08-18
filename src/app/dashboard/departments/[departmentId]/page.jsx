@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useGetUsersOfDepartmentQuery } from "../../../../redux/users/usersSlice";
-import Loading from "../../../../components/Loading";
+import LoadingComponent from "../../../../components/LoadingComponent";
 
 import { toast } from "react-hot-toast";
 import Alert from "../../../../components/apstracts/Alert";
@@ -12,7 +12,7 @@ export default function DepartmentDetails() {
 
   const {
     data: users,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
@@ -20,8 +20,8 @@ export default function DepartmentDetails() {
   } = useGetUsersOfDepartmentQuery(departmentId);
 
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = users?.length ? (
       <section>

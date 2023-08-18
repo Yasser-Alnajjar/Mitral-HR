@@ -25,8 +25,11 @@
     display: flex;
     flex-direction: column;
     background-color: $white-color;
-    min-width: 700px;
     position: absolute;
+    width: 96%;
+    @include mediaQuery("min", 767) {
+      width: 700px;
+    }
     top: -200%;
     left: 50%;
     opacity: 0;
@@ -36,6 +39,7 @@
     @include box-shadow(3, 3, 5, $black-color);
     @include box-shadow(3, 3, 5, $black-color);
     @include transition("all", 0.5);
+
     &.show {
       opacity: 1;
       top: 20px;

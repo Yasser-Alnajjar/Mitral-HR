@@ -59,9 +59,9 @@ export default function TableHolidays({ holidays }) {
             {holidays.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.date}</td>
-                <td>{item.day}</td>
+                <td className="capitalize">{item.name}</td>
+                <td className="capitalize">{item.date}</td>
+                <td className="capitalize">{item.day}</td>
                 <td>
                   <div className="btns-group">
                     <button

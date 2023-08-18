@@ -12,6 +12,8 @@ import {
   AiOutlineCoffee,
 } from "react-icons/ai";
 import { PiUmbrellaSimpleThin } from "react-icons/pi";
+import { LiaUserClockSolid } from "react-icons/lia";
+
 import Sidebar__list from "./Sidebar__Item";
 import { selectOpen } from "../redux/theme/themeSlice";
 import { useSelector } from "react-redux";
@@ -41,7 +43,7 @@ export default function Sidebar() {
       title: "Employees",
     },
     {
-      icon: <AiOutlineClockCircle size={size} />,
+      icon: <LiaUserClockSolid size={size} />,
       path: "/dashboard/attendance",
       title: "Attendance",
     },
