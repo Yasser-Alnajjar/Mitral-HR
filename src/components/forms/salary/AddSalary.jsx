@@ -46,19 +46,23 @@ export default function AddSalary({ setOpen, refetch }) {
   let selectBox;
   if (isSuccess) {
     selectBox = (
-      <select
-        className={`form-control ${
-          errors.userId && "text-danger border-danger"
-        }`}
-        {...register("userId", { required: true })}
-      >
-        <option value="">Select Please</option>
-        {users.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.first_name} {item.last_name}
-          </option>
-        ))}
-      </select>
+      <>
+        <label htmlFor="selectUser">User</label>
+        <select
+          id="selectUser"
+          className={`form-control ${
+            errors.userId && "text-danger border-danger"
+          }`}
+          {...register("userId", { required: true })}
+        >
+          <option value="">Select Please</option>
+          {users.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.first_name} {item.last_name}
+            </option>
+          ))}
+        </select>
+      </>
     );
   }
   let inputs = [
@@ -84,7 +88,7 @@ export default function AddSalary({ setOpen, refetch }) {
             </div>
           );
         })}
-        {selectBox}
+        <div>{selectBox}</div>
       </div>
       <button type="submit" className="btn btn-success form-submit">
         Save

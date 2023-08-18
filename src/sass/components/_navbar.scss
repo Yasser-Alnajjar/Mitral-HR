@@ -8,12 +8,15 @@
   background-color: #fff;
   position: sticky;
   top: 0;
+
   &__list {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     list-style-type: none;
   }
+
   &__logo {
     display: flex;
     justify-content: space-between;

@@ -1,12 +1,11 @@
 "use client";
-
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 export default function TableAttendance({ attendance }) {
   let day = attendance.map((attend) => (
     <tr key={attend.id}>
       <td>{attend.id}</td>
-      <td>
+      <td className="capitalize">
         {attend.first_name} {attend.last_name}
       </td>
       {attend.days.map((day) => (

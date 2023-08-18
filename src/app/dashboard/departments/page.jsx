@@ -1,7 +1,7 @@
 "use client";
 import { toast } from "react-hot-toast";
 import Card from "../../../components/Card";
-import Loading from "../../../components/Loading";
+import LoadingComponent from "../../../components/LoadingComponent";
 import {
   useDeleteDepartmentMutation,
   useGetDepartmentsQuery,
@@ -19,7 +19,7 @@ export default function Departments() {
 
   const {
     data: departments,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
@@ -42,8 +42,8 @@ export default function Departments() {
     });
   };
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section className="department">

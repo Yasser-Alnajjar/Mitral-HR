@@ -7,7 +7,7 @@
   background-color: $white-color;
   display: grid;
   place-content: center;
-  &__loading {
+  &__LoadingComponent {
     display: inline-block;
     position: relative;
     width: 64px;
@@ -17,14 +17,14 @@
       background: $black-color;
       opacity: 1;
       border-radius: 50%;
-      animation: loading 1.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      animation: LoadingComponent 1.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
-    &__loading div:nth-child(2) {
+    &__LoadingComponent div:nth-child(2) {
       animation-delay: -0.7s;
     }
   }
 }
-@keyframes loading {
+@keyframes LoadingComponent {
   0% {
     top: 28px;
     left: 28px;

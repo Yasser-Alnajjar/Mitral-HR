@@ -6,7 +6,7 @@ const overtimeSlice = apiSlice.injectEndpoints({
       providesTags: ["Overtime"],
     }),
     getOverTimeUser: builder.query({
-      query: (id) => `overtime?userId${id}`,
+      query: (id) => `overtime?userId=${id}`,
       providesTags: ["Overtime"],
     }),
     addOverTime: builder.mutation({

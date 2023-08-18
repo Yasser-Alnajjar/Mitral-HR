@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { setCredentials } from "../redux/auth/authSlice";
 import { useLoginMutation } from "../redux/auth/authApiSlice";
 import { toast } from "react-hot-toast";
-import Loading from "../components/Loading";
+import LoadingComponent from "../components/LoadingComponent";
 import { useForm } from "react-hook-form";
 import Input from "../components/forms/input";
 import { useEffect } from "react";
@@ -21,11 +21,11 @@ const Login = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoadingComponent }] = useLoginMutation();
   useEffect(() => {
     reset({
-      email: "yasser@mail.com",
-      password: "yasser123",
+      email: "admin@gmail.com",
+      password: "password",
     });
   }, [reset]);
   const onSubmit = async (data) => {
@@ -75,7 +75,7 @@ const Login = () => {
     </section>
   );
 
-  return isLoading ? <Loading /> : content;
+  return isLoadingComponent ? <LoadingComponent /> : content;
 };
 
 export default Login;

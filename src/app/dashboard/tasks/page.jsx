@@ -1,19 +1,19 @@
 "use client";
-import Loading from "../../../components/Loading";
+import LoadingComponent from "../../../components/LoadingComponent";
 import { useGetTasksQuery } from "../../../redux/taks/tasksSlice.js";
 import Card from "../../../components/Card";
 import { toast } from "react-hot-toast";
 export default function Tasks() {
   const {
     data: tasks,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
   } = useGetTasksQuery();
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section className="tasks">

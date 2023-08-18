@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Loading from "../../Loading";
+import LoadingComponent from "../../LoadingComponent";
 import { toast } from "react-hot-toast";
 import { useAddDepartmentMutation } from "../../../redux/departments/departmentSlice";
 import Modal from "../../apstracts/Modal";
@@ -9,10 +9,10 @@ export default function EditDepartmentFrom({ departmentId }) {
   const [open, setOpen] = useState(false);
   const [departmentName, setDepartmentName] = useState("");
   const [leader, setLeader] = useState("");
-  const [addDepartment, { isLoading }] = useAddDepartmentMutation();
+  const [addDepartment, { isLoadingComponent }] = useAddDepartmentMutation();
 
-  if (isLoading) {
-    return <Loading />;
+  if (isLoadingComponent) {
+    return <LoadingComponent />;
   }
   const onSubmit = async (e) => {
     e.preventDefault();

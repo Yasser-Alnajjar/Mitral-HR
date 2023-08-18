@@ -1,7 +1,7 @@
 "use client";
 
 import { Chart as ChartJS, LineController } from "chart.js/auto";
-import Loading from "../../components/Loading";
+import LoadingComponent from "../../components/LoadingComponent";
 import { toast } from "react-hot-toast";
 import {
   useGetAllBranchesQuery,
@@ -13,10 +13,14 @@ import { useGetUserChartQuery } from "../../redux/charts/chartSlice";
 import Card from "../../components/Card";
 import { Bar, Pie, Scatter, Line } from "react-chartjs-2";
 import { chartData } from "../../ChartData/userChart";
+import { store } from "../../redux/store";
+import { logOut } from "../../redux/auth/authSlice";
+import { useRouter } from "next/navigation";
 const Dashboard = () => {
+  const router = useRouter();
   const {
     data: users,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
@@ -27,8 +31,8 @@ const Dashboard = () => {
   const { data: tasks } = useGetAllTasksQuery();
 
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <div className="container">
@@ -106,6 +110,14 @@ const Dashboard = () => {
     },
   };
   // End Chart Configuration
+
+  if (
+    typeof window !== "undefined" &&
+    !JSON.parse(window.localStorage.getItem("user"))
+  ) {
+    store.dispatch(logOut());
+    router.push("/");
+  }
   return (
     <section className="mt-lg">
       {content}

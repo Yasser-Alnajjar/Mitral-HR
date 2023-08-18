@@ -1,6 +1,6 @@
 "use client";
 import { useGetHolidaysQuery } from "../../../redux/holidays/holidaysSlice";
-import Loading from "../../../components/Loading";
+import LoadingComponent from "../../../components/LoadingComponent";
 import TableHolidays from "../../../components/tables/TableHolidays";
 import { toast } from "react-hot-toast";
 import Modal from "../../../components/apstracts/Modal";
@@ -10,14 +10,14 @@ export default function Holidays() {
   const [open, setOpen] = useState(false);
   const {
     data: holidays,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
   } = useGetHolidaysQuery();
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section>

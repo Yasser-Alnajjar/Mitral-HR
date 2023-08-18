@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "../../../components/Card";
-import Loading from "../../../components/Loading";
+import LoadingComponent from "../../../components/LoadingComponent";
 import {
   useGetBranchesQuery,
   useDeleteBranchMutation,
@@ -10,6 +10,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import EditBranchFrom from "../../../components/forms/EditBranchFrom";
 import Modal from "../../../components/apstracts/Modal";
+
 export default function Branches() {
   const [open, setOpen] = useState(false);
   const [branchId, setBranchId] = useState("");
@@ -17,22 +18,22 @@ export default function Branches() {
 
   const {
     data: branches,
-    isLoading,
+    isLoadingComponent,
     isSuccess,
     isError,
     error,
   } = useGetBranchesQuery();
 
   let content;
-  if (isLoading) {
-    content = <Loading />;
+  if (isLoadingComponent) {
+    content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section className="branches">
         <Modal open={open} setOpen={setOpen} title="Edit Branch">
           <EditBranchFrom setOpen={setOpen} branchId={branchId} />
         </Modal>
-        <div className="add-branch">
+        <div className="btns-group place-end">
           <div className="container">
             <button className="btn btn-primary">Add</button>
           </div>
@@ -47,7 +48,7 @@ export default function Branches() {
                       setOpen(true);
                       setBranchId(item.id);
                     }}
-                    className="btn btn-primary"
+                    className="btn btn-warning"
                   >
                     More
                   </button>

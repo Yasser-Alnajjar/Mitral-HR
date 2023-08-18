@@ -1,4 +1,4 @@
-export default function Loading() {
+export default function LoadingComponent() {
   return (
     <section className="main">
       <div className="main__loading">

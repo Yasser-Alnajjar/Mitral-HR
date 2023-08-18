@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Loading from "../../Loading";
+import LoadingComponent from "../../LoadingComponent";
 import { toast } from "react-hot-toast";
 import {
   useGetSingleDepartmentQuery,
@@ -12,10 +12,11 @@ export default function EditDepartmentFrom({ departmentId, setOpen }) {
     department && department?.name
   );
   const [leader, setLeader] = useState(department && department?.leader);
-  const [updateDepartment, { isLoading }] = useUpdateDepartmentMutation();
+  const [updateDepartment, { isLoadingComponent }] =
+    useUpdateDepartmentMutation();
 
-  if (isLoading) {
-    return <Loading />;
+  if (isLoadingComponent) {
+    return <LoadingComponent />;
   }
   const onSubmit = async (e) => {
     e.preventDefault();

@@ -11,7 +11,11 @@ import { useForm } from "react-hook-form";
 export default function EditEmployees({ userId, setOpen, refetch }) {
   const { data: user } = useGetSingleUserQuery(userId);
   const [updateUser, error] = useUpdateUserMutation();
-  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
+  const {
+    data: departments,
+    isSuccess,
+    isLoadingComponent,
+  } = useGetDepartmentsQuery();
 
   // React hook from
   const userObj = useMemo(

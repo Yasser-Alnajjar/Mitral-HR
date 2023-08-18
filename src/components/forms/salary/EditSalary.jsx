@@ -13,7 +13,7 @@ import {
 } from "../../../redux/salary/salarySlice";
 import { useForm } from "react-hook-form";
 export default function EditSalary({ userId, setOpen, refetch }) {
-  const { data: salary, isSuccess } = useGetSingleUserSalaryQuery(userId);
+  const { data: salary } = useGetSingleUserSalaryQuery(userId);
   const [updateUser] = useUpdateUserMutation();
   const { data: user } = useGetSingleUserQuery(userId);
   const [updateSalary] = useUpdateSalaryMutation();
@@ -24,18 +24,19 @@ export default function EditSalary({ userId, setOpen, refetch }) {
       conveyance: salary?.conveyance,
       medical: salary?.medical,
       leave: salary?.leave,
-      tax: salary?.tax,
-      other: salary?.other,
+      other: salary?.other ? salary?.other : 0,
+      total: salary?.total,
     }),
     [
       salary?.salary,
       salary?.conveyance,
       salary?.medical,
       salary?.leave,
-      salary?.tax,
       salary?.other,
+      salary?.total,
     ]
   );
+
   const {
     register,
     handleSubmit,
@@ -45,18 +46,29 @@ export default function EditSalary({ userId, setOpen, refetch }) {
     defaultValues: salaryObj,
   });
   useEffect(() => {
-    // setValue("userId", user?.first_name);
     reset(salaryObj);
   }, [reset, salaryObj]);
-
+  let total;
   const onSubmit = async (data) => {
+    const { salary, conveyance, medical, leave, other } = data;
+    total = +salary + +conveyance + +medical + +other - +leave;
+
     updateSalary({
       id: userId,
+      first_name: user.first_name,
+      last_name: user.last_name,
       salary: data.salary,
+      conveyance: data.conveyance,
+      medical: data.medical,
+      other: data.other,
+      leave: Math.ceil((data.salary / 30) * data.leave),
+      total,
     })
       .unwrap()
       .then(() => {
         toast.success(`Salary has been updated!`);
+        reset();
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -66,16 +78,13 @@ export default function EditSalary({ userId, setOpen, refetch }) {
         refetch();
       });
     // updateSalaryUser
-    updateUser({ ...user, salary: data.salary }).unwrap();
-    reset();
-    setOpen(false);
+    updateUser({ ...user, salary: total }).unwrap();
   };
 
   let inputs = [
     { name: "salary", type: "number", required: true },
     { name: "conveyance", type: "number", required: true },
     { name: "medical", type: "number", required: true },
-    { name: "leave", type: "number", required: true },
     { name: "other", type: "number", required: false },
   ];
 
@@ -96,6 +105,24 @@ export default function EditSalary({ userId, setOpen, refetch }) {
             </div>
           );
         })}
+        <div>
+          <label className={`form-label `} htmlFor="leave">
+            Leave (enter number of days to leave)
+          </label>
+          <input
+            className={`form-control  ${
+              errors.leave ? "text-danger border-danger" : ""
+            }`}
+            id={"leave"}
+            {...register("leave", { required: true })}
+            type={"number"}
+          />
+        </div>
+
+        <div className="total">
+          <span>Total</span>
+          {salary?.total}
+        </div>
       </div>
       <button type="submit" className="btn btn-success form-submit">
         Save
