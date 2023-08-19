@@ -1,21 +1,22 @@
 "use client";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Modal from "../apstracts/Modal";
-import EditEmployees from "../forms/employee/EditEmployees";
 import { useState } from "react";
-import { useDeleteUserMutation } from "../../redux/users/usersSlice";
-import LoadingComponent from "../LoadingComponent";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
-export default function Table({ users, refetch }) {
+import { useDeleteOverTimeMutation } from "../../redux/overtime/overtimeSlice";
+import EditOverTime from "../forms/overtime/EditOverTime";
+export default function TableOverTime({ overTimes }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-  const [deleteUser, { isLoadingComponent }] = useDeleteUserMutation(id);
-  const handleUpdateUser = async (id) => {
+
+  const [deleteOverTime] = useDeleteOverTimeMutation(id);
+  // const { data: salaries } = useGetSalariesQuery();
+  const handleUpdate = async (id) => {
     setOpen(true);
     setId(id);
   };
-  const handleDeleteUser = async (id, name) => {
+  const handleDeleteSalary = async (id, name) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -26,11 +27,10 @@ export default function Table({ users, refetch }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser(id)
+        deleteOverTime(id)
           .unwrap()
           .then(() => {
-            toast.success(`${name}, has been deleted!`);
-            refetch();
+            toast.success(`Salary Of (${name}), has been deleted!`);
           })
           .catch((err) => {
             toast.error(err.data);
@@ -38,14 +38,13 @@ export default function Table({ users, refetch }) {
       }
     });
   };
+
   let content;
-  if (isLoadingComponent) {
-    content = <LoadingComponent />;
-  }
+
   content = (
     <section>
-      <Modal open={open} setOpen={setOpen} title="Edit Branch">
-        <EditEmployees setOpen={setOpen} userId={id} refetch={refetch} />
+      <Modal open={open} setOpen={setOpen} title="Edit Salary">
+        <EditOverTime setOpen={setOpen} overTimeId={id} />
       </Modal>
       <div className="table-container">
         <table className="table">
@@ -53,41 +52,33 @@ export default function Table({ users, refetch }) {
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Job title</th>
-              <th>Gender</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Country</th>
-              <th>Role</th>
+              <th>OT Date</th>
+              <th>OT Hours</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
-            {users.map((user, index) => (
-              <tr key={user.id}>
-                <td>{index + 1}</td>
+            {overTimes?.map((item, index) => (
+              <tr key={item.id}>
+                <td className="capitalize">{index + 1}</td>
                 <td className="capitalize">
-                  {user.first_name} {user.last_name}
+                  {item.first_name} {item.last_name}
                 </td>
-                <td>{user.email}</td>
-                <td className="capitalize">{user.job_title}</td>
-                <td className="capitalize">{user.gender}</td>
-                <td className="capitalize">{user.phone}</td>
-                <td className="capitalize">{user.address}</td>
-                <td className="capitalize">{user.country}</td>
-                <td className="capitalize">{user.role}</td>
+                <td>{item.date}</td>
+                <td>{item.hours}</td>
                 <td>
                   <div className="btns-group">
                     <button
                       className="btn btn-warning"
-                      onClick={() => handleUpdateUser(user.id)}
+                      onClick={() => handleUpdate(item.id)}
                     >
                       <AiOutlineEdit />
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteUser(user.id, user.first_name)}
+                      onClick={() =>
+                        handleDeleteSalary(item.id, item.first_name)
+                      }
                     >
                       <AiOutlineDelete />
                     </button>

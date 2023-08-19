@@ -5,8 +5,8 @@ const overtimeSlice = apiSlice.injectEndpoints({
       query: () => "/overtime",
       providesTags: ["Overtime"],
     }),
-    getOverTimeUser: builder.query({
-      query: (id) => `overtime?userId=${id}`,
+    getSingleOvertime: builder.query({
+      query: (id) => `/overtime/${id}`,
       providesTags: ["Overtime"],
     }),
     addOverTime: builder.mutation({
@@ -19,7 +19,7 @@ const overtimeSlice = apiSlice.injectEndpoints({
     }),
     updateOverTime: builder.mutation({
       query: (data) => ({
-        url: "/overtime",
+        url: `/overtime/${data.id}`,
         method: "PUT",
         body: data,
       }),
@@ -36,6 +36,7 @@ const overtimeSlice = apiSlice.injectEndpoints({
 });
 export const {
   useGetOvertimesQuery,
+  useGetSingleOvertimeQuery,
   useAddOverTimeMutation,
   useDeleteOverTimeMutation,
   useUpdateOverTimeMutation,

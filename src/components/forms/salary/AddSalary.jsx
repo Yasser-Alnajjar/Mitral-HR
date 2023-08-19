@@ -3,29 +3,33 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import Input from "../input";
 import { useForm } from "react-hook-form";
-import { useGetUsersQuery } from "../../../redux/users/usersSlice";
 import {
-  useAddSalaryMutation,
-  useUpdateSalaryMutation,
-} from "../../../redux/salary/salarySlice";
+  selectUserById,
+  useGetSingleUserQuery,
+  useGetUsersQuery,
+} from "../../../redux/users/usersSlice";
+import { useAddSalaryMutation } from "../../../redux/salary/salarySlice";
 export default function AddSalary({ setOpen, refetch }) {
   const { data: users, isSuccess } = useGetUsersQuery();
-  const [updateSalary] = useUpdateSalaryMutation();
-
+  // const { data: user } = useGetSingleUserQuery(userId && userId);
+  const [addSalary] = useAddSalaryMutation();
   // React hook from
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    updateSalary({
-      id: data.userId,
-      ...data,
-      leave: Math.ceil((data.salary / 30) * data.leave),
+    const user = data.user.split(" ");
+
+    addSalary({
+      id: user[0],
+      first_name: user[1],
+      last_name: user[2],
+      salary: data.salary,
+      total: data.salary,
     })
       .unwrap()
       .then(() => {
@@ -34,15 +38,10 @@ export default function AddSalary({ setOpen, refetch }) {
         setOpen(false);
       })
       .catch((err) => {
-        toast.error(err.data);
-      })
-      .finally(() => {
-        refetch();
+        toast.error("You can't add salary because salary added before");
       });
   };
-  useEffect(() => {
-    setValue("tax", "2%");
-  }, [setValue]);
+
   let selectBox;
   if (isSuccess) {
     selectBox = (
@@ -53,29 +52,34 @@ export default function AddSalary({ setOpen, refetch }) {
           className={`form-control ${
             errors.userId && "text-danger border-danger"
           }`}
-          {...register("userId", { required: true })}
+          {...register("user", { required: true })}
         >
           <option value="">Select Please</option>
           {users.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.first_name} {item.last_name}
+            <option key={item.id} value={() => ({})}>
+              {item.id} {item.first_name} {item.last_name}
             </option>
           ))}
         </select>
       </>
     );
   }
-  let inputs = [
-    { name: "salary", type: "number", required: true },
-    { name: "conveyance", type: "number", required: true },
-    { name: "medical", type: "number", required: true },
-    { name: "leave", type: "number", required: true },
-    { name: "other", type: "number", required: false },
-  ];
+  // let inputs = [{ name: "salary", type: "number", required: true }];
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">
-        {inputs.map((inp) => {
+        <div>
+          <Input
+            register={register}
+            label={"salary"}
+            type={"number"}
+            required
+            error={errors.salary}
+          />
+        </div>
+        {/*
+        // For Testing
+         {inputs.map((inp) => {
           return (
             <div key={inp.name}>
               <Input
@@ -87,7 +91,7 @@ export default function AddSalary({ setOpen, refetch }) {
               />
             </div>
           );
-        })}
+        })} */}
         <div>{selectBox}</div>
       </div>
       <button type="submit" className="btn btn-success form-submit">
