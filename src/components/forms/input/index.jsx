@@ -9,7 +9,7 @@ export default function Input({
   type,
 }) {
   return (
-    <>
+    <div>
       <label className={`form-label `} htmlFor={label}>
         {label}
       </label>
@@ -21,6 +21,6 @@ export default function Input({
         defaultValue={defaultValue}
         pattern={pattern}
       />
-    </>
+    </div>
   );
 }

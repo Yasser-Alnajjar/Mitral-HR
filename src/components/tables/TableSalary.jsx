@@ -44,6 +44,13 @@ export default function TableSalary({ users, refetch }) {
       }
     });
   };
+  const price = 14340;
+
+  // Format the price above to USD using the locale, style, and currency.
+  let USDollar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   let content;
 
@@ -68,18 +75,20 @@ export default function TableSalary({ users, refetch }) {
             </tr>
           </thead>
           <tbody className="table__body">
-            {salaries?.map((item) => (
+            {salaries?.map((item, index) => (
               <tr key={item.id}>
-                <td className="capitalize">{item.id}</td>
+                <td className="capitalize">{index + 1}</td>
                 <td className="capitalize">
                   {item.first_name} {item.last_name}
                 </td>
-                <td>${item.salary}</td>
-                <td>${item.conveyance}</td>
-                <td>${item.medical}</td>
-                <td>${item.leave ? item.leave : 0}</td>
-                <td>${item.other ? item.other : 0}</td>
-                <td>${item.total}</td>
+                <td>{USDollar.format(item.salary)}</td>
+                <td>
+                  {item.conveyance ? USDollar.format(item.conveyance) : 0}
+                </td>
+                <td>{item.medical ? USDollar.format(item.medical) : 0}</td>
+                <td>{item.leave ? USDollar.format(item.leave) : 0}</td>
+                <td>{item.other ? USDollar.format(item.other) : 0}</td>
+                <td>{USDollar.format(item.total)}</td>
                 <td>
                   <div className="btns-group">
                     <button

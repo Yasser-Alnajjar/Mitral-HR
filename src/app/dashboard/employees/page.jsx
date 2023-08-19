@@ -25,7 +25,7 @@ export default function Employees() {
         <div className="container">
           <div className="btns-group place-end">
             <button className="btn btn-primary" onClick={() => setOpen(true)}>
-              Add
+              Add User
             </button>
           </div>
         </div>

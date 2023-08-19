@@ -8,12 +8,12 @@ import {
 } from "../../../redux/users/usersSlice";
 // import { useGetDepartmentsQuery } from "../../../redux/departments/departmentSlice";
 import {
-  useGetSingleUserSalaryQuery,
+  useGetSingleSalaryQuery,
   useUpdateSalaryMutation,
 } from "../../../redux/salary/salarySlice";
 import { useForm } from "react-hook-form";
 export default function EditSalary({ userId, setOpen, refetch }) {
-  const { data: salary } = useGetSingleUserSalaryQuery(userId);
+  const { data: salary } = useGetSingleSalaryQuery(userId);
   const [updateUser] = useUpdateUserMutation();
   const { data: user } = useGetSingleUserQuery(userId);
   const [updateSalary] = useUpdateSalaryMutation();

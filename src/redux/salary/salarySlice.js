@@ -5,13 +5,21 @@ export const salarySlice = apiSlice.injectEndpoints({
     getSalaries: builder.query({
       query: () => `/salary`,
       providesTags: ["Salary"],
+      transformResponse: (res) => res.sort((a, b) => a.id - b.id).reverse(),
     }),
-
-    getSingleUserSalary: builder.query({
+    getSingleSalary: builder.query({
       query: (id) => ({
         url: `salary/${id}`,
       }),
       providesTags: ["Users"],
+    }),
+    addSalary: builder.mutation({
+      query: (data) => ({
+        url: `salary`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Salary"],
     }),
     deleteSalary: builder.mutation({
       query: (id) => ({
@@ -32,7 +40,8 @@ export const salarySlice = apiSlice.injectEndpoints({
 });
 export const {
   useGetSalariesQuery,
-  useGetSingleUserSalaryQuery,
+  useAddSalaryMutation,
+  useGetSingleSalaryQuery,
   useDeleteSalaryMutation,
   useUpdateSalaryMutation,
 } = salarySlice;
