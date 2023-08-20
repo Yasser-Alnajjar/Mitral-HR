@@ -15,8 +15,12 @@ The human resources management system manages all the operations of the company'
 | Crud | ✔ | in progress |
 
 ## Getting Started
-
-First clone the project :
+You can see the project online:
+```
+https://github.com/Yasser-Alnajjar/Mitral-HR
+```
+or
+Clone the project :
 on your pc open cmd :
 ```
 git clone https://github.com/Yasser-Alnajjar/Mitral-HR.git
