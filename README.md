@@ -1,24 +1,38 @@
 ## Mitral HR
 
-It's a simple Mitral HR system you can handle this project by {CRUD} in [Branches, Departments, Employees, Tasks , Attendance], Edit your profile
+The human resources management system manages all the operations of the company's employees, which means that you can control the branches and departments and all the operations of modifications, additions and deletions (curd) setting salaries for employees dealing with deductions and taxes imposed on employees all this and more.
 
 ## features
 
-|  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
-|---|---|---|---|---|---|---|
-| auth |  auth |  Crud |  Crud | Crud  | Crud  | Crud  |
-| done |  done |  done |  done | done  | done  | done  |
+| status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
+|---|---|---|---|---|---|---|---|
+| Auth | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ✔  | ✔  | ✔ | 
+| Crud | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ✔  | ✔  | ✔ |
+
+|status | Salary | Overtime |
+|---|---|---|
+| Auth | ✔ | ✔ |
+| Crud | ✔ | in progress |
 
 ## Getting Started
 
-First clone the project, run the Project:
-
+First clone the project :
+on your pc open cmd :
+```
+git clone https://github.com/Yasser-Alnajjar/Mitral-HR.git
+cd Mitral-HR
+npm install
+```
 ```
 npm run dev
 ```
 
-Then run the local server
-
+Second clone the mitral-server
+```
+git clone https://github.com/Yasser-Alnajjar/mitral_server
+cd mitral_server
+npm install
+```
 ```
 npm run serve
 ```
