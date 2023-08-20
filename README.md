@@ -17,7 +17,7 @@ The human resources management system manages all the operations of the company'
 ## Getting Started
 You can see the project online:
 ```
-https://github.com/Yasser-Alnajjar/Mitral-HR
+mitral-hr.vercel.app
 ```
 or
 Clone the project :
