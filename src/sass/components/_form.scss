@@ -7,6 +7,9 @@
     font-size: $fontSize - 0.1;
     margin-bottom: 5px;
   }
+  div {
+    width: 100%;
+  }
   &-submit {
     width: fit-content;
     margin-left: auto;
@@ -20,7 +23,6 @@
       grid-template-columns: repeat(1, 1fr);
     }
     div {
-      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
