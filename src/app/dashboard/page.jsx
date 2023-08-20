@@ -9,10 +9,8 @@ import {
   useGetAllTasksQuery,
   useGetAllUsersQuery,
 } from "../../redux/dashboard/dashboardSlice";
-import { useGetUserChartQuery } from "../../redux/charts/chartSlice";
 import Card from "../../components/Card";
-import { Bar, Pie, Scatter, Line } from "react-chartjs-2";
-import { chartData } from "../../ChartData/userChart";
+import { Bar, Line } from "react-chartjs-2";
 import { store } from "../../redux/store";
 import { logOut } from "../../redux/auth/authSlice";
 import { useRouter } from "next/navigation";
@@ -128,9 +126,11 @@ const Dashboard = () => {
               <Line data={lengthes} options={options} />
             </div>
           )}
-          <div className="card flex">
-            <Bar data={chartData} />
-          </div>
+          {showChart && (
+            <div className="card flex">
+              <Bar data={lengthes} />
+            </div>
+          )}
         </div>
       </div>
     </section>
