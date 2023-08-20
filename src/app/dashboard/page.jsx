@@ -9,8 +9,10 @@ import {
   useGetAllTasksQuery,
   useGetAllUsersQuery,
 } from "../../redux/dashboard/dashboardSlice";
+import { useGetUserChartQuery } from "../../redux/charts/chartSlice";
 import Card from "../../components/Card";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Pie, Scatter, Line } from "react-chartjs-2";
+import { chartData } from "../../ChartData/userChart";
 import { store } from "../../redux/store";
 import { logOut } from "../../redux/auth/authSlice";
 import { useRouter } from "next/navigation";
@@ -77,7 +79,7 @@ const Dashboard = () => {
         backgroundColor: ["#079f9f"],
       },
       {
-        label: "Users Of",
+        label: "Counter",
         data: categorieschart.map((item) => item.usersOf),
         backgroundColor: ["#18446a"],
       },
@@ -90,7 +92,6 @@ const Dashboard = () => {
       intersect: false,
     },
     stacked: false,
-
     scales: {
       y: {
         type: "linear",
@@ -126,11 +127,9 @@ const Dashboard = () => {
               <Line data={lengthes} options={options} />
             </div>
           )}
-          {showChart && (
-            <div className="card flex">
-              <Bar data={lengthes} />
-            </div>
-          )}
+          <div className="card flex">
+            <Bar data={chartData} />
+          </div>
         </div>
       </div>
     </section>
