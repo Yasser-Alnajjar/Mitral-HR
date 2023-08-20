@@ -12,7 +12,7 @@ The human resources management system manages all the operations of the company'
 |status | Salary | Overtime |
 |---|---|---|
 | Auth | ✔ | ✔ |
-| Crud | ✔ | in progress |
+| Crud | ✔ | ✔ |
 
 ## Getting Started
 You can see the project online:
