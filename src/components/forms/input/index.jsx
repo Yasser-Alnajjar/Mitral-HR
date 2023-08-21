@@ -8,10 +8,11 @@ export default function Input({
   error,
   type,
 }) {
+  let labelInput = label.replaceAll("_", " ");
   return (
     <div>
       <label className={`form-label `} htmlFor={label}>
-        {label}
+        {labelInput}
       </label>
       <input
         className={`form-control  ${error ? "text-danger border-danger" : ""}`}

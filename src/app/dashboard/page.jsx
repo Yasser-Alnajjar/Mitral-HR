@@ -81,7 +81,7 @@ const Dashboard = () => {
       {
         label: "Counter",
         data: categorieschart.map((item) => item.usersOf),
-        backgroundColor: ["#18446a"],
+        backgroundColor: ["#110d31ff"],
       },
     ],
   };

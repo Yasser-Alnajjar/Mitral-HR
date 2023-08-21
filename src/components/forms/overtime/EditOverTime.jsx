@@ -9,7 +9,6 @@ import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 
 export default function EditOverTime({ setOpen, overTimeId }) {
-  const { data: users, isSuccess } = useGetUsersQuery();
   const { data: overtime } = useGetSingleOvertimeQuery(overTimeId);
   const [updateOverTime] = useUpdateOverTimeMutation();
   const {

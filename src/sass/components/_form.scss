@@ -6,6 +6,7 @@
   &-label {
     font-size: $fontSize - 0.1;
     margin-bottom: 5px;
+    text-transform: capitalize;
   }
   div {
     width: 100%;
@@ -29,6 +30,18 @@
       label {
         text-transform: capitalize;
       }
+    }
+  }
+  &-select {
+    @extend %input;
+    margin-top: 1.5rem;
+  }
+  .statusInput {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    input {
+      margin: 1rem 0;
     }
   }
 }

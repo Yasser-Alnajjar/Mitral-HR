@@ -3,8 +3,12 @@ import "./globals.scss";
 import { Open_Sans } from "next/font/google";
 import { Providers } from "../redux/Providers";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import Loading from "./loading";
 const open_Sans = Open_Sans({ subsets: ["latin"] });
-
+export const metadata = {
+  title: "Mitral Hr",
+};
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -13,7 +17,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={open_Sans.className}>
         <Toaster position="top right" />
-        <Providers>{children}</Providers>
+        <Suspense fallback={<Loading />}>
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   );
