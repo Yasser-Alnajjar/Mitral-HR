@@ -44,7 +44,7 @@ export default function Sidebar() {
     },
     {
       icon: <LiaUserClockSolid size={size} />,
-      path: "/dashboard/leave",
+      path: "/dashboard/leaves",
       title: "Leaves",
     },
     {

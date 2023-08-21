@@ -2,9 +2,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import { Suspense } from "react";
 import Loading from "../loading";
-export const metadata = {
-  title: "Mitral Hr",
-};
+
 export default function DashboardLayout({ children }) {
   return (
     <>

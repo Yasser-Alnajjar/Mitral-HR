@@ -6,9 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import Loading from "./loading";
 const open_Sans = Open_Sans({ subsets: ["latin"] });
-export const metadata = {
-  title: "Mitral Hr",
-};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
