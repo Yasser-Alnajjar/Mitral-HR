@@ -7,12 +7,12 @@ The human resources management system manages all the operations of the company'
 | status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
 |---|---|---|---|---|---|---|---|
 | Auth | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ✔  | ✔  | ✔ | 
-| Crud | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ✔  | ✔  | ✔ |
+| Crud | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ❌  | ✔  | ✔ |
 
 |status | Salary | Overtime |
 |---|---|---|
 | Auth | ✔ | ✔ |
-| Crud | ✔ | in progress |
+| Crud | ✔ | ✔ |
 
 ## Getting Started
 You can see the project online:
