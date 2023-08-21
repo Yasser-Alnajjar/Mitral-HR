@@ -61,7 +61,7 @@ export const apiSlice = createApi({
     "Branches",
     "Tasks",
     "Holidays",
-    "Attendance",
+    "Leaves",
     "Overtime",
     "Salary",
   ],

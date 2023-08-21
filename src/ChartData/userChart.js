@@ -26,7 +26,7 @@ export const chartData = {
     {
       label: "Salary",
       data: usersChart.map((item) => item.salary),
-      backgroundColor: ["#18446a"],
+      backgroundColor: ["#110d31ff"],
     },
   ],
 };

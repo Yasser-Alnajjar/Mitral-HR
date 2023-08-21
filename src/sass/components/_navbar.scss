@@ -20,6 +20,7 @@
   &__logo {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 190px;
     @include transition("width", 0.3);
     gap: 20px;

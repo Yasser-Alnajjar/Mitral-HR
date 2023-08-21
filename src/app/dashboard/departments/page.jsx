@@ -54,7 +54,11 @@ export default function Departments() {
           </Modal>
           <div className="department__items">
             {departments.map((item) => (
-              <Card key={item.id} title={`${item.name}`} text={item.leader}>
+              <Card
+                key={item.id}
+                title={`${item.name.replace("_", " ")}`}
+                text={item.leader}
+              >
                 <div className="btns-group">
                   <button
                     onClick={() => {
