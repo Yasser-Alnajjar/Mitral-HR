@@ -4,7 +4,7 @@ The human resources management system manages all the operations of the company'
 
 ## features
 
-| status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Attendance |
+| status |  Login | Register  |  Branches |  Departments |  Employees | Tasks | Leaves |
 |---|---|---|---|---|---|---|---|
 | Auth | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ✔  | ✔  | ✔ | 
 | Crud | ✔ |  ✔ |  ✔ |  ✔ | ✔  | ❌  | ✔  | ✔ |
