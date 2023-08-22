@@ -94,7 +94,7 @@ export default function AddSalary({ setOpen, refetch }) {
         })} */}
         <div>{selectBox}</div>
       </div>
-      <button type="submit" className="btn btn-success form-submit">
+      <button type="submit" className="btn btn-warning form-submit">
         Save
       </button>
     </form>

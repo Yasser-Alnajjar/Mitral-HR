@@ -32,13 +32,19 @@
       background-color: $warning-hover;
     }
   }
+  &-secondary {
+    background-color: $secondary;
+    &:hover {
+      background-color: $secondary-hover;
+    }
+  }
 }
 .btns-group {
   display: grid;
   place-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   grid-auto-flow: column;
-  margin: $margin-lg 0;
+  margin: $margin-md 0;
   &.place-start {
     place-content: start;
   }

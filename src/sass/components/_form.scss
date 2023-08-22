@@ -36,6 +36,13 @@
     @extend %input;
     margin-top: 1.5rem;
   }
+
+  &-textarea {
+    @extend %input;
+    margin-top: $margin-lg;
+    width: 100%;
+  }
+
   .statusInput {
     display: flex;
     align-items: start;

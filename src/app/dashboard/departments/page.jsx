@@ -47,9 +47,11 @@ export default function Departments() {
   } else if (isSuccess) {
     content = (
       <section className="department">
+        <h1 className="text-center mt-lg fs-5 text-primary">Departments</h1>
+
         <div className="container">
           <AddDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
-          <Modal open={open} setOpen={setOpen} title="Edit Branch">
+          <Modal open={open} setOpen={setOpen} title="Edit Department">
             <EditDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
           </Modal>
           <div className="department__items">
@@ -71,7 +73,7 @@ export default function Departments() {
                   </button>
                   <Link
                     href={`/dashboard/departments/${item.name}`}
-                    className="btn btn-success"
+                    className="btn btn-warning"
                   >
                     Details
                   </Link>

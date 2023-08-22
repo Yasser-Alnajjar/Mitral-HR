@@ -9,12 +9,10 @@ import {
   useGetAllTasksQuery,
   useGetAllUsersQuery,
 } from "../../redux/dashboard/dashboardSlice";
-import { useGetUserChartQuery } from "../../redux/charts/chartSlice";
 import Card from "../../components/Card";
 import { Bar, Pie, Scatter, Line } from "react-chartjs-2";
 import { chartData } from "../../ChartData/userChart";
 import { store } from "../../redux/store";
-import { logOut } from "../../redux/auth/authSlice";
 import { useRouter } from "next/navigation";
 const Dashboard = () => {
   const router = useRouter();

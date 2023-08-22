@@ -2,12 +2,9 @@
 import { toast } from "react-hot-toast";
 import LoadingComponent from "../../../components/LoadingComponent";
 import { useGetUsersQuery } from "../../../redux/users/usersSlice";
-import TableEmpolyees from "../../../components/tables/TableEmpolyees";
-import AddEmployee from "../../../components/forms/employee/AddEmployee";
-import Modal from "../../../components/apstracts/Modal";
-import { useState } from "react";
+import TableEmployees from "../../../components/tables/TableEmployees";
+import PaginatedItems from "../../../components/Paginate";
 export default function Employees() {
-  const [open, setOpen] = useState(false);
   const {
     data: users,
     isLoadingComponent,
@@ -21,19 +18,10 @@ export default function Employees() {
     content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
-      <section>
-        <div className="container">
-          <div className="btns-group place-end">
-            <button className="btn btn-primary" onClick={() => setOpen(true)}>
-              Add User
-            </button>
-          </div>
-        </div>
-        <Modal setOpen={setOpen} open={open}>
-          <AddEmployee setOpen={setOpen} refetch={refetch} />
-        </Modal>
-        <TableEmpolyees users={users} refetch={refetch} />
-      </section>
+      <>
+        <h1 className="text-center mt-lg mb-lg fs-5 text-primary">Employees</h1>
+        <PaginatedItems items={users} itemsPerPage={8} refetch={refetch} />
+      </>
     );
   } else if (isError) {
     toast.error(error.message);

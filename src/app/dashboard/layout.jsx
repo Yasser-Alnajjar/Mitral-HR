@@ -9,9 +9,7 @@ export default function DashboardLayout({ children }) {
       <Suspense fallback={<Loading />}>
         <Navbar />
         <section className="dashboardLayout">
-          <div>
-            <Sidebar />
-          </div>
+          <Sidebar />
           <main>{children}</main>
         </section>
       </Suspense>

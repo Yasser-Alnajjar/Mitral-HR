@@ -1,13 +1,14 @@
 @import "./apstract/mixins";
 @import "./apstract/variables";
 @import "./apstract/palce-holders";
+@import "./apstract/colors";
 
 // Pages
 @import "./pages/loginPage";
 @import "./pages/dashboardPage";
 @import "./pages/departmentPage";
-@import "./pages/branchesPage";
 @import "./pages/tasksPage";
+@import "./pages/profile";
 
 // Components
 @import "./components/container";
@@ -23,6 +24,7 @@
 @import "./components/alert";
 @import "./components/chart";
 @import "./components/dropdwon";
+@import "./components/paginate";
 
 // Utils
 @import "./apstract/utils";

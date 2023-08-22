@@ -1,0 +1,33 @@
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: $margin-lg;
+  &_list {
+    background-color: $main-color;
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 6px;
+    padding: $padding-md;
+  }
+  & li {
+    color: $white-color;
+    cursor: pointer;
+    padding: $padding-sm;
+    border-radius: 6px;
+    user-select: none;
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+.disabled_btn {
+  opacity: 0.5;
+  background-color: $danger;
+}
+.active {
+  background-color: $secondary-color;
+}

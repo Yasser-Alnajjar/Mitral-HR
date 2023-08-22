@@ -2,7 +2,6 @@ import { useState } from "react";
 export default function Input({
   label,
   register,
-  required,
   defaultValue,
   pattern,
   error,
@@ -17,10 +16,16 @@ export default function Input({
       <input
         className={`form-control  ${error ? "text-danger border-danger" : ""}`}
         id={label}
-        {...register(label, { required })}
+        {...register(label, {
+          required: `Invalid ${label} pls try again`,
+          pattern: {
+            pattern: {
+              value: pattern,
+            },
+          },
+        })}
         type={type}
         defaultValue={defaultValue}
-        pattern={pattern}
       />
     </div>
   );

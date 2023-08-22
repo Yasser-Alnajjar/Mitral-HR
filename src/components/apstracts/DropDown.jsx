@@ -16,7 +16,7 @@ export default function DropDown() {
         <div className="dropdown__menu__item">
           <Link
             className="dropdown__menu__item__link"
-            href={`/dashboard/profile/${user?.id}`}
+            href={`/dashboard/profile`}
           >
             <span>Profile</span>
             <AiOutlineUser size={22} />

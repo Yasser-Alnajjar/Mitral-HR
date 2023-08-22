@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "./auth/authSlice";
+import { redirect } from "next/navigation";
 
 let token;
 const baseQuery = fetchBaseQuery({
@@ -49,6 +50,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(logOut());
+      redirect("/");
     }
   }
   return result;
@@ -58,7 +60,6 @@ export const apiSlice = createApi({
   tagTypes: [
     "Departments",
     "Users",
-    "Branches",
     "Tasks",
     "Holidays",
     "Leaves",

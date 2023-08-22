@@ -10,6 +10,7 @@ import {
   AiOutlineClockCircle,
   AiOutlineBranches,
   AiOutlineCoffee,
+  AiOutlineUserAdd,
 } from "react-icons/ai";
 import { PiUmbrellaSimpleThin } from "react-icons/pi";
 import { LiaUserClockSolid } from "react-icons/lia";
@@ -26,11 +27,6 @@ export default function Sidebar() {
       icon: <AiOutlineDashboard size={size} />,
       title: "Dashboard",
       path: "/dashboard",
-    },
-    {
-      icon: <AiOutlineBranches size={size} />,
-      path: "/dashboard/branches",
-      title: "Branches",
     },
     {
       icon: <AiOutlineAppstore size={size} />,
@@ -68,9 +64,9 @@ export default function Sidebar() {
       title: "Holidays",
     },
     {
-      icon: <AiOutlineCoffee size={size} />,
-      path: "/dashboard/vacations",
-      title: "Vacations",
+      icon: <AiOutlineUserAdd size={size} />,
+      path: "/dashboard/register",
+      title: "Register",
     },
   ];
   return (

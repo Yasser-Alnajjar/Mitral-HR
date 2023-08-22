@@ -44,7 +44,7 @@ export default function Table({ users, refetch }) {
   }
   content = (
     <section>
-      <Modal open={open} setOpen={setOpen} title="Edit Branch">
+      <Modal open={open} setOpen={setOpen} title="Edit Employee">
         <EditEmployees setOpen={setOpen} userId={id} refetch={refetch} />
       </Modal>
       <div className="table-container">

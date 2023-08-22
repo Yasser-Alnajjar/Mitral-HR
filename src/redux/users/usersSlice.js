@@ -3,7 +3,7 @@ import { apiSlice } from "../apiSlice";
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => "/users",
+      query: () => `/users`,
       providesTags: (result, error, arg) =>
         result
           ? [...result.map(({ id }) => ({ type: "Users", id })), "Users"]

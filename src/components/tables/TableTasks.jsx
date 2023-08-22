@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import Modal from "../apstracts/Modal";
-import EditHoliday from "../forms/holiday/EditHoliday";
-import { useDeleteHolidayMutation } from "../../redux/holidays/holidaysSlice";
 import { toast } from "react-hot-toast";
+import { useDeleteTaskMutation } from "../../redux/tasks/tasksSlice";
 import Swal from "sweetalert2";
-export default function TableHolidays({ holidays }) {
+import Modal from "../apstracts/Modal";
+import EditTask from "../forms/tasks/EditTask";
+export default function TableTasks({ tasks }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-  const [deleteHoliday, { isError, error }] = useDeleteHolidayMutation();
-  const handleUpdateHoliday = async (id) => {
+  const [deleteTasks, { isError, error }] = useDeleteTaskMutation();
+  const handleUpdateTask = async (id) => {
     setOpen(true);
     setId(id);
   };
-  const handleDeleteHoliday = async (id, holidayName) => {
+  const handleDeleteTask = async (id, taskName) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -24,11 +24,10 @@ export default function TableHolidays({ holidays }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
-        deleteHoliday(id)
+        deleteTasks(id)
           .unwrap()
           .then(() => {
-            toast.success(`(${holidayName}) Holiday has been deleted!`);
+            toast.success(`(${taskName}) tasks has been deleted!`);
           })
           .catch((err) => {
             console.log(err.message);
@@ -42,37 +41,41 @@ export default function TableHolidays({ holidays }) {
   return (
     <section>
       <Modal open={open} setOpen={setOpen} title="Edit Holiday">
-        <EditHoliday setOpen={setOpen} holidayId={id} />
+        <EditTask setOpen={setOpen} taskId={id} />
       </Modal>
       <div className="table-container mt-lg">
         <table className="table text-center">
           <thead className="table__head">
             <tr>
               <th>#</th>
-              <th>Title</th>
-              <th>Holiday Date</th>
-              <th>Day</th>
-              <th>Actions</th>
+              <th>from</th>
+              <th>to</th>
+              <th>title</th>
+              <th>description</th>
+              <th>employee</th>
+              <th>actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
-            {holidays.map((item) => (
+            {tasks.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td className="capitalize">{item.name}</td>
-                <td className="capitalize">{item.date}</td>
-                <td className="capitalize">{item.day}</td>
+                <td className="capitalize">{item.from}</td>
+                <td className="capitalize">{item.to}</td>
+                <td className="capitalize">{item.title}</td>
+                <td className="capitalize">{item.description}</td>
+                <td className="capitalize">{item.employee}</td>
                 <td>
                   <div className="btns-group">
                     <button
                       className="btn btn-warning"
-                      onClick={() => handleUpdateHoliday(item.id)}
+                      onClick={() => handleUpdateTask(item.id)}
                     >
                       <AiOutlineEdit />
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteHoliday(item.id, item.name)}
+                      onClick={() => handleDeleteTask(item.id, item.employee)}
                     >
                       <AiOutlineDelete />
                     </button>

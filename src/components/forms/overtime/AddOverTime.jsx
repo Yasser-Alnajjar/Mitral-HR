@@ -75,7 +75,7 @@ export default function AddOverTime({ setOpen }) {
         />
         <div>{selectUser}</div>
       </div>
-      <button type="submit" className="btn btn-success form-submit">
+      <button type="submit" className="btn btn-warning form-submit">
         Save
       </button>
     </form>
