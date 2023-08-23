@@ -13,7 +13,7 @@ const departmentSlice = apiSlice.injectEndpoints({
       query: (data) => ({
         url: `/tasks`,
         method: "POST",
-        body: { ...data },
+        body: data,
       }),
       invalidatesTags: ["Tasks"],
     }),

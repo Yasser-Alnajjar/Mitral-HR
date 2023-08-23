@@ -18,12 +18,17 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: (departmentName) => `/users?department=${departmentName}`,
       invalidatesTags: ["Users"],
     }),
+    getUserByName: builder.query({
+      query: (userName) => `/users?first_name=${userName}`,
+      invalidatesTags: ["Users"],
+    }),
     addUser: builder.mutation({
       query: (initialUser) => ({
         url: `/users/`,
         method: "POST",
-        body: { ...initialUser },
+        body: initialUser,
       }),
+      invalidatesTags: ["Users"],
     }),
     updateUser: builder.mutation({
       query: (initialUser) => ({
@@ -33,7 +38,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Users"],
     }),
-
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/users/${id}`,
@@ -47,6 +51,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetUsersQuery,
   useGetSingleUserQuery,
+  useGetUserByNameQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
   useGetUsersOfDepartmentQuery,

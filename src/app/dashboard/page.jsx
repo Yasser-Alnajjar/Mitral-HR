@@ -12,9 +12,12 @@ import {
 import Card from "../../components/Card";
 import { Bar, Pie, Scatter, Line } from "react-chartjs-2";
 import { chartData } from "../../ChartData/userChart";
-import { store } from "../../redux/store";
 import { useRouter } from "next/navigation";
+import TableClients from "../../components/tables/TableClients";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/auth/authSlice";
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const {
     data: users,
@@ -112,14 +115,14 @@ const Dashboard = () => {
     typeof window !== "undefined" &&
     !JSON.parse(window.localStorage.getItem("user"))
   ) {
-    store.dispatch(logOut());
+    dispatch(logOut());
     router.push("/");
   }
   return (
     <section className="mt-lg">
       {content}
       <div className="container">
-        <div className="chart">
+        <div className="chart mb-lg">
           {showChart && (
             <div className="card flex">
               <Line data={lengthes} options={options} />
@@ -130,6 +133,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <section className="mt-lg">
+        <TableClients />
+      </section>
     </section>
   );
 };

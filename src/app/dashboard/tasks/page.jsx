@@ -33,7 +33,7 @@ export default function Tasks() {
         <Modal setOpen={setOpen} open={open} title={"Add Task"}>
           <AddTask setOpen={setOpen} />
         </Modal>
-        <TableTasks tasks={tasks} />;
+        <TableTasks tasks={tasks} />
       </section>
     );
   } else if (isError) {

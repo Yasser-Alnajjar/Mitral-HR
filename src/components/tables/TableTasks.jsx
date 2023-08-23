@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit, AiOutlineEye } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 import { useDeleteTaskMutation } from "../../redux/tasks/tasksSlice";
 import Swal from "sweetalert2";
 import Modal from "../apstracts/Modal";
 import EditTask from "../forms/tasks/EditTask";
+import Link from "next/link";
 export default function TableTasks({ tasks }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
@@ -44,47 +45,59 @@ export default function TableTasks({ tasks }) {
         <EditTask setOpen={setOpen} taskId={id} />
       </Modal>
       <div className="table-container mt-lg">
-        <table className="table text-center">
-          <thead className="table__head">
-            <tr>
-              <th>#</th>
-              <th>from</th>
-              <th>to</th>
-              <th>title</th>
-              <th>description</th>
-              <th>employee</th>
-              <th>actions</th>
-            </tr>
-          </thead>
-          <tbody className="table__body">
-            {tasks.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td className="capitalize">{item.from}</td>
-                <td className="capitalize">{item.to}</td>
-                <td className="capitalize">{item.title}</td>
-                <td className="capitalize">{item.description}</td>
-                <td className="capitalize">{item.employee}</td>
-                <td>
-                  <div className="btns-group">
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => handleUpdateTask(item.id)}
-                    >
-                      <AiOutlineEdit />
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDeleteTask(item.id, item.employee)}
-                    >
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
+        {tasks?.length === 0 ? (
+          <p>nooooooooo</p>
+        ) : (
+          <table className="table text-center">
+            <thead className="table__head">
+              <tr>
+                <th>#</th>
+                <th>title</th>
+                <th>employee</th>
+                <th>from</th>
+                <th>to</th>
+                <th>description</th>
+                <th>actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="table__body">
+              {tasks.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td className="capitalize">{item.title}</td>
+                  <td className="capitalize">{item.employee}</td>
+                  <td className="capitalize">{item.from}</td>
+                  <td className="capitalize">{item.to}</td>
+                  <td className="capitalize">
+                    {item.description.substring(0, 70)}...
+                  </td>
+                  <td>
+                    <div className="btns-group">
+                      <button
+                        className="btn btn-warning"
+                        onClick={() => handleUpdateTask(item.id)}
+                      >
+                        <AiOutlineEdit />
+                      </button>
+                      <Link
+                        className="btn btn-primary"
+                        href={`/dashboard/tasks/${item.id}`}
+                      >
+                        <AiOutlineEye />
+                      </Link>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDeleteTask(item.id, item.employee)}
+                      >
+                        <AiOutlineDelete />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </section>
   );

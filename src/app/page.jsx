@@ -14,10 +14,7 @@ const Login = () => {
     register,
     reset,
     formState: { errors },
-  } = useForm({
-    email: "yasser@mail.com",
-    password: "yasser123",
-  });
+  } = useForm();
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -25,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     reset({
       email: "admin@gmail.com",
-      password: "password",
+      password: "admin",
     });
   }, [reset]);
   const onSubmit = async (data) => {

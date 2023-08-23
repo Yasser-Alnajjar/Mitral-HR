@@ -1,6 +1,12 @@
 .text-center {
   text-align: center;
 }
+.text-start {
+  text-align: left;
+}
+.text-end {
+  text-align: right;
+}
 .capitalize {
   text-transform: capitalize;
 }
@@ -9,13 +15,13 @@
   padding: 0;
 }
 .p-lg {
-  padding: $padding-lg;
+  padding: $padding-lg !important;
 }
 .p-md {
-  padding: $padding-md;
+  padding: $padding-md !important;
 }
 .p-sm {
-  padding: $padding-sm;
+  padding: $padding-sm !important;
 }
 
 .pe-lg {
@@ -139,4 +145,16 @@
 }
 .fs-5 {
   font-size: 1.5rem;
+}
+.grid-4 {
+  @include grid("center", 4, 10);
+}
+.grid-3 {
+  @include grid("center", 3, 10);
+}
+.grid-2 {
+  @include grid("center", 2, 10);
+}
+.grid-1 {
+  @include grid("center", 1, 10);
 }

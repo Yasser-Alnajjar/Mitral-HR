@@ -1,0 +1,6 @@
+.userinfo {
+  @include grid("start", 1, 10);
+  @include mediaQuery("min", 767) {
+    @include grid("start", 2, 10);
+  }
+}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { toast } from "react-hot-toast";
 import Input from "../input";
 import { useForm } from "react-hook-form";
@@ -12,10 +12,10 @@ import {
 
 export default function EditTask({ taskId, setOpen }) {
   const { data: task } = useGetSlingleTaskQuery(taskId);
-  const { data: users, isSuccess, isError, error } = useGetUsersQuery();
-  const [updateTask] = useUpdateTaskMutation(taskId);
+  const { data: users, isSuccess } = useGetUsersQuery();
+  const [updateTask, { isError, error }] = useUpdateTaskMutation(taskId);
+  const userOption = useRef();
   // React hook from
-  console.log(task);
   const {
     register,
     handleSubmit,
@@ -28,6 +28,7 @@ export default function EditTask({ taskId, setOpen }) {
   }, [reset, task]);
   const onSubmit = async (data) => {
     const employee = data.employee.split(" ");
+    console.log(data);
     updateTask({
       id: taskId,
       employee: `${employee[0]} ${employee[1]}`,
@@ -39,14 +40,14 @@ export default function EditTask({ taskId, setOpen }) {
       .unwrap()
       .then(() => {
         toast.success(`${data.title} Task has been Updated!`);
-        reset();
         setOpen(false);
+        reset();
       })
       .catch((err) => {
-        toast.error(err.data);
+        // toast.error(err);
+        console.log(isError);
       });
   };
-
   let inputs = [
     { name: "title", type: "text" },
     { name: "from", type: "date" },
@@ -67,7 +68,10 @@ export default function EditTask({ taskId, setOpen }) {
             >
               <option value={""}>Select User</option>
               {users.map((user) => (
-                <option key={user.id} value={() => ({})}>
+                <option
+                  key={user.id}
+                  value={`${user.first_name} ${user.last_name}`}
+                >
                   {user.first_name} {user.last_name}
                 </option>
               ))}
@@ -98,8 +102,6 @@ export default function EditTask({ taskId, setOpen }) {
       </form>
     );
   }
-  if (isError) {
-    toast.error(error.data);
-  }
+
   return content;
 }
