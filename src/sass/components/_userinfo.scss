@@ -1,6 +1,19 @@
 .userinfo {
-  @include grid("start", 1, 10);
-  @include mediaQuery("min", 767) {
-    @include grid("start", 2, 10);
+  &__more {
+    @include grid("start", 1, 10);
+    @include mediaQuery("min", 767) {
+      @include grid("start", 2, 10);
+      .user-border {
+        position: relative;
+        &::after {
+          content: "";
+          height: 100%;
+          right: 0;
+          top: 0;
+          position: absolute;
+          border: 2px dotted $main-color;
+        }
+      }
+    }
   }
 }
