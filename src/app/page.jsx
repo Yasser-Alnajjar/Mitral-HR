@@ -18,7 +18,7 @@ const Login = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const [login, { isLoadingComponent }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   useEffect(() => {
     reset({
       email: "admin@gmail.com",
@@ -72,7 +72,7 @@ const Login = () => {
     </section>
   );
 
-  return isLoadingComponent ? <LoadingComponent /> : content;
+  return isLoading ? <LoadingComponent /> : content;
 };
 
 export default Login;
