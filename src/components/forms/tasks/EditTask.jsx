@@ -28,7 +28,6 @@ export default function EditTask({ taskId, setOpen }) {
   }, [reset, task]);
   const onSubmit = async (data) => {
     const employee = data.employee.split(" ");
-    console.log(data);
     updateTask({
       id: taskId,
       employee: `${employee[0]} ${employee[1]}`,
@@ -44,8 +43,7 @@ export default function EditTask({ taskId, setOpen }) {
         reset();
       })
       .catch((err) => {
-        // toast.error(err);
-        console.log(isError);
+        toast.error(err.data);
       });
   };
   let inputs = [

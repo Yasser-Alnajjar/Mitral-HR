@@ -3,13 +3,7 @@ const departmentSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getDepartments: builder.query({
       query: () => "/departments",
-      providesTags: (result, error, arg) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Departments", id })),
-              "Departments",
-            ]
-          : ["Departments"],
+      providesTags: ["Departments"],
       transformResponse: (departments) =>
         departments.sort((a, z) => z.id - a.id),
     }),

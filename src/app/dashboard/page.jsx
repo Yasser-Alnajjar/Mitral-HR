@@ -21,7 +21,7 @@ const Dashboard = () => {
   const router = useRouter();
   const {
     data: users,
-    isLoadingComponent,
+    isLoading,
     isSuccess,
     isError,
     error,
@@ -32,7 +32,7 @@ const Dashboard = () => {
   const { data: tasks } = useGetAllTasksQuery();
 
   let content;
-  if (isLoadingComponent) {
+  if (isLoading) {
     content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (

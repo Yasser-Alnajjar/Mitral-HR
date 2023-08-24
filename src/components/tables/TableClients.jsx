@@ -7,7 +7,6 @@ export default function TableClients() {
   const { data: clients, isSuccess, isError, error } = useGetClientsQuery();
   let content;
   if (isSuccess) {
-    console.log(clients);
     content = (
       <div className="table-container mt-lg mb-lg p-lg">
         <table className="table text-start mt-lg">

@@ -89,7 +89,6 @@ export default function Register() {
     { name: "role", type: "text" },
     { name: "salary", type: "number" },
   ];
-  // console.log(errors);
   const onError = (err) => {
     err?.first_name && toast.error(err.first_name.message.replaceAll("_", " "));
     err?.last_name && toast.error(err.last_name.message.replaceAll("_", " "));

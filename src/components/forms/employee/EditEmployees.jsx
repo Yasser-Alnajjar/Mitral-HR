@@ -11,11 +11,7 @@ import { useForm } from "react-hook-form";
 export default function EditEmployees({ userId, setOpen, refetch }) {
   const { data: user } = useGetSingleUserQuery(userId);
   const [updateUser, error] = useUpdateUserMutation();
-  const {
-    data: departments,
-    isSuccess,
-    isLoadingComponent,
-  } = useGetDepartmentsQuery();
+  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
 
   // React hook from
   const userObj = useMemo(
@@ -66,17 +62,15 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
       .unwrap()
       .then(() => {
         toast.success(`${data.first_name} ${data.last_name} has been updated!`);
+        reset();
+        setOpen(false);
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.data);
       })
       .finally(() => {
         refetch();
       });
-
-    reset();
-    setOpen(false);
   };
 
   let selectBox;

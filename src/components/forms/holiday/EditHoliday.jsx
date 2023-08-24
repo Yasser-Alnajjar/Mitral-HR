@@ -50,7 +50,6 @@ export default function EditHoliday({ holidayId, setOpen }) {
         setOpen(false);
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.message);
       });
   };

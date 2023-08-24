@@ -24,14 +24,13 @@ export default function TableHolidays({ holidays }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
         deleteHoliday(id)
           .unwrap()
           .then(() => {
             toast.success(`(${holidayName}) Holiday has been deleted!`);
           })
           .catch((err) => {
-            console.log(err.message);
+            toast.error(err.data);
           });
       }
     });
