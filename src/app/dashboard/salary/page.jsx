@@ -2,7 +2,7 @@
 import { toast } from "react-hot-toast";
 import LoadingComponent from "../../../components/LoadingComponent";
 import { useGetUsersQuery } from "../../../redux/users/usersSlice";
-import TableSalary from "../../../components/tables/TableSalary";
+import PaginateSalary from "../../../components/PaginateSalary";
 import AddSalary from "../../../components/forms/salary/AddSalary";
 import Modal from "../../../components/apstracts/Modal";
 import { useState } from "react";
@@ -33,7 +33,8 @@ export default function Salary() {
         <Modal setOpen={setOpen} open={open} title={"Add Salary"}>
           <AddSalary setOpen={setOpen} refetch={refetch} />
         </Modal>
-        <TableSalary users={users} refetch={refetch} />
+        {/* <TableSalary users={users} refetch={refetch} /> */}
+        <PaginateSalary items={users} itemsPerPage={5} refetch={refetch} />
       </section>
     );
   } else if (isError) {

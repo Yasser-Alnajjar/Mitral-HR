@@ -8,14 +8,10 @@ import {
 } from "../../../redux/users/usersSlice";
 import { useGetDepartmentsQuery } from "../../../redux/departments/departmentSlice";
 import { useForm } from "react-hook-form";
-export default function EditEmployees({ userId, setOpen, refetch }) {
-  const { data: user } = useGetSingleUserQuery(userId);
+export default function EditProfile({ userId }) {
+  const { data: user, refetch } = useGetSingleUserQuery(userId);
   const [updateUser, error] = useUpdateUserMutation();
-  const {
-    data: departments,
-    isSuccess,
-    isLoadingComponent,
-  } = useGetDepartmentsQuery();
+  const { data: departments, isSuccess, isLoading } = useGetDepartmentsQuery();
 
   // React hook from
   const userObj = useMemo(
@@ -68,15 +64,12 @@ export default function EditEmployees({ userId, setOpen, refetch }) {
         toast.success(`${data.first_name} ${data.last_name} has been updated!`);
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.data);
       })
       .finally(() => {
         refetch();
+        reset();
       });
-
-    reset();
-    setOpen(false);
   };
 
   let selectBox;

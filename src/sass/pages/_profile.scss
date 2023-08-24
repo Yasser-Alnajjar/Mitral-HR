@@ -1,7 +1,15 @@
 .profile {
-  background-position: center;
-  object-fit: cover;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+  &__content {
+    @include grid("center", 1, 10);
+    grid-auto-flow: dense;
+    .form {
+      order: 1;
+    }
+    @include mediaQuery("min", 1024) {
+      @include grid("center", 2, 10);
+      .form {
+        order: 0;
+      }
+    }
+  }
 }
