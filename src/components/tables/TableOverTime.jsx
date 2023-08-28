@@ -48,25 +48,32 @@ export default function TableOverTime({ overTimes }) {
       </Modal>
       <div className="table-container">
         <table className="table">
+          <caption>OverTime</caption>
           <thead className="table__head">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>OT Date</th>
-              <th>OT Hours</th>
-              <th>Actions</th>
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">Name</th>
+              <th className="table__head__tr__th">OT Date</th>
+              <th className="table__head__tr__th">OT Hours</th>
+              <th className="table__head__tr__th">Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {overTimes?.map((item, index) => (
-              <tr key={item.id}>
-                <td className="capitalize">{index + 1}</td>
-                <td className="capitalize">
+              <tr className="table__body__tr" key={item.id}>
+                <td data-label={"#"} className="table__body__tr__td">
+                  {index + 1}
+                </td>
+                <td data-label={"Name"} className="table__body__tr__td">
                   {item.first_name} {item.last_name}
                 </td>
-                <td>{item.date}</td>
-                <td>{item.hours}</td>
-                <td>
+                <td data-label={"Date"} className="table__body__tr__td">
+                  {item.date}
+                </td>
+                <td data-label={"Hours"} className="table__body__tr__td">
+                  {item.hours}
+                </td>
+                <td data-label={"Actions"} className="table__body__tr__td">
                   <div className="btns-group">
                     <button
                       className="btn btn-warning"

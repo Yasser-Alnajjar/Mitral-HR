@@ -14,9 +14,10 @@ export default function PaginateSalary({ itemsPerPage, items, refetch }) {
 
     setItemOffset(newOffset);
   };
+  console.log(currentItems);
   return (
     <>
-      <TableSalary users={currentItems} refetch={refetch} />
+      <TableSalary salaries={currentItems} refetch={refetch} />
       <div className="paginate">
         <ReactPaginate
           breakLabel="..."

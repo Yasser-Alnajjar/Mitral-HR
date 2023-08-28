@@ -22,7 +22,6 @@ export default function Tasks() {
   } else if (isSuccess) {
     content = (
       <section>
-        <h1 className="text-center mt-lg fs-5 text-primary">Tasks</h1>
         <div className="container">
           <div className="btns-group place-end">
             <button className="btn btn-primary" onClick={() => setOpen(true)}>

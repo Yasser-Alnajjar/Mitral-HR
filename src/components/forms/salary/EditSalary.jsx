@@ -18,12 +18,15 @@ export default function EditSalary({ userId, setOpen, refetch }) {
   const { data: user } = useGetSingleUserQuery(userId);
   const [updateSalary] = useUpdateSalaryMutation();
   // React hook from
+  let salaryOfDay = +salary?.salary / 30;
+  let numberOfLeaves = Math.round(+salary?.leave / salaryOfDay);
+  console.log(numberOfLeaves);
   const salaryObj = useMemo(
     () => ({
       salary: salary?.salary,
       conveyance: salary?.conveyance,
       medical: salary?.medical,
-      leave: salary?.leave,
+      leave: numberOfLeaves,
       other: salary?.other ? salary?.other : 0,
       total: salary?.total,
     }),
@@ -31,7 +34,7 @@ export default function EditSalary({ userId, setOpen, refetch }) {
       salary?.salary,
       salary?.conveyance,
       salary?.medical,
-      salary?.leave,
+      numberOfLeaves,
       salary?.other,
       salary?.total,
     ]
@@ -51,8 +54,9 @@ export default function EditSalary({ userId, setOpen, refetch }) {
   let total;
   const onSubmit = async (data) => {
     const { salary, conveyance, medical, leave, other } = data;
-    total = +salary + +conveyance + +medical + +other - +leave;
-
+    let avrageOfLeave = (salary / 30) * leave;
+    let allSalary = +salary + +conveyance + +medical + +other;
+    total = allSalary - avrageOfLeave;
     updateSalary({
       id: userId,
       first_name: user.first_name,
@@ -61,7 +65,7 @@ export default function EditSalary({ userId, setOpen, refetch }) {
       conveyance: data.conveyance,
       medical: data.medical,
       other: data.other,
-      leave: Math.ceil((data.salary / 30) * data.leave),
+      leave: avrageOfLeave,
       total,
     })
       .unwrap()

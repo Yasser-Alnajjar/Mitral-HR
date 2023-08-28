@@ -45,59 +45,84 @@ export default function TableTasks({ tasks }) {
         <EditTask setOpen={setOpen} taskId={id} />
       </Modal>
       <div className="table-container mt-lg">
-        {tasks?.length === 0 ? (
-          <p>nooooooooo</p>
-        ) : (
-          <table className="table text-center">
-            <thead className="table__head">
-              <tr>
-                <th>#</th>
-                <th>title</th>
-                <th>employee</th>
-                <th>from</th>
-                <th>to</th>
-                <th>description</th>
-                <th>actions</th>
+        <table className="table text-center">
+          <caption>Tasks</caption>
+          <thead className="table__head">
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">title</th>
+              <th className="table__head__tr__th">employee</th>
+              <th className="table__head__tr__th">from</th>
+              <th className="table__head__tr__th">to</th>
+              <th className="table__head__tr__th">description</th>
+              <th className="table__head__tr__th">actions</th>
+            </tr>
+          </thead>
+          <tbody className="table__body">
+            {tasks.map((item, index) => (
+              <tr className="table__body__tr" key={item.id}>
+                <td data-label={"#"} className="capitalize table__body__tr__td">
+                  {index + 1}
+                </td>
+                <td
+                  data-label={"Title"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.title}
+                </td>
+                <td
+                  data-label={"Employee"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.employee}
+                </td>
+                <td
+                  data-label={"From"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.from}
+                </td>
+                <td
+                  data-label={"To"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.to}
+                </td>
+                <td
+                  data-label={"Description"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.description.substring(0, 70)}...
+                </td>
+                <td
+                  data-label={"Actions"}
+                  className="capitalize table__body__tr__td"
+                >
+                  <div className="btns-group  place-end">
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => handleUpdateTask(item.id)}
+                    >
+                      <AiOutlineEdit />
+                    </button>
+                    <Link
+                      className="btn btn-primary"
+                      href={`/dashboard/tasks/${item.id}`}
+                    >
+                      <AiOutlineEye />
+                    </Link>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteTask(item.id, item.employee)}
+                    >
+                      <AiOutlineDelete />
+                    </button>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody className="table__body">
-              {tasks.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td className="capitalize">{item.title}</td>
-                  <td className="capitalize">{item.employee}</td>
-                  <td className="capitalize">{item.from}</td>
-                  <td className="capitalize">{item.to}</td>
-                  <td className="capitalize">
-                    {item.description.substring(0, 70)}...
-                  </td>
-                  <td>
-                    <div className="btns-group">
-                      <button
-                        className="btn btn-warning"
-                        onClick={() => handleUpdateTask(item.id)}
-                      >
-                        <AiOutlineEdit />
-                      </button>
-                      <Link
-                        className="btn btn-primary"
-                        href={`/dashboard/tasks/${item.id}`}
-                      >
-                        <AiOutlineEye />
-                      </Link>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDeleteTask(item.id, item.employee)}
-                      >
-                        <AiOutlineDelete />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

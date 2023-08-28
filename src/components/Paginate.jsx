@@ -17,12 +17,12 @@ export default function PaginatedItems({ itemsPerPage, items, refetch }) {
   return (
     <>
       <TableEmployees users={currentItems} refetch={refetch} />
-      <div className="paginate">
+      <div className="paginate mt-md">
         <ReactPaginate
           breakLabel="..."
           nextLabel={<AiOutlineArrowRight />}
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={3}
           pageCount={pageCount}
           className="paginate_list"
           previousLabel={<AiOutlineArrowLeft />}

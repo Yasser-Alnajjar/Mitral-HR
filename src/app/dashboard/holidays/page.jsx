@@ -10,18 +10,17 @@ export default function Holidays() {
   const [open, setOpen] = useState(false);
   const {
     data: holidays,
-    isLoadingComponent,
+    isLoading,
     isSuccess,
     isError,
     error,
   } = useGetHolidaysQuery();
   let content;
-  if (isLoadingComponent) {
+  if (isLoading) {
     content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section>
-        <h1 className="text-center mt-lg fs-5 text-primary">Holidays</h1>
         <div className="container">
           <div className="btns-group place-end">
             <button className="btn btn-primary" onClick={() => setOpen(true)}>
@@ -32,7 +31,7 @@ export default function Holidays() {
         <Modal setOpen={setOpen} open={open} title={"Add Holiday"}>
           <AddHoliday setOpen={setOpen} />
         </Modal>
-        <TableHolidays holidays={holidays} />;
+        <TableHolidays holidays={holidays} />
       </section>
     );
   } else if (isError) {

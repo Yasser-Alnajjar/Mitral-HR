@@ -1,56 +1,48 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoadingComponent from "../../LoadingComponent";
 import { toast } from "react-hot-toast";
 import {
   useGetSingleDepartmentQuery,
   useUpdateDepartmentMutation,
 } from "../../../redux/departments/departmentSlice";
-export default function EditDepartmentFrom({ departmentId, setOpen }) {
+import { useForm } from "react-hook-form";
+import Input from "../input";
+export default function EditDepartmentFrom({ departmentId, setOpen, refetch }) {
   const { data: department } = useGetSingleDepartmentQuery(departmentId);
-  const [departmentName, setDepartmentName] = useState(
-    department && department?.name
-  );
-  const [leader, setLeader] = useState(department && department?.leader);
-  const [updateDepartment, { isLoadingComponent }] =
-    useUpdateDepartmentMutation();
 
-  if (isLoadingComponent) {
-    return <LoadingComponent />;
-  }
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      updateDepartment({
-        id: departmentId,
-        name: departmentName,
-        leader: leader,
-      }).unwrap();
-      setDepartmentName("");
-      setLeader("");
-      setOpen(false);
-    } catch (err) {
-      toast.error(err.message);
-    }
+  const [updateDepartment] = useUpdateDepartmentMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  useEffect(() => {
+    reset(department);
+  }, [department, reset]);
+
+  const onSubmit = async (data) => {
+    updateDepartment({
+      id: departmentId,
+      ...data,
+    })
+      .unwrap()
+      .then(() => {
+        setOpen(false);
+      })
+      .catch((err) => {
+        console.log(err?.message);
+      })
+      .finally(() => {
+        refetch();
+      });
   };
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <label className="form-label">Name</label>
-      <input
-        className="form-control"
-        type="text"
-        defaultValue={department?.name}
-        value={departmentName}
-        onChange={({ target }) => setDepartmentName(target.value)}
-      />
-      <label className="form-label">Leader</label>
-      <input
-        className="form-control"
-        type="text"
-        defaultValue={department?.leader}
-        value={leader}
-        onChange={({ target }) => setLeader(target.value)}
-      />
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <Input label={"name"} register={register} error={errors.name} />
+      <Input label={"leader"} register={register} error={errors.Leader} />
+
       <button type="submit" className="btn btn-warning form-submit">
         Save
       </button>

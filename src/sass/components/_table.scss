@@ -1,30 +1,90 @@
 .table-container {
-  padding: 0 $padding-lg;
-}
-.table {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 0.4rem;
-  caption-side: bottom;
-  border-collapse: collapse;
-  th {
-    background-color: $secondary-color;
-    color: white;
-    padding: $padding-md;
-    text-transform: capitalize;
-  }
-  td {
-    border-bottom: 1px solid $secondary-color;
-    padding: 0 $padding-md;
-  }
-  tr {
-    @include transition("background", 0.2);
-  }
-  tr:nth-child(odd) {
-    background-color: $white-color;
-  }
-  tr:hover {
-    background-color: $secondary-color;
-    color: white;
+  padding: $padding-sm;
+  .table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    & caption {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #079f9f;
+      font-weight: bold;
+    }
+    @include mediaQuery("max", 991) {
+      border: 0;
+    }
+    &__head {
+      @include mediaQuery("max", 991) {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      &__tr {
+        background-color: $main-color;
+        border: 1px solid $main-color;
+        color: $white-color;
+        padding: 0.35em;
+        @include mediaQuery("max", 991) {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+        &__th {
+          font-size: 0.85em;
+          letter-spacing: 0.1em;
+          padding: 0.5em;
+          text-transform: capitalize;
+        }
+      }
+    }
+    &__body {
+      &__tr {
+        margin-bottom: $margin-md;
+        @include mediaQuery("max", 991) {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+        padding: 0.625em;
+        &__td {
+          padding: 0.5em;
+          & .btns-group {
+            place-content: center;
+          }
+          @include mediaQuery("max", 991) {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: 0.8em;
+            text-align: right;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            &::before {
+              content: attr(data-label);
+              float: left;
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+            &:last-child {
+              border-bottom: 0;
+            }
+            & .btns-group {
+              place-content: end;
+            }
+          }
+        }
+      }
+    }
   }
 }

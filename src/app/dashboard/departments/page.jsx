@@ -19,10 +19,11 @@ export default function Departments() {
 
   const {
     data: departments,
-    isLoadingComponent,
+    isLoading,
     isSuccess,
     isError,
     error,
+    refetch,
   } = useGetDepartmentsQuery();
   const [deleteDepartment] = useDeleteDepartmentMutation();
   const handleDelete = (id) => {
@@ -42,17 +43,24 @@ export default function Departments() {
     });
   };
   let content;
-  if (isLoadingComponent) {
+  if (isLoading) {
     content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <section className="department">
         <h1 className="text-center mt-lg fs-5 text-primary">Departments</h1>
-
         <div className="container">
-          <AddDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
+          <AddDepartmentFrom
+            setOpen={setOpen}
+            departmentId={departmentId}
+            refetch={refetch}
+          />
           <Modal open={open} setOpen={setOpen} title="Edit Department">
-            <EditDepartmentFrom setOpen={setOpen} departmentId={departmentId} />
+            <EditDepartmentFrom
+              setOpen={setOpen}
+              departmentId={departmentId}
+              refetch={refetch}
+            />
           </Modal>
           <div className="department__items">
             {departments.map((item) => (

@@ -7,19 +7,19 @@ import PaginatedItems from "../../../components/Paginate";
 export default function Employees() {
   const {
     data: users,
-    isLoadingComponent,
+    isLoading,
     isSuccess,
     isError,
     error,
     refetch,
   } = useGetUsersQuery();
   let content;
-  if (isLoadingComponent) {
+  if (isLoading) {
     content = <LoadingComponent />;
   } else if (isSuccess) {
     content = (
       <>
-        <h1 className="text-center mt-lg mb-lg fs-5 text-primary">Employees</h1>
+        <h1 className="text-center mt-lg fs-5 text-primary">Employees</h1>
         <PaginatedItems items={users} itemsPerPage={8} refetch={refetch} />
       </>
     );

@@ -11,12 +11,11 @@ import {
   useDeleteSalaryMutation,
   useGetSalariesQuery,
 } from "../../redux/salary/salarySlice";
-export default function TableSalary({ users, refetch }) {
+export default function TableSalary({ salaries, refetch }) {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
 
   const [deleteSalary] = useDeleteSalaryMutation(id);
-  const { data: salaries } = useGetSalariesQuery();
   const handleUpdateUser = async (id) => {
     setOpen(true);
     setId(id);
@@ -44,7 +43,6 @@ export default function TableSalary({ users, refetch }) {
       }
     });
   };
-  const price = 14340;
 
   // Format the price above to USD using the locale, style, and currency.
   let USDollar = new Intl.NumberFormat("en-US", {
@@ -61,36 +59,73 @@ export default function TableSalary({ users, refetch }) {
       </Modal>
       <div className="table-container">
         <table className="table">
+          <caption>Salary</caption>
           <thead className="table__head">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Salary</th>
-              <th>Conveyance</th>
-              <th>Medical</th>
-              <th>Leave</th>
-              <th>Other</th>
-              <th>Total</th>
-              <th>Actions</th>
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">Name</th>
+              <th className="table__head__tr__th">Salary</th>
+              <th className="table__head__tr__th">Conveyance</th>
+              <th className="table__head__tr__th">Medical</th>
+              <th className="table__head__tr__th">Leave</th>
+              <th className="table__head__tr__th">Other</th>
+              <th className="table__head__tr__th">Total</th>
+              <th className="table__head__tr__th">Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {salaries?.map((item, index) => (
-              <tr key={item.id}>
-                <td className="capitalize">{index + 1}</td>
-                <td className="capitalize">
+              <tr className="table__body__tr" key={item.id}>
+                <td data-label={"#"} className="capitalize table__body__tr__td">
+                  {index + 1}
+                </td>
+                <td
+                  data-label={"Name"}
+                  className="capitalize table__body__tr__td"
+                >
                   {item.first_name} {item.last_name}
                 </td>
-                <td>{USDollar.format(item.salary)}</td>
-                <td>
+                <td
+                  data-label={"Salary"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {USDollar.format(item.salary)}
+                </td>
+                <td
+                  data-label={"Conveyance"}
+                  className="capitalize table__body__tr__td"
+                >
                   {item.conveyance ? USDollar.format(item.conveyance) : 0}
                 </td>
-                <td>{item.medical ? USDollar.format(item.medical) : 0}</td>
-                <td>{item.leave ? USDollar.format(item.leave) : 0}</td>
-                <td>{item.other ? USDollar.format(item.other) : 0}</td>
-                <td>{USDollar.format(item.total)}</td>
-                <td>
-                  <div className="btns-group">
+                <td
+                  data-label={"Medical"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.medical ? USDollar.format(item.medical) : 0}
+                </td>
+                <td
+                  data-label={"Leave"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.leave ? USDollar.format(item.leave) : 0}
+                </td>
+                <td
+                  data-label={"Other"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {item.other ? USDollar.format(item.other) : 0}
+                </td>
+                <td
+                  data-label={"Total"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {USDollar.format(item.total)}
+                </td>
+                <td
+                  data-label={"Actions"}
+                  className="capitalize table__body__tr__td"
+                >
+                  <div className="btns-group place-end">
                     <button
                       className="btn btn-warning"
                       onClick={() => handleUpdateUser(item.id)}
@@ -109,32 +144,6 @@ export default function TableSalary({ users, refetch }) {
                 </td>
               </tr>
             ))}
-            {/* {users.map((user, index) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td className="capitalize">
-                  {user.first_name} {user.last_name}
-                </td>
-                <td className="capitalize">{user.job_title}</td>
-
-                <td>
-                  <div className="btns-group">
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => handleUpdateUser(user.id)}
-                    >
-                      <AiOutlineEdit />
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDeleteUser(user.id, user.first_name)}
-                    >
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))} */}
           </tbody>
         </table>
       </div>

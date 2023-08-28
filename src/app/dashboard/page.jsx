@@ -134,7 +134,6 @@ const Dashboard = () => {
         </div>
       </div>
       <section className="mt-lg">
-        <h1 className="text-center mt-lg fs-3 text-primary">Clients</h1>
         <TableClients />
       </section>
     </section>

@@ -46,34 +46,66 @@ export default function TableLeaves({ leaves }) {
       </div>
       <div className="table-container">
         <table className="table">
+          <caption>Leaves</caption>
           <thead className="table__head">
-            <tr>
-              <th>#</th>
-              <th>name</th>
-              <th>type</th>
-              <th>from</th>
-              <th>to</th>
-              <th>Reason</th>
-              <th>Status</th>
-              <th>Actions</th>
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">name</th>
+              <th className="table__head__tr__th">type</th>
+              <th className="table__head__tr__th">from</th>
+              <th className="table__head__tr__th">to</th>
+              <th className="table__head__tr__th">Reason</th>
+              <th className="table__head__tr__th">Status</th>
+              <th className="table__head__tr__th">Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {leaves.map((leave) => (
-              <tr key={leave.id}>
-                <td className="capitalize">{leave.id}</td>
-                <td className="capitalize">{leave.name}</td>
-                <td className="capitalize">
+              <tr className="table__body__tr" key={leave.id}>
+                <td data-label={"#"} className="capitalize table__body__tr__td">
+                  {leave.id}
+                </td>
+                <td
+                  data-label={"Name"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {leave.name}
+                </td>
+                <td
+                  data-label={"Type"}
+                  className="capitalize table__body__tr__td"
+                >
                   {leave.type.replaceAll("_", " ")}
                 </td>
-                <td className="capitalize">{leave.from}</td>
-                <td className="capitalize">{leave.to}</td>
-                <td className="capitalize">{leave.reason}</td>
-                <td className="capitalize">
+                <td
+                  data-label={"From"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {leave.from}
+                </td>
+                <td
+                  data-label={"To"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {leave.to}
+                </td>
+                <td
+                  data-label={"Reason"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {leave.reason}
+                </td>
+                <td
+                  data-label={"Status"}
+                  className="capitalize table__body__tr__td"
+                >
                   {leave.status ? "Approved" : "Disagree"}
                 </td>
-                <td>
-                  <div className="btns-group">
+                <td
+                  data-label={"Actions"}
+                  className="capitalize table__body__tr__td"
+                >
+                  <div className="btns-group place-end">
                     <button
                       className="btn btn-warning"
                       onClick={() => handleUpdateLeave(leave.id)}

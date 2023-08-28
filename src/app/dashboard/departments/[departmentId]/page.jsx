@@ -1,6 +1,9 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useGetUsersOfDepartmentQuery } from "../../../../redux/users/usersSlice";
+import {
+  useGetUsersOfDepartmentQuery,
+  useGetUsersQuery,
+} from "../../../../redux/users/usersSlice";
 import LoadingComponent from "../../../../components/LoadingComponent";
 
 import { toast } from "react-hot-toast";
@@ -9,26 +12,26 @@ import Link from "next/link";
 import TableEmployees from "../../../../components/tables/TableEmployees";
 export default function DepartmentDetails() {
   const { departmentId } = useParams();
-
   const {
     data: users,
-    isLoadingComponent,
+    isLoading,
     isSuccess,
     isError,
     error,
     refetch,
-  } = useGetUsersOfDepartmentQuery(departmentId);
+  } = useGetUsersQuery();
 
   let content;
-  if (isLoadingComponent) {
+  if (isLoading) {
     content = <LoadingComponent />;
   } else if (isSuccess) {
-    content = users?.length ? (
+    let filterdUsers = users.filter((user) => user.department === departmentId);
+    content = filterdUsers?.length ? (
       <section>
         <h1 className="text-center mt-lg mb-lg fs-5 text-primary">
           Department Details
         </h1>
-        <TableEmployees users={users} refetch={refetch} />
+        <TableEmployees users={filterdUsers} refetch={refetch} />
       </section>
     ) : (
       <section className="alert-container">

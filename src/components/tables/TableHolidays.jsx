@@ -45,24 +45,33 @@ export default function TableHolidays({ holidays }) {
       </Modal>
       <div className="table-container mt-lg">
         <table className="table text-center">
+          <caption>Holidays</caption>
           <thead className="table__head">
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Holiday Date</th>
-              <th>Day</th>
-              <th>Actions</th>
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">Title</th>
+              <th className="table__head__tr__th">Holiday Date</th>
+              <th className="table__head__tr__th">Day</th>
+              <th className="table__head__tr__th">Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {holidays.map((item) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
-                <td className="capitalize">{item.name}</td>
-                <td className="capitalize">{item.date}</td>
-                <td className="capitalize">{item.day}</td>
-                <td>
-                  <div className="btns-group">
+                <td data-label={"#"} className="table__body__tr__td">
+                  {item.id}
+                </td>
+                <td data-label={"Name"} className="table__body__tr__td">
+                  {item.name}
+                </td>
+                <td data-label={"Date"} className="table__body__tr__td">
+                  {item.date}
+                </td>
+                <td data-label={"day"} className="table__body__tr__td">
+                  {item.day}
+                </td>
+                <td data-label={"Actions"} className="table__body__tr__td">
+                  <div className="btns-group place-end">
                     <button
                       className="btn btn-warning"
                       onClick={() => handleUpdateHoliday(item.id)}

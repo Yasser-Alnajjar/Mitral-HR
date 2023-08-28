@@ -3,17 +3,31 @@
   align-items: center;
   justify-content: flex-end;
   margin-bottom: $margin-lg;
+  @include mediaQuery("max", 767) {
+    justify-content: center;
+    margin-bottom: $margin-sm;
+  }
   &_list {
     background-color: $main-color;
-    margin-right: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
     border-radius: 6px;
     padding: $padding-md;
+    margin-right: 2rem;
+    @include mediaQuery("max", 767) {
+      padding: $padding-sm;
+      font-size: 16px;
+      margin-right: 0;
+      gap: 10px;
+    }
   }
   & li {
+    @include mediaQuery("max", 767) {
+      padding: 0;
+      line-height: 100%;
+    }
     color: $white-color;
     cursor: pointer;
     padding: $padding-sm;

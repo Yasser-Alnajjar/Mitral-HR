@@ -9,7 +9,7 @@ export default function DropDown() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   return (
-    <li class="dropdown" onClick={() => setShow(!show)}>
+    <li className="dropdown" onClick={() => setShow(!show)}>
       <button className={`dropdown__toggle ${show ? "show" : ""}`}></button>
       <span className="user-name">{user?.first_name}</span>
       <div className={`dropdown__menu ${show ? "show" : ""}`}>

@@ -10,23 +10,46 @@ export default function TableClients() {
     content = (
       <div className="table-container mt-lg mb-lg p-lg">
         <table className="table text-start mt-lg">
+          <caption>Clients</caption>
           <thead className="table__head">
-            <tr>
-              <th className="p-lg">#</th>
-              <th className="p-lg">client</th>
-              <th className="p-lg">contact Person</th>
-              <th className="p-lg">phone</th>
-              <th className="p-lg">email</th>
+            <tr className="table__head__tr">
+              <th className="table__head__tr__th">#</th>
+              <th className="table__head__tr__th">client</th>
+              <th className="table__head__tr__th">contact Person</th>
+              <th className="table__head__tr__th">phone</th>
+              <th className="table__head__tr__th">email</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {clients.map((client, index) => (
-              <tr className="" key={client.id}>
-                <td>{index + 1}</td>
-                <td className="capitalize p-lg">{client.name}</td>
-                <td className="capitalize p-lg">{client.contact}</td>
-                <td className="capitalize p-lg">{client.phone}</td>
-                <td className="capitalize p-lg">{client.email}</td>
+              <tr className="table__body__tr" key={client.id}>
+                <td data-label={"#"} className="capitalize table__body__tr__td">
+                  {index + 1}
+                </td>
+                <td
+                  data-label={"Name"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {client.name}
+                </td>
+                <td
+                  data-label={"Contact"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {client.contact}
+                </td>
+                <td
+                  data-label={"Phone"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {client.phone}
+                </td>
+                <td
+                  data-label={"Email"}
+                  className="capitalize table__body__tr__td"
+                >
+                  {client.email}
+                </td>
               </tr>
             ))}
           </tbody>
