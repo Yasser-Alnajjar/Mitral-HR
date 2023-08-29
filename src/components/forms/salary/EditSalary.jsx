@@ -20,7 +20,6 @@ export default function EditSalary({ userId, setOpen, refetch }) {
   // React hook from
   let salaryOfDay = +salary?.salary / 30;
   let numberOfLeaves = Math.round(+salary?.leave / salaryOfDay);
-  console.log(numberOfLeaves);
   const salaryObj = useMemo(
     () => ({
       salary: salary?.salary,

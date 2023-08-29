@@ -32,7 +32,7 @@ export default function EditDepartmentFrom({ departmentId, setOpen, refetch }) {
         setOpen(false);
       })
       .catch((err) => {
-        console.log(err?.message);
+        toast.error(err.data);
       })
       .finally(() => {
         refetch();

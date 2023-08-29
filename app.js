@@ -109,7 +109,6 @@
 //   name: item,
 //   leader: "Yasser",
 // }));
-// console.log(newdepartments);
 
 // for (let i = 1; i <= 250; i++) {
 //   let o = {
@@ -148,7 +147,6 @@
 //   { id: 30, day: "2023-08-30", attend: true, icon: "✔" },
 // ],
 //   };
-//   console.log(o);
 // }
 
 //! "attendance": [

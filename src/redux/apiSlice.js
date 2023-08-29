@@ -40,7 +40,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     );
     if (refreshToken.data) {
       const { accessToken, user } = refreshToken.data;
-
       api.dispatch(
         setCredentials({
           accessToken,

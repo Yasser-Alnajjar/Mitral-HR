@@ -14,7 +14,6 @@ export default function PaginateSalary({ itemsPerPage, items, refetch }) {
 
     setItemOffset(newOffset);
   };
-  console.log(currentItems);
   return (
     <>
       <TableSalary salaries={currentItems} refetch={refetch} />

@@ -9,11 +9,15 @@ import Image from "next/image";
 import { IoIosLogOut } from "react-icons/io";
 import { logOut } from "../redux/auth/authSlice";
 import DropDown from "../components/apstracts/DropDown";
-export default function Navbar() {
+import { useState, useRef, forwardRef } from "react";
+import ClickOutside from "./ClickOutSide";
+
+// eslint-disable-next-line react/display-name
+const Navbar = forwardRef(({ show, setShow }, ref) => {
   const open = useSelector(selectOpen);
   const dispatch = useDispatch();
   return (
-    <nav className={`navbar ${open ? "open" : ""}`}>
+    <nav ref={ref} className={`navbar ${open ? "open" : ""}`}>
       <div className="navbar__logo">
         <Link href="/dashboard">
           <Image src={logo} alt="logo" />
@@ -21,7 +25,6 @@ export default function Navbar() {
         <Link href="/dashboard">
           <h3>Mitral Hr</h3>
         </Link>
-
         <div className="navbar__logo__toggle">
           <span
             onClick={() => dispatch(openSidebar(!open))}
@@ -31,9 +34,10 @@ export default function Navbar() {
           </span>
         </div>
       </div>
-      <ul className="navbar__list">
-        <DropDown />
+      <ul className="navbar__list" onClick={() => setShow(!show)}>
+        <DropDown show={show} />
       </ul>
     </nav>
   );
-}
+});
+export default ClickOutside(Navbar);
