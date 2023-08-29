@@ -1,5 +1,4 @@
 "use client";
-
 import { Chart as ChartJS, LineController } from "chart.js/auto";
 import LoadingComponent from "../../components/LoadingComponent";
 import { toast } from "react-hot-toast";

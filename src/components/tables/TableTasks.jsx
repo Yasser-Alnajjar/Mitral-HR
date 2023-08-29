@@ -31,7 +31,7 @@ export default function TableTasks({ tasks }) {
             toast.success(`(${taskName}) tasks has been deleted!`);
           })
           .catch((err) => {
-            console.log(err.message);
+            toast.error(err.data);
           });
       }
     });
